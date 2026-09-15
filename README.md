@@ -33,7 +33,7 @@ The end-to-end architecture is structured into three decoupled layers:
 
 <div align="center">
 
-![System Architecture](docs/assets/system_architecture.svg)
+![System Architecture](docs/assets/diagram_architecture.svg)
 
 </div>
 
