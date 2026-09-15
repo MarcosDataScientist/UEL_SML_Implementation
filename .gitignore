@@ -1,6 +1,7 @@
 # ==========================================
-# LaTeX / Arquivos Auxiliares de Compilação
+# LaTeX / Documentação Interna
 # ==========================================
+docs/latex/
 *.aux
 *.bbl
 *.blg
