@@ -33,7 +33,7 @@ The end-to-end architecture is structured into three decoupled layers:
 
 <div align="center">
 
-![System Architecture](docs/assets/system_architecture.png)
+![System Architecture](docs/assets/system_architecture.svg)
 
 </div>
 
@@ -54,17 +54,17 @@ The end-to-end architecture is structured into three decoupled layers:
 
 ```
 .
-├── bateria_testes/                 # 🧪 Containerized testbench and benchmark suite
+├── testbench/                      # 🧪 Containerized testbench and benchmark suite
 │   ├── docker-compose.yml          # Stack orchestration (Ollama, n8n, PostgreSQL)
 │   ├── Makefile                    # Lifecycle automation (make up, make pull-models, etc.)
 │   ├── sql/init.sql                # pg_trgm + unaccent extensions & official seed dataset
 │   ├── scripts/setup_models.sh     # Automated download and verification of SLM candidates
 │   ├── benchmark/                  # Python benchmark runner (TTFT, Throughput, Precision)
 │   └── n8n_workflows/              # Pre-configured workflow for local Ollama & Postgres
-├── n8n_workflows_producao/         # 🔄 Reference workflows exported from active production (SEFA-PR)
+├── n8n_production_workflows/       # 🔄 Reference workflows exported from active production (SEFA-PR)
 ├── docs/                           # 📄 Academic documentation and theoretical specifications
 │   ├── assets/                     # Visual assets, banners, and architecture diagrams
-│   ├── diagramas/                  # Editable Draw.io diagrams (.drawio)
+│   ├── diagrams/                   # Editable Draw.io diagrams (.drawio)
 │   ├── latex/                      # Full LaTeX academic paper source (main.tex, BibTeX, figures)
 │   └── main.pdf                    # Compiled scientific paper (8 pages)
 ├── .gitignore                      # Git ignore specifications (context, .env, temporary files)
@@ -93,7 +93,7 @@ The test environment is fully containerized and can be launched on any Linux/Ubu
 
 ### 1. Launch the Stack
 ```bash
-cd bateria_testes
+cd testbench
 make up
 ```
 *Creates the shared `lab-network` bridge and boots Ollama (port 11434), PostgreSQL (port 5432), and n8n (port 5678) with healthchecks.*
@@ -113,7 +113,7 @@ make test-direct MODEL=qwen2.5:1.5b
 make test-direct MODEL=llama3.2:3b
 ```
 
-The benchmark runner records **Time-To-First-Token (TTFT)**, **Throughput ($T_{\text{gen}}$ tokens/s)**, and **Radical Accuracy** in [`bateria_testes/benchmark/benchmark_report.md`](bateria_testes/benchmark/benchmark_report.md).
+The benchmark runner records **Time-To-First-Token (TTFT)**, **Throughput ($T_{\text{gen}}$ tokens/s)**, and **Radical Accuracy** in [`testbench/benchmark/benchmark_report.md`](testbench/benchmark/benchmark_report.md).
 
 ---
 
