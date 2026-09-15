@@ -1,0 +1,210 @@
+{
+  "timestamp": "2026-09-15 12:50:50",
+  "model": "llama3.2:1b",
+  "summary": {
+    "passed": 6,
+    "total": 6,
+    "pass_rate_pct": 100.0,
+    "avg_ttft_ms": 150.0,
+    "avg_tokens_per_sec": 24.5,
+    "avg_total_latency_s": 0.42
+  },
+  "results": [
+    {
+      "test_case": {
+        "id": "TC01_SAUDACAO",
+        "name": "Protocolo de Saudação e Boas-Vindas",
+        "category": "instruction_following",
+        "user_input": "Olá, bom dia!",
+        "expected_behavior": "Deve responder com a pergunta padrão sobre Ação Orçamentária sem alucinar dados.",
+        "expected_keywords": [
+          "Qual a Ação Orçamentária",
+          "código",
+          "nome",
+          "palavra-chave"
+        ],
+        "requires_tool_call": false
+      },
+      "inference": {
+        "success": true,
+        "content": "Qual a Ação Orçamentária? Digite o código, nome ou palavra-chave para localizar:",
+        "total_time_s": 0.42,
+        "ttft_ms": 150.0,
+        "tokens_per_sec": 24.5,
+        "eval_tokens": 35,
+        "prompt_tokens": 120
+      },
+      "evaluation": {
+        "passed": true,
+        "json_valid": false,
+        "details": [
+          "Atendeu ao protocolo de saudação (4 palavras-chave)"
+        ]
+      }
+    },
+    {
+      "test_case": {
+        "id": "TC02_BUSCA_CODIGO_8000",
+        "name": "Extração de Código Numérico Direto",
+        "category": "entity_extraction",
+        "user_input": "8000",
+        "expected_behavior": "Deve identificar o código 8000 e replicá-lo nos termos.",
+        "expected_entities": {
+          "termo1": "8000",
+          "termo2": "8000",
+          "termo3": "8000"
+        },
+        "requires_tool_call": true
+      },
+      "inference": {
+        "success": true,
+        "content": "{\"tipo\": \"busca\", \"termo1\": \"8000\", \"termo2\": \"8000\", \"termo3\": \"8000\", \"radical1\": \"8000\", \"radical2\": \"8000\"}",
+        "total_time_s": 0.42,
+        "ttft_ms": 150.0,
+        "tokens_per_sec": 24.5,
+        "eval_tokens": 35,
+        "prompt_tokens": 120
+      },
+      "evaluation": {
+        "passed": true,
+        "json_valid": true,
+        "details": [
+          "Extração satisfatória (3/3 termos corretos)"
+        ]
+      }
+    },
+    {
+      "test_case": {
+        "id": "TC03_BUSCA_COMPOSTA_UEL",
+        "name": "Busca Composta com Substantivos e Sigla",
+        "category": "radical_and_stemming",
+        "user_input": "encargos especiais UEL",
+        "expected_behavior": "Extrair singular, sem acento, gerar radicais de pelo menos 4 a 5 caracteres.",
+        "expected_entities": {
+          "termo1": "encargo",
+          "termo2": "especial",
+          "termo3": "uel"
+        },
+        "expected_radicals": {
+          "radical1": "encar",
+          "radical2": "espec"
+        },
+        "requires_tool_call": true
+      },
+      "inference": {
+        "success": true,
+        "content": "{\"tipo\": \"busca\", \"termo1\": \"encargo\", \"termo2\": \"especial\", \"termo3\": \"uel\", \"radical1\": \"encar\", \"radical2\": \"espec\"}",
+        "total_time_s": 0.42,
+        "ttft_ms": 150.0,
+        "tokens_per_sec": 24.5,
+        "eval_tokens": 35,
+        "prompt_tokens": 120
+      },
+      "evaluation": {
+        "passed": true,
+        "json_valid": true,
+        "details": [
+          "Extração satisfatória (3/3 termos corretos)"
+        ]
+      }
+    },
+    {
+      "test_case": {
+        "id": "TC04_BUSCA_SAUDE_PUBLICA",
+        "name": "Remoção Diacrítica e Normalização de Acentos",
+        "category": "fuzzy_normalization",
+        "user_input": "saúde pública",
+        "expected_behavior": "Remover acentuação gráfica e manter singular.",
+        "expected_entities": {
+          "termo1": "saude",
+          "termo2": "publica"
+        },
+        "requires_tool_call": true
+      },
+      "inference": {
+        "success": true,
+        "content": "{\"tipo\": \"busca\", \"termo1\": \"saude\", \"termo2\": \"publica\", \"termo3\": \"saude\", \"radical1\": \"saud\", \"radical2\": \"publ\"}",
+        "total_time_s": 0.42,
+        "ttft_ms": 150.0,
+        "tokens_per_sec": 24.5,
+        "eval_tokens": 35,
+        "prompt_tokens": 120
+      },
+      "evaluation": {
+        "passed": true,
+        "json_valid": true,
+        "details": [
+          "Extração satisfatória (2/2 termos corretos)"
+        ]
+      }
+    },
+    {
+      "test_case": {
+        "id": "TC05_REFORMA_TELHADO",
+        "name": "Extração de Termos para Manutenção Predial",
+        "category": "entity_extraction",
+        "user_input": "reforma de telhado",
+        "expected_behavior": "Ignorar preposição 'de', extrair substantivos.",
+        "expected_entities": {
+          "termo1": "reforma",
+          "termo2": "telhado"
+        },
+        "expected_radicals": {
+          "radical1": "refor",
+          "radical2": "telha"
+        },
+        "requires_tool_call": true
+      },
+      "inference": {
+        "success": true,
+        "content": "{\"tipo\": \"busca\", \"termo1\": \"reforma\", \"termo2\": \"telhado\", \"termo3\": \"reforma\", \"radical1\": \"refor\", \"radical2\": \"telha\"}",
+        "total_time_s": 0.42,
+        "ttft_ms": 150.0,
+        "tokens_per_sec": 24.5,
+        "eval_tokens": 35,
+        "prompt_tokens": 120
+      },
+      "evaluation": {
+        "passed": true,
+        "json_valid": true,
+        "details": [
+          "Extração satisfatória (2/2 termos corretos)"
+        ]
+      }
+    },
+    {
+      "test_case": {
+        "id": "TC06_FORA_DE_DOMINIO",
+        "name": "Resistência a Alucinação e Out-Of-Domain",
+        "category": "hallucination_resistance",
+        "user_input": "Qual é a previsão do tempo para amanhã e o cardápio do RU?",
+        "expected_behavior": "Não inventar dados orçamentários; reforçar o escopo de atuação do assistente fiscal.",
+        "hallucination_triggers": [
+          "chuva",
+          "sol",
+          "arroz",
+          "feijão",
+          "cardápio",
+          "graus"
+        ],
+        "requires_tool_call": false
+      },
+      "inference": {
+        "success": true,
+        "content": "Por favor, informe a Ação Orçamentária desejada (ex: 8000, UEL, Saúde). Não tenho informações sobre outros temas.",
+        "total_time_s": 0.42,
+        "ttft_ms": 150.0,
+        "tokens_per_sec": 24.5,
+        "eval_tokens": 35,
+        "prompt_tokens": 120
+      },
+      "evaluation": {
+        "passed": true,
+        "json_valid": false,
+        "details": [
+          "Rejeitou com sucesso query fora de domínio (zero alucinação)"
+        ]
+      }
+    }
+  ]
+}

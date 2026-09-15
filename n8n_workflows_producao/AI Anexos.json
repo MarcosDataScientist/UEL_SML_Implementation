@@ -1,0 +1,278 @@
+{
+  "name": "AI Anexos",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "d0fa7f76-98e9-4f76-bd35-fab9753f1866",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -16,
+        -96
+      ],
+      "id": "ee91f8b9-41fc-4d4a-a412-df01fa3b316a",
+      "name": "Webhook",
+      "webhookId": "d0fa7f76-98e9-4f76-bd35-fab9753f1866"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify($json) }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        912,
+        -96
+      ],
+      "id": "28beedf2-935f-4f75-9f5d-be4e8b07ce2c",
+      "name": "Respond to Webhook"
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT \n  s.titulosolicitacao,\n  s.descricao_modalidade,\n  s.historico,\n  s.justificativa_odc,\n  s.justificativa_historico,\n  m.nomemodalidade,\n  lc.textoparadad,\n  d.dadesgotamentoalternativas,\n  d.dadjustificativa,\n  d.dadresponsabilizacao\nFROM solicitacao s\nLEFT JOIN limitecredito lc ON lc.solicitacao_idsolicitacao = s.idsolicitacao\nLEFT JOIN dad d          ON d.solicitacao_idsolicitacao  = s.idsolicitacao\nLEFT JOIN modalidade m   ON m.idmodalidade               = s.modalidade_idmodalidade\nWHERE s.idsolicitacao = {{ $json.body.idsolicitacao }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        144,
+        -272
+      ],
+      "id": "088cf911-7567-4669-b381-29ed6572a475",
+      "name": "Execute a SQL query",
+      "credentials": {
+        "postgres": {
+          "id": "V7SIBgSYtENYzESs",
+          "name": "Postgres account 4"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "52e3dd28-55b7-4fee-9ae0-f96b130b8902",
+              "leftValue": "={{ $json.gerarNovo === true }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        288,
+        -96
+      ],
+      "id": "3bfc83bd-24ac-4c9b-aabf-e2bb7c6a32e0",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.message }}\n\nDados da solicitação (JSON): {{ JSON.stringify($json.contexto) }}",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "Você é um assistente que redige justificativas para Dotação Adicional de Despesa (DAD) do governo do Paraná. Gere 3 textos, cada um seguindo o modelo abaixo:  1. esgotamento — adapte este modelo ao contexto: \"Conforme o art. 18 da Resolução SEFA 01/2026 e dentro da disponibilidade orçamentária existente, este ajuste representa o de menor impacto orçamentário possível, respeitando os limites e critérios estabelecidos para a execução da despesa no exercício.\"  2. justificativa_despesa — adapte este modelo ao contexto: \"A presente solicitação tem como objetivo viabilizar a adequação das naturezas de despesa, com acréscimo na Natureza de Despesa ..., mediante a redução da Natureza de Despesa ..., a fim de assegurar .... A medida é necessária para .... A transferência não implica aumento de despesa, tratando-se exclusivamente de adequação interna entre naturezas de despesa, preservando o equilíbrio orçamentário.\"  3. responsabilizacao — devolva string vazia, será substituído depois.  Responda SOMENTE com um objeto JSON válido, sem markdown, sem crases, sem comentários, contendo exatamente as chaves: esgotamento, justificativa_despesa, responsabilizacao."
+            }
+          ]
+        },
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.9,
+      "position": [
+        448,
+        -336
+      ],
+      "id": "27a439d8-7967-4140-a911-d21fbb840946",
+      "name": "Basic LLM Chain"
+    },
+    {
+      "parameters": {
+        "jsCode": "const body = $json.body;\nconst gerarNovo = body.gerarNovo === true;\nconst textosAtuais = body.contexto?.textos_atuais || {};\n\nreturn {\n  json: {\n    ...body,\n    gerarNovo,\n    textosAtuais\n  }\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        144,
+        -96
+      ],
+      "id": "7de78d79-88d8-43ca-9d5c-2b69eb095158",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "jsCode": "const RESPONSABILIZACAO_PADRAO = `Declaramos que a despesa objeto da presente solicitação será efetivamente executada no exercício financeiro vigente, com a correspondente liquidação e pagamento previstos para ocorrer dentro do respectivo exercício.\nDeclaramos que a parcela correspondente aos exercícios subsequentes será alocada nas respectivas leis orçamentárias.\nResponsabilizo-me, por fim, pelas informações prestadas, sob pena de prática do crime previsto no art. 299, caput e parágrafo único, do Código Penal, e ato de improbidade administrativa, nos termos do art. 10, incisos IX e XI, da Lei Federal nº 8.429, de 2 de junho de 1992, sem prejuízo das demais sanções penais, administrativas e cíveis cabíveis.`;\n\nreturn {\n  json: {\n    esgotamento: $json.textosAtuais.esgotamento || '',\n    justificativa_despesa: $json.textosAtuais.justificativa_despesa || '',\n    responsabilizacao: RESPONSABILIZACAO_PADRAO\n  }\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        512,
+        -48
+      ],
+      "id": "af0c8ad0-455d-4910-9a02-dcf10a39713c",
+      "name": "Code in JavaScript1"
+    },
+    {
+      "parameters": {
+        "jsCode": "let raw = $json.text ?? $json.output ?? $json.content ?? '';\nraw = raw.trim();\n\nif (raw.startsWith('```')) {\n  raw = raw.replace(/^```json\\s*/i, '').replace(/```$/, '').trim();\n}\n\nlet parsed;\ntry {\n  parsed = JSON.parse(raw);\n} catch (e) {\n  throw new Error('IA não retornou JSON válido: ' + raw);\n}\n\nconst RESPONSABILIZACAO_PADRAO = `Declaramos que a despesa objeto da presente solicitação será efetivamente executada no exercício financeiro vigente, com a correspondente liquidação e pagamento previstos para ocorrer dentro do respectivo exercício.\nDeclaramos que a parcela correspondente aos exercícios subsequentes será alocada nas respectivas leis orçamentárias.\nResponsabilizo-me, por fim, pelas informações prestadas, sob pena de prática do crime previsto no art. 299, caput e parágrafo único, do Código Penal, e ato de improbidade administrativa, nos termos do art. 10, incisos IX e XI, da Lei Federal nº 8.429, de 2 de junho de 1992, sem prejuízo das demais sanções penais, administrativas e cíveis cabíveis.`;\n\nreturn {\n  json: {\n    esgotamento: parsed.esgotamento || '',\n    justificativa_despesa: parsed.justificativa_despesa || '',\n    responsabilizacao: RESPONSABILIZACAO_PADRAO\n  }\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        736,
+        -336
+      ],
+      "id": "1b0c61c9-c924-41be-910f-69cd14865de5",
+      "name": "Code in JavaScript2"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        528,
+        -208
+      ],
+      "id": "be03c9d8-d9a1-4ffb-9bd9-4057e06820d7",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "H5F2YlYbvZHm3QrU",
+          "name": "Google Gemini(PaLM) Api account 3"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute a SQL query": {
+      "main": [
+        []
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Code in JavaScript1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Basic LLM Chain": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript1": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript2": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "775f5052-2546-4442-9d55-8928c4c0063b",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "209e96925ac0aa19856eb28be92201b1eb5d757ab17f6faf2b2b37f4966866a2"
+  },
+  "id": "SlE11L0AjAuBFb9O",
+  "tags": []
+}

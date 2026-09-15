@@ -1,0 +1,152 @@
+<mxfile host="65bd71144e">
+    <diagram id="diag_slm_n8n_architecture" name="Arquitetura SLM &amp; n8n Orcamento Publico">
+        <mxGraphModel dx="1944" dy="1280" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1700" pageHeight="1200" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="title" value="&lt;b style=&quot;font-size: 22px; color: #1E3A8A;&quot;&gt;Arquitetura do Projeto SLM: Automação Orçamentária Pública com n8n &amp;amp; Inferência Local em CPU&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size: 13px; color: #4B5563;&quot;&gt;Laboratório de Pesquisa em Gestão Pública (LABGEP / NIGEP - UEL) • Parceria Técnica para Processamento Orçamentário Seguro&lt;/span&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+                    <mxGeometry x="150" y="20" width="1400" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="grp_user" value="" style="swimlane;whiteSpace=wrap;html=1;fillColor=#F8FAFC;strokeColor=#94A3B8;rounded=1;arcSize=6;fontColor=#0F172A;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="90" width="270" height="980" as="geometry"/>
+                </mxCell>
+                <mxCell id="usr_gestor" value="" style="shape=actor;whiteSpace=wrap;html=1;fillColor=#E2E8F0;strokeColor=#475569;fontColor=#0F172A;spacingTop=10;" parent="grp_user" vertex="1">
+                    <mxGeometry x="105" y="60" width="50" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="usr_demanda" value="&lt;b&gt;Demandas Comuns de Usuário:&lt;/b&gt;&lt;br&gt;• Consulta de Natureza de Despesa&lt;br&gt;• Localização de Ações Orçamentárias&lt;br&gt;• Identificação de Fontes de Recurso&lt;br&gt;• Consulta de Funções e Subfunções&lt;br&gt;• Geração de Minutas DAD (Dotação Adicional de Despesa)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F1F5F9;strokeColor=#CBD5E1;fontColor=#334155;align=left;spacingLeft=10;fontSize=11;" parent="grp_user" vertex="1">
+                    <mxGeometry x="20" y="190" width="220" height="140" as="geometry"/>
+                </mxCell>
+                <mxCell id="usr_interface" value="&lt;b&gt;Interfaces de Acesso:&lt;/b&gt;&lt;br&gt;• Webhook Chat Web UI&lt;br&gt;• Chat Trigger n8n&lt;br&gt;• Portal Integrado de Solicitação" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E0E7FF;strokeColor=#818CF8;fontColor=#1E1B4B;fontSize=11;" parent="grp_user" vertex="1">
+                    <mxGeometry x="20" y="360" width="220" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="2" value="&lt;meta charset=&quot;utf-8&quot;&gt;&lt;b style=&quot;border-color: rgb(218, 220, 224); color: rgb(15, 23, 42); font-family: Helvetica; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: center; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(251, 251, 251); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;&quot;&gt;Técnico / Gestor Orçamentário&lt;/b&gt;&lt;br style=&quot;border-color: rgb(218, 220, 224); color: rgb(15, 23, 42); font-family: Helvetica; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: center; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(251, 251, 251); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;&quot;&gt;&lt;span style=&quot;color: rgb(15, 23, 42); font-family: Helvetica; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: center; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(251, 251, 251); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; float: none; display: inline !important;&quot;&gt;Servidores da Administração Direta e Indireta (SEFA / UEL / Municípios)&lt;/span&gt;&lt;br style=&quot;border-color: rgb(218, 220, 224); color: rgb(15, 23, 42); font-family: Helvetica; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: center; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(251, 251, 251); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;&quot;&gt;&lt;i style=&quot;border-color: rgb(218, 220, 224); font-family: Helvetica; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: center; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(251, 251, 251); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; font-size: 11px; color: rgb(100, 116, 139);&quot;&gt;Ajustes e Remanejamentos&lt;/i&gt;" style="text;whiteSpace=wrap;html=1;" vertex="1" parent="grp_user">
+                    <mxGeometry x="20" y="110" width="250" height="10" as="geometry"/>
+                </mxCell>
+                <mxCell id="grp_n8n" value="&lt;b&gt;2. Orquestração &amp;amp; Agentes Inteligentes (n8n Engine)&lt;/b&gt;" style="swimlane;whiteSpace=wrap;html=1;fillColor=#EFF6FF;strokeColor=#60A5FA;rounded=1;arcSize=6;fontColor=#1E3A8A;" parent="1" vertex="1">
+                    <mxGeometry x="330" y="90" width="450" height="980" as="geometry"/>
+                </mxCell>
+                <mxCell id="n8n_entry" value="&lt;b&gt;Webhook / Chat Trigger Node&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:11px;&quot;&gt;Recebimento de mensagens com Session ID tracking&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#3B82F6;fontColor=#1D4ED8;" parent="grp_n8n" vertex="1">
+                    <mxGeometry x="30" y="45" width="390" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="n8n_memory" value="&lt;b&gt;Window Buffer Memory Node&lt;/b&gt;&lt;br&gt;Preservação do contexto conversacional por sessão ativa (k=3 a 5)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEF3C7;strokeColor=#F59E0B;fontColor=#78350F;fontSize=11;" parent="grp_n8n" vertex="1">
+                    <mxGeometry x="30" y="125" width="390" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="n8n_agents" value="&lt;b&gt;Especialistas em Domínio (Sub-Agentes LangChain n8n)&lt;/b&gt;" style="swimlane;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#93C5FD;rounded=1;fontColor=#1E40AF;fontSize=12;" parent="grp_n8n" vertex="1">
+                    <mxGeometry x="25" y="195" width="400" height="420" as="geometry"/>
+                </mxCell>
+                <mxCell id="ag_natureza" value="&lt;b&gt;AI Natureza Despesa&lt;/b&gt;&lt;br&gt;Normalização léxica, singular, sinônimos orçamentários, extração de código exato ou radical para busca." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8FAFC;strokeColor=#CBD5E1;fontColor=#0F172A;align=left;spacingLeft=10;fontSize=11;" parent="n8n_agents" vertex="1">
+                    <mxGeometry x="15" y="40" width="370" height="65" as="geometry"/>
+                </mxCell>
+                <mxCell id="ag_acao" value="&lt;b&gt;AI Ação Orçamentária&lt;/b&gt;&lt;br&gt;Extração obrigatória de 3 termos e 3 radicais para consulta fonética/trigrama na tabela orçamentária." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8FAFC;strokeColor=#CBD5E1;fontColor=#0F172A;align=left;spacingLeft=10;fontSize=11;" parent="n8n_agents" vertex="1">
+                    <mxGeometry x="15" y="115" width="370" height="65" as="geometry"/>
+                </mxCell>
+                <mxCell id="ag_fonte" value="&lt;b&gt;AI Fonte &amp;amp; Funções / Subfunções&lt;/b&gt;&lt;br&gt;Mapeamento SIAFIC, MTO, pertencimento ao Tesouro e compatibilidade funcional de despesas." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8FAFC;strokeColor=#CBD5E1;fontColor=#0F172A;align=left;spacingLeft=10;fontSize=11;" parent="n8n_agents" vertex="1">
+                    <mxGeometry x="15" y="190" width="370" height="65" as="geometry"/>
+                </mxCell>
+                <mxCell id="ag_anexos" value="&lt;b&gt;AI Anexos (Minuta DAD)&lt;/b&gt;&lt;br&gt;Redação técnica de justificativa orçamentária (Art. 18 Res. SEFA 01/2026). Saída em JSON estrito sem markdown." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEF2F2;strokeColor=#FCA5A5;fontColor=#991B1B;align=left;spacingLeft=10;fontSize=11;" parent="n8n_agents" vertex="1">
+                    <mxGeometry x="15" y="265" width="370" height="75" as="geometry"/>
+                </mxCell>
+                <mxCell id="ag_guardrails" value="&lt;b style=&quot;color:#DC2626;&quot;&gt;Regras Rígidas Anti-Alucinação:&lt;/b&gt; Proibição de inventar códigos; só exibir se houver retorno real da ferramenta; não usar placeholders (ex: XXXXX)." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFBEB;strokeColor=#FCD34D;fontColor=#92400E;fontSize=10;" parent="n8n_agents" vertex="1">
+                    <mxGeometry x="15" y="350" width="370" height="55" as="geometry"/>
+                </mxCell>
+                <mxCell id="n8n_tool" value="&lt;b&gt;Postgres Tool Node (LangChain Tool)&lt;/b&gt;&lt;br&gt;Executa queries parametrizadas com filtros de similaridade (pg_trgm) e unaccent" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DCFCE7;strokeColor=#22C55E;fontColor=#15803D;fontSize=11;" parent="grp_n8n" vertex="1">
+                    <mxGeometry x="30" y="635" width="390" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="n8n_response" value="&lt;b&gt;Respond to Webhook Node&lt;/b&gt;&lt;br&gt;Formatação final da resposta ao usuário (Markdown estrito ou JSON puro)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F3E8FF;strokeColor=#A855F7;fontColor=#6B21A8;fontSize=11;" parent="grp_n8n" vertex="1">
+                    <mxGeometry x="30" y="715" width="390" height="55" as="geometry"/>
+                </mxCell>
+                <mxCell id="grp_slm" value="&lt;b&gt;3. Camada de Inferência Local em CPU (SLM Engine)&lt;/b&gt;" style="swimlane;whiteSpace=wrap;html=1;fillColor=#F0FDF4;strokeColor=#4ADE80;rounded=1;arcSize=6;fontColor=#166534;" parent="1" vertex="1">
+                    <mxGeometry x="990" y="90" width="420" height="980" as="geometry"/>
+                </mxCell>
+                <mxCell id="slm_server" value="&lt;b&gt;Local Inference Server (OpenAI-Compatible)&lt;/b&gt;&lt;br&gt;&lt;i&gt;llama.cpp server / Ollama (Porta local 11434 / 8080)&lt;/i&gt;&lt;br&gt;• Otimizado para CPU com AVX-512 / ARM NEON&lt;br&gt;• Quantização GGUF (Q4_K_M / Q5_K_M)&lt;br&gt;• Zero dependência de GPU dedicada" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DCFCE7;strokeColor=#16A34A;fontColor=#14532D;align=left;spacingLeft=10;fontSize=11;" parent="grp_slm" vertex="1">
+                    <mxGeometry x="25" y="45" width="370" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="slm_tier1" value="&lt;b style=&quot;font-size:12px; color:#1E40AF;&quot;&gt;Perfil 1: SLM Ultraleve (~1B a 3B)&lt;/b&gt;&lt;br&gt;&lt;b&gt;Modelos:&lt;/b&gt; Qwen 2.5 1.5B/3B, Llama 3.2 1B/3B, SmolLM2 1.7B&lt;br&gt;&lt;b&gt;Função Principal:&lt;/b&gt;&lt;br&gt;• Classificação de intenção rápida&lt;br&gt;• Extração determinística de parâmetros/radicais SQL&lt;br&gt;• Baixo consumo de RAM (&amp;lt; 3 GB) e alta velocidade em CPU" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EFF6FF;strokeColor=#3B82F6;fontColor=#1E3A8A;align=left;spacingLeft=10;fontSize=11;" parent="grp_slm" vertex="1">
+                    <mxGeometry x="25" y="165" width="370" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="slm_tier2" value="&lt;b style=&quot;font-size:12px; color:#991B1B;&quot;&gt;Perfil 2: SLM Intermediário (~4B a 8B)&lt;/b&gt;&lt;br&gt;&lt;b&gt;Modelos:&lt;/b&gt; Qwen 2.5 7B, Phi-3.5-mini (3.8B), Phi-4-mini (3.8B)&lt;br&gt;&lt;b&gt;Função Principal:&lt;/b&gt;&lt;br&gt;• Raciocínio normativo e interpretação do MTO-PR&lt;br&gt;• Geração de justificativas fiscais formais (DAD)&lt;br&gt;• Obediência a schema JSON rígido sem desvios sintáticos" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEF2F2;strokeColor=#EF4444;fontColor=#7F1D1D;align=left;spacingLeft=10;fontSize=11;" parent="grp_slm" vertex="1">
+                    <mxGeometry x="25" y="305" width="370" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="slm_eval_box" value="&lt;b&gt;Métricas Chave de Desempenho Local:&lt;/b&gt;&lt;br&gt;• Throughput de Geração (tokens/segundo em CPU)&lt;br&gt;• Time-to-First-Token (TTFT)&lt;br&gt;• Taxa de Extração Precisa de Radicais (% de acerto)&lt;br&gt;• Validade Sintática de JSON gerado (% compliant)&lt;br&gt;• Uso de Memória Físico (Peak RAM GB)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8FAFC;strokeColor=#94A3B8;fontColor=#334155;align=left;spacingLeft=10;fontSize=11;" parent="grp_slm" vertex="1">
+                    <mxGeometry x="25" y="445" width="370" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="grp_db" value="&lt;b&gt;4. Camada de Dados Orçamentários (PostgreSQL)&lt;/b&gt;" style="swimlane;whiteSpace=wrap;html=1;fillColor=#FDF4FF;strokeColor=#C084FC;rounded=1;arcSize=6;fontColor=#581C87;" parent="1" vertex="1">
+                    <mxGeometry x="1610" y="90" width="400" height="420" as="geometry"/>
+                </mxCell>
+                <mxCell id="db_pg" value="&lt;b&gt;PostgreSQL Database SEFA / LABGEP&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:11px;&quot;&gt;Extensões: &lt;b&gt;pg_trgm&lt;/b&gt; (similaridade trigrama) e &lt;b&gt;unaccent&lt;/b&gt;&lt;/span&gt;" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#F3E8FF;strokeColor=#9333EA;fontColor=#3B0764;" parent="grp_db" vertex="1">
+                    <mxGeometry x="30" y="45" width="340" height="85" as="geometry"/>
+                </mxCell>
+                <mxCell id="db_tables" value="&lt;b&gt;Tabelas Oficiais Consultadas:&lt;/b&gt;&lt;br&gt;• &lt;tt&gt;naturezadespesa&lt;/tt&gt; &amp;amp; &lt;tt&gt;subelementodetalhe&lt;/tt&gt;&lt;br&gt;• &lt;tt&gt;acaoorcamentaria&lt;/tt&gt; (código, descrição, programa)&lt;br&gt;• &lt;tt&gt;fonte&lt;/tt&gt;, &lt;tt&gt;grupofonte&lt;/tt&gt;, &lt;tt&gt;exercicio&lt;/tt&gt;&lt;br&gt;• &lt;tt&gt;subfuncao&lt;/tt&gt; &amp;amp; &lt;tt&gt;funcao&lt;/tt&gt;&lt;br&gt;• &lt;tt&gt;solicitacao&lt;/tt&gt;, &lt;tt&gt;limitecredito&lt;/tt&gt;, &lt;tt&gt;dad&lt;/tt&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#D8B4FE;fontColor=#4C1D95;align=left;spacingLeft=10;fontSize=11;" parent="grp_db" vertex="1">
+                    <mxGeometry x="30" y="150" width="340" height="130" as="geometry"/>
+                </mxCell>
+                <mxCell id="db_query_type" value="&lt;b&gt;Estratégia de Busca Híbrida:&lt;/b&gt;&lt;br&gt;Match Exato de Código + ILIKE em Radicais + Similaridade Difusa (pg_trgm &amp;gt; 0.05)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FAF5FF;strokeColor=#E9D5FF;fontColor=#6B21A8;fontSize=11;" parent="grp_db" vertex="1">
+                    <mxGeometry x="30" y="300" width="340" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="grp_pipeline" value="&lt;b&gt;5. Pipeline Metodológico: Pesquisa, Benchmarks &amp;amp; Fine-Tuning&lt;/b&gt;" style="swimlane;whiteSpace=wrap;html=1;fillColor=#FFFBEB;strokeColor=#FBBF24;rounded=1;arcSize=6;fontColor=#78350F;" parent="1" vertex="1">
+                    <mxGeometry x="1610" y="530" width="400" height="540" as="geometry"/>
+                </mxCell>
+                <mxCell id="step_1" value="&lt;b&gt;Etapa 1: Triagem e Seleção de Candidatos&lt;/b&gt;&lt;br&gt;Pesquisa sistemática de SLMs com foco em compatibilidade com CPU, quantização GGUF e licença permissiva." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEF3C7;strokeColor=#D97706;fontColor=#92400E;align=left;spacingLeft=10;fontSize=11;" parent="grp_pipeline" vertex="1">
+                    <mxGeometry x="25" y="45" width="350" height="65" as="geometry"/>
+                </mxCell>
+                <mxCell id="step_2" value="&lt;b&gt;Etapa 2: Framework de Benchmarks Empíricos&lt;/b&gt;&lt;br&gt;Execução automatizada dos prompts reais extraídos do n8n contra os modelos candidatos rodando exclusivamente em CPU." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEF3C7;strokeColor=#D97706;fontColor=#92400E;align=left;spacingLeft=10;fontSize=11;" parent="grp_pipeline" vertex="1">
+                    <mxGeometry x="25" y="125" width="350" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="step_3" value="&lt;b&gt;Etapa 3: Curadoria de Dados &amp;amp; MTO-PR&lt;/b&gt;&lt;br&gt;Estruturação de pares de instrução/resposta baseados no Manual Técnico do Orçamento e histórico de despachos fiscais." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEF3C7;strokeColor=#D97706;fontColor=#92400E;align=left;spacingLeft=10;fontSize=11;" parent="grp_pipeline" vertex="1">
+                    <mxGeometry x="25" y="210" width="350" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="step_4" value="&lt;b&gt;Etapa 4: Fine-Tuning de Domínio (QLoRA / SFT)&lt;/b&gt;&lt;br&gt;Ajuste supervisionado nos modelos top-rankeados para fixar jargão orçamentário e garantir formato estrito (JSON/tabelas)." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEE2E2;strokeColor=#EF4444;fontColor=#991B1B;align=left;spacingLeft=10;fontSize=11;" parent="grp_pipeline" vertex="1">
+                    <mxGeometry x="25" y="295" width="350" height="75" as="geometry"/>
+                </mxCell>
+                <mxCell id="step_5" value="&lt;b&gt;Etapa 5: Validação Integrada no n8n&lt;/b&gt;&lt;br&gt;Substituição dos nós em nuvem (Gemini/Groq) pelos endpoints locais. Validação contínua pelos pesquisadores do LABGEP." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DCFCE7;strokeColor=#16A34A;fontColor=#14532D;align=left;spacingLeft=10;fontSize=11;" parent="grp_pipeline" vertex="1">
+                    <mxGeometry x="25" y="385" width="350" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="flow_u_n8n" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2563EB;strokeWidth=2;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" source="usr_interface" target="n8n_entry" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="flow_entry_mem" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#3B82F6;strokeWidth=2;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" parent="1" source="n8n_entry" target="n8n_memory" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="flow_mem_agents" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#3B82F6;strokeWidth=2;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" parent="1" source="n8n_memory" target="n8n_agents" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="flow_agent_slm" value="Chamadas de Inferência (Chat API)" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#16A34A;strokeWidth=2;exitX=1;exitY=0.3;entryX=0;entryY=0.3;" parent="1" source="n8n_agents" target="slm_server" edge="1">
+                    <mxGeometry x="0.5059" y="5" relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="790" y="411"/>
+                            <mxPoint x="790" y="165"/>
+                        </Array>
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="flow_slm_agent" value="Tokens Gerados / Parâmetros Extraídos" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#16A34A;strokeWidth=2;dashed=1;exitX=0;exitY=0.7;entryX=1;entryY=0.7;" parent="1" source="slm_server" target="n8n_agents" edge="1">
+                    <mxGeometry x="0.1829" relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="flow_agent_tool" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#3B82F6;strokeWidth=2;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" parent="1" source="n8n_agents" target="n8n_tool" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="flow_tool_db" value="SQL Query Parametrizada" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#7C3AED;strokeWidth=2;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" source="n8n_tool" target="db_pg" edge="1">
+                    <mxGeometry x="0.8092" relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1470" y="755"/>
+                            <mxPoint x="1470" y="178"/>
+                        </Array>
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="flow_tool_resp" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#3B82F6;strokeWidth=2;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" parent="1" source="n8n_tool" target="n8n_response" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="flow_resp_user" value="Resposta Formatada (Markdown / JSON)" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#8B5CF6;strokeWidth=2;dashed=1;exitX=0;exitY=0.5;entryX=0.5;entryY=1;" parent="1" source="n8n_response" target="usr_interface" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="flow_pipe_slm" value="Artefatos Ajustados &lt;br&gt;(Weights/Adapters GGUF)" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#DC2626;strokeWidth=2;exitX=0;exitY=0.5;entryX=1;entryY=0.8;" parent="1" source="step_4" target="grp_slm" edge="1">
+                    <mxGeometry x="0.0052" relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

@@ -1,0 +1,78 @@
+[
+  {
+    "id": "TC01_SAUDACAO",
+    "name": "Protocolo de Saudação e Boas-Vindas",
+    "category": "instruction_following",
+    "user_input": "Olá, bom dia!",
+    "expected_behavior": "Deve responder com a pergunta padrão sobre Ação Orçamentária sem alucinar dados.",
+    "expected_keywords": ["Qual a Ação Orçamentária", "código", "nome", "palavra-chave"],
+    "requires_tool_call": false
+  },
+  {
+    "id": "TC02_BUSCA_CODIGO_8000",
+    "name": "Extração de Código Numérico Direto",
+    "category": "entity_extraction",
+    "user_input": "8000",
+    "expected_behavior": "Deve identificar o código 8000 e replicá-lo nos termos.",
+    "expected_entities": {
+      "termo1": "8000",
+      "termo2": "8000",
+      "termo3": "8000"
+    },
+    "requires_tool_call": true
+  },
+  {
+    "id": "TC03_BUSCA_COMPOSTA_UEL",
+    "name": "Busca Composta com Substantivos e Sigla",
+    "category": "radical_and_stemming",
+    "user_input": "encargos especiais UEL",
+    "expected_behavior": "Extrair singular, sem acento, gerar radicais de pelo menos 4 a 5 caracteres.",
+    "expected_entities": {
+      "termo1": "encargo",
+      "termo2": "especial",
+      "termo3": "uel"
+    },
+    "expected_radicals": {
+      "radical1": "encar",
+      "radical2": "espec"
+    },
+    "requires_tool_call": true
+  },
+  {
+    "id": "TC04_BUSCA_SAUDE_PUBLICA",
+    "name": "Remoção Diacrítica e Normalização de Acentos",
+    "category": "fuzzy_normalization",
+    "user_input": "saúde pública",
+    "expected_behavior": "Remover acentuação gráfica e manter singular.",
+    "expected_entities": {
+      "termo1": "saude",
+      "termo2": "publica"
+    },
+    "requires_tool_call": true
+  },
+  {
+    "id": "TC05_REFORMA_TELHADO",
+    "name": "Extração de Termos para Manutenção Predial",
+    "category": "entity_extraction",
+    "user_input": "reforma de telhado",
+    "expected_behavior": "Ignorar preposição 'de', extrair substantivos.",
+    "expected_entities": {
+      "termo1": "reforma",
+      "termo2": "telhado"
+    },
+    "expected_radicals": {
+      "radical1": "refor",
+      "radical2": "telha"
+    },
+    "requires_tool_call": true
+  },
+  {
+    "id": "TC06_FORA_DE_DOMINIO",
+    "name": "Resistência a Alucinação e Out-Of-Domain",
+    "category": "hallucination_resistance",
+    "user_input": "Qual é a previsão do tempo para amanhã e o cardápio do RU?",
+    "expected_behavior": "Não inventar dados orçamentários; reforçar o escopo de atuação do assistente fiscal.",
+    "hallucination_triggers": ["chuva", "sol", "arroz", "feijão", "cardápio", "graus"],
+    "requires_tool_call": false
+  }
+]

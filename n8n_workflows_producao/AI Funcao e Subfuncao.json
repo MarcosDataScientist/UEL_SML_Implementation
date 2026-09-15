@@ -1,0 +1,180 @@
+{
+  "name": "AI Funcao e Subfuncao",
+  "nodes": [
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.chatInput }}",
+        "options": {
+          "systemMessage": "=Você é o assistente oficial do Ministério da Fazenda do Paraná, especialista em Funções e Subfunções Orçamentárias.\n\nINÍCIO DE CONVERSA\nSe o usuário enviar saudação, responda EXATAMENTE:\n\"Qual a Subfunção? Digite o código, nome ou palavra-chave para localizar:\nExemplos: 061, 121, Administração Geral, Policiamento...\nAparecerão todas as subfunções que contenham o termo buscado.\"\n\nCLASSIFICAÇÃO\n(A) Saudação → responda acima e aguarde\n(B) Código/nome/palavra-chave → FLUXO DE BUSCA\n(C) Dúvida → responda brevemente e repita a pergunta\n\nFLUXO DE BUSCA\n\nPASSO 1 — Extraia 3 termos da mensagem do usuário:\n- Se for número/código: termo1=termo2=termo3 = o número exato\n- Se for texto: \n  - termo1: palavra principal (singular, sem acento)\n  - termo2: segunda palavra (singular, sem acento). Se não houver, repita termo1\n  - termo3: primeiros 5 caracteres de termo1\n- Ignore: \"quero\", \"preciso\", \"de\", \"para\", verbos\n\nPASSO 2 — Execute IMEDIATAMENTE a ferramenta SQL com os 3 termos. Nunca responda sem executar.\n\nPASSO 3 — Exiba os resultados:\nSE encontrou:\n\"Encontrei as seguintes Subfunções para *[termo]*:\n| Cód. Subfunção | Descrição Subfunção | Cód. Função | Descrição Função |\n|---|---|---|---|\nDeseja pesquisar outra Subfunção?\"\n\nSE não encontrou:\n\"Não encontrei nenhuma Subfunção para *[termo]*. Tente outro termo.\nDeseja pesquisar outra Subfunção?\"\n\nApós exibir resultados, trate a próxima mensagem como nova busca (Passo 1→2→3). Nunca encerre a conversa.\n\nREGRAS\n- Responda sempre em português brasileiro\n- Nunca invente valores — use só o retorno da ferramenta\n- Nunca use placeholder quando não houver resultado\n- Retorne TODOS os resultados encontrados"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        336,
+        -80
+      ],
+      "id": "b5c4584f-892b-40d8-9678-cdf831645f37",
+      "name": "AI Agent",
+      "retryOnFail": true,
+      "waitBetweenTries": 5000
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        672,
+        -80
+      ],
+      "id": "839393ba-d9c4-4618-a978-dd8c7c5faa6c",
+      "name": "Respond to Webhook"
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $json.sessionId }}",
+        "contextWindowLength": 4
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        416,
+        144
+      ],
+      "id": "4ea69763-02b5-4b29-b2d7-88b28139da01",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.4,
+      "position": [
+        96,
+        -80
+      ],
+      "id": "bd946a43-a957-4ee4-9068-f6e5f36ba395",
+      "name": "When chat message received",
+      "webhookId": "5bac8956-def3-454b-b8b7-3fd70d0c5567"
+    },
+    {
+      "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "Use esta ferramenta para buscar Ações Orçamentárias no banco de dados PostgreSQL.\n\nQUANDO USAR: Sempre que o usuário fornecer um código, nome ou palavra-chave de uma Ação Orçamentária.\n\nPARÂMETROS OBRIGATÓRIOS — preencha os 3 sempre:\n\ntermo1 → Palavra principal da busca (substantivo no singular, sem acento, sem pontuação)\ntermo2 → Segunda palavra relevante (ou repita termo1 se houver só uma palavra)\ntermo3 → Radical de termo1 com mínimo 4 caracteres (fallback para busca parcial)\n\nREGRAS DE EXTRAÇÃO:\n- Remova acentos: \"saúde\" → \"saude\", \"encargos\" → \"encargo\"\n- Use singular: \"encargos\" → \"encargo\", \"obras\" → \"obra\"\n- Ignore palavras funcionais: \"de\", \"para\", \"do\", \"da\", \"quero\", \"preciso\"\n- Números (códigos) vão nos 3 termos iguais: \"8000\" → termo1=8000, termo2=8000, termo3=8000\n- termo3 é sempre o radical de termo1 (4-5 primeiros caracteres)\n\nEXEMPLOS OBRIGATÓRIOS:\n| Usuário digita         | termo1   | termo2   | termo3  |\n|------------------------|----------|----------|---------|\n| encargos especiais UEL | encargo  | especial | uel     |\n| encargos especiais     | encargo  | especial | encar   |\n| UEL                    | uel      | uel      | uel     |\n| 8000                   | 8000     | 8000     | 8000    |\n| saude publica          | saude    | public   | saud    |\n| reforma de telhado     | reforma  | telhado  | refor   |\n| limpeza predial        | limpeza  | predial  | limpe   |\n\nRETORNO: A ferramenta retornará uma lista de ações com código, descrição, esfera e subfunção. Exiba TODOS os resultados retornados, nunca omita nenhuma linha.",
+        "operation": "executeQuery",
+        "query": "SELECT\n  sub.codigosubfuncao AS \"Cód. Subfunção\",\n  sub.descricaosubfuncao AS \"Descrição Subfunção\",\n  sub.codigofuncao AS \"Cód. Função\",\n  sub.descricaofuncao AS \"Descrição Função\"\nFROM (\n  SELECT\n    s.idsubfuncao,\n    s.codigosubfuncao,\n    s.descricaosubfuncao,\n    s.funcao_idfuncao,\n    f.codigofuncao,\n    f.descricaofuncao,\n    GREATEST(\n      similarity(unaccent(lower(s.descricaosubfuncao)), unaccent(lower('{{ $fromAI(\"termo1\") }}'))),\n      similarity(unaccent(lower(s.descricaosubfuncao)), unaccent(lower('{{ $fromAI(\"termo2\") }}'))),\n      similarity(unaccent(lower(s.descricaosubfuncao)), unaccent(lower('{{ $fromAI(\"termo3\") }}'))),\n      similarity(unaccent(lower(f.descricaofuncao)), unaccent(lower('{{ $fromAI(\"termo1\") }}'))),\n      similarity(unaccent(lower(f.descricaofuncao)), unaccent(lower('{{ $fromAI(\"termo2\") }}'))),\n      CASE WHEN CAST(s.codigosubfuncao AS TEXT) ILIKE '%' || '{{ $fromAI(\"termo1\") }}' || '%' THEN 1.0 ELSE 0 END,\n      CASE WHEN unaccent(lower(f.descricaofuncao)) ILIKE '%' || unaccent(lower('{{ $fromAI(\"termo1\") }}')) || '%' THEN 0.9 ELSE 0 END\n    ) AS score\n  FROM subfuncao s\n  JOIN funcao f ON f.idfuncao = s.funcao_idfuncao\n  WHERE\n    CAST(s.codigosubfuncao AS TEXT) ILIKE '%' || '{{ $fromAI(\"termo1\") }}' || '%'\n    OR unaccent(lower(s.descricaosubfuncao)) ILIKE '%' || unaccent(lower('{{ $fromAI(\"termo1\") }}')) || '%'\n    OR unaccent(lower(s.descricaosubfuncao)) ILIKE '%' || unaccent(lower('{{ $fromAI(\"termo2\") }}')) || '%'\n    OR unaccent(lower(s.descricaosubfuncao)) ILIKE '%' || unaccent(lower('{{ $fromAI(\"termo3\") }}')) || '%'\n    OR unaccent(lower(s.descricaosubfuncao)) ILIKE '%' || LEFT(unaccent(lower('{{ $fromAI(\"termo1\") }}')), 4) || '%'\n    OR unaccent(lower(s.descricaosubfuncao)) ILIKE '%' || LEFT(unaccent(lower('{{ $fromAI(\"termo2\") }}')), 4) || '%'\n    OR unaccent(lower(s.descricaosubfuncao)) % unaccent(lower('{{ $fromAI(\"termo1\") }}'))\n    OR unaccent(lower(s.descricaosubfuncao)) % unaccent(lower('{{ $fromAI(\"termo2\") }}'))\n    OR unaccent(lower(f.descricaofuncao)) ILIKE '%' || unaccent(lower('{{ $fromAI(\"termo1\") }}')) || '%'\n    OR unaccent(lower(f.descricaofuncao)) ILIKE '%' || unaccent(lower('{{ $fromAI(\"termo2\") }}')) || '%'\n    OR unaccent(lower(f.descricaofuncao)) ILIKE '%' || LEFT(unaccent(lower('{{ $fromAI(\"termo1\") }}')), 4) || '%'\n) sub\nWHERE sub.score > 0.05\nORDER BY sub.score DESC, sub.descricaosubfuncao;",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgresTool",
+      "typeVersion": 2.6,
+      "position": [
+        592,
+        144
+      ],
+      "id": "78fb75fe-d88c-41c2-88af-db35f2155ea6",
+      "name": "Execute a SQL query in Postgres",
+      "credentials": {
+        "postgres": {
+          "id": "V7SIBgSYtENYzESs",
+          "name": "Postgres account 4"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.5-flash-lite",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        208,
+        128
+      ],
+      "id": "a7d1c907-c77c-45d0-bb04-2f283c2c138a",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "H5F2YlYbvZHm3QrU",
+          "name": "Google Gemini(PaLM) Api account 3"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute a SQL query in Postgres": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "8925def3-1d1e-4128-b497-25df997a983e",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "209e96925ac0aa19856eb28be92201b1eb5d757ab17f6faf2b2b37f4966866a2"
+  },
+  "id": "EjvR1rTIzKmoGg6j",
+  "tags": []
+}

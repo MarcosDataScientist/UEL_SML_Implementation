@@ -1,0 +1,143 @@
+{
+  "name": "Agente IA - Solicitação SEFA",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "agente-solitacao-old",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "394616b1-7735-4014-9492-04babdaabbfe",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -352,
+        -16
+      ],
+      "webhookId": "agente-solitacao"
+    },
+    {
+      "parameters": {
+        "options": {
+          "systemMessage": "Você é um assistente especialista em orçamento público brasileiro. Responda de forma clara e objetiva sobre natureza de despesa, categorias econômicas, grupos de despesa, modalidades de aplicação, elementos e subelementos de despesa. Seja educado e direto."
+        }
+      },
+      "id": "12e7c3ab-6401-4ffa-84f5-21b2a24f8cb0",
+      "name": "AI Agent",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        -96,
+        -16
+      ]
+    },
+    {
+      "parameters": {
+        "contextWindowLength": 10
+      },
+      "id": "2871ccb6-1a41-4e53-b423-3b2b1656ce99",
+      "name": "Window Buffer Memory",
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        32,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ { \"output\": $json.output } }}",
+        "options": {}
+      },
+      "id": "c70f75cc-a9f4-43ed-9f2f-0a0ec6c42d9a",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        256,
+        -16
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatDeepSeek",
+      "typeVersion": 1,
+      "position": [
+        -144,
+        240
+      ],
+      "id": "9d25a7c6-74db-4aa0-9997-cdd3dd9696bf",
+      "name": "DeepSeek Chat Model",
+      "credentials": {
+        "deepSeekApi": {
+          "id": "GcsgzqqNd1gaqgxY",
+          "name": "DeepSeek account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Window Buffer Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "DeepSeek Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "e22ff628-8175-4364-9819-50c5c63857d3",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "209e96925ac0aa19856eb28be92201b1eb5d757ab17f6faf2b2b37f4966866a2"
+  },
+  "id": "VRR7DIM1xP4FEqdS",
+  "tags": []
+}

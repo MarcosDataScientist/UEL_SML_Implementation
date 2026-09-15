@@ -1,0 +1,183 @@
+{
+  "name": "AI FonteAntigo",
+  "nodes": [
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.body.message }}",
+        "options": {
+          "systemMessage": "=Você é o assistente oficial do Ministério da Fazenda do Paraná, especialista em Fonte.\n\nINÍCIO DE CONVERSA\nSe o usuário enviar saudação, responda EXATAMENTE:\n\"Qual a Fonte? Digite o código, nome ou palavra-chave para localizar:\nExemplos: 5.01.0000.000147, Recursos não Vinculados de Impostos, Outras Transferências de Recursos do FNDE\n\nAparecerão todas as fontes que contenham o termo buscado.\"\n\nCLASSIFICAÇÃO\n(A) Saudação → responda acima e aguarde\n(B) Código/nome/palavra-chave → FLUXO DE BUSCA\n(C) Dúvida → responda brevemente e repita a pergunta\n\nFLUXO DE BUSCA\n\nPASSO 1 — Extraia 3 termos da mensagem do usuário:\n- Se for número/código: termo1=termo2=termo3 = o número exato\n- Se for texto:\n  - termo1: palavra principal (singular, sem acento)\n  - termo2: segunda palavra (singular, sem acento). Se não houver, repita termo1\n  - termo3: primeiros 5 caracteres de termo1\n- Ignore: \"quero\", \"preciso\", \"de\", \"para\", verbos\n\nPASSO 2 — Execute IMEDIATAMENTE a ferramenta SQL com os 3 termos. Nunca responda sem executar.\n\nPASSO 3 — Exiba os resultados:\nSE encontrou:\n\"Encontrei as seguintes Fontes para *[termo]*:\nCódigo: Fonte \n\nDeseja pesquisar outra Meta Obra?\"\n\nSE não encontrou:\n\"Não encontrei nenhuma Fonte para *[termo]*. Tente outro termo.\nDeseja pesquisar outra Fonte?\"\n\nApós exibir resultados, trate a próxima mensagem como nova busca (Passo 1→2→3). Nunca encerre a conversa.\n\nREGRAS\n- Responda sempre em português brasileiro\n- Nunca invente valores — use só o retorno da ferramenta\n- Nunca use placeholder quando não houver resultado\n- Retorne TODOS os resultados encontrados"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        336,
+        -80
+      ],
+      "id": "75bf4562-d402-4867-aa67-7605b4612062",
+      "name": "AI Agent",
+      "retryOnFail": true,
+      "waitBetweenTries": 5000
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        688,
+        -80
+      ],
+      "id": "bd6f06c5-aa60-4d6b-9787-ab4f730cdc81",
+      "name": "Respond to Webhook"
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $json.body.sessionId }}",
+        "contextWindowLength": 4
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        432,
+        112
+      ],
+      "id": "1877ad0b-f76b-46b4-aa82-5f5078328473",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "Use esta ferramenta para buscar meta obra no banco de dados PostgreSQL.\n\nQUANDO USAR: Sempre que o usuário fornecer um código, nome ou palavra-chave de uma meta obra.\n\nPARÂMETROS OBRIGATÓRIOS — preencha os 3 sempre:\n\ntermo1 → Palavra principal da busca (substantivo no singular, sem acento, sem pontuação)\ntermo2 → Segunda palavra relevante (ou repita termo1 se houver só uma palavra)\ntermo3 → Radical de termo1 com mínimo 4 caracteres (fallback para busca parcial)\n\nREGRAS DE EXTRAÇÃO:\n- Remova acentos: \"saúde\" → \"saude\", \"encargos\" → \"encargo\"\n- Use singular: \"encargos\" → \"encargo\", \"obras\" → \"obra\"\n- Ignore palavras funcionais: \"de\", \"para\", \"do\", \"da\", \"quero\", \"preciso\"\n- Números (códigos) vão nos 3 termos iguais: \"8000\" → termo1=8000, termo2=8000, termo3=8000\n- termo3 é sempre o radical de termo1 (4-5 primeiros caracteres)\n\n\nRETORNO: A ferramenta retornará uma lista de ações com código e descrição da meta obra. Exiba TODOS os resultados retornados, nunca omita nenhuma linha.",
+        "operation": "executeQuery",
+        "query": "SELECT\n  sub.detalhamentofontesiafic AS \"Detalhamento SIAFIC\",\n  sub.titulofonte AS \"Título da Fonte\",\n  sub.fonte AS \"Fonte\"\nFROM (\n  SELECT\n    detalhamentofontesiafic,\n    titulofonte,\n    fonte,\n    GREATEST(\n      -- Scores para titulofonte\n      similarity(unaccent(lower(COALESCE(titulofonte, ''))), unaccent(lower('{{ $fromAI(\"termo1\") }}'))),\n      similarity(unaccent(lower(COALESCE(titulofonte, ''))), unaccent(lower('{{ $fromAI(\"termo2\") }}'))),\n      similarity(unaccent(lower(COALESCE(titulofonte, ''))), unaccent(lower('{{ $fromAI(\"termo3\") }}'))),\n      \n      -- Scores para fonte\n      similarity(unaccent(lower(COALESCE(fonte, ''))), unaccent(lower('{{ $fromAI(\"termo1\") }}'))),\n      similarity(unaccent(lower(COALESCE(fonte, ''))), unaccent(lower('{{ $fromAI(\"termo2\") }}'))),\n      similarity(unaccent(lower(COALESCE(fonte, ''))), unaccent(lower('{{ $fromAI(\"termo3\") }}'))),\n      \n      -- Score para o código exato\n      CASE WHEN detalhamentofontesiafic ILIKE '%' || '{{ $fromAI(\"termo1\") }}' || '%' THEN 1.0 ELSE 0 END\n    ) AS score\n  FROM fonte\n  WHERE\n    -- Busca no código\n    detalhamentofontesiafic ILIKE '%' || '{{ $fromAI(\"termo1\") }}' || '%'\n    \n    -- Buscas em titulofonte\n    OR unaccent(lower(COALESCE(titulofonte, ''))) ILIKE '%' || unaccent(lower('{{ $fromAI(\"termo1\") }}')) || '%'\n    OR unaccent(lower(COALESCE(titulofonte, ''))) ILIKE '%' || unaccent(lower('{{ $fromAI(\"termo2\") }}')) || '%'\n    OR unaccent(lower(COALESCE(titulofonte, ''))) ILIKE '%' || unaccent(lower('{{ $fromAI(\"termo3\") }}')) || '%'\n    OR unaccent(lower(COALESCE(titulofonte, ''))) ILIKE '%' || LEFT(unaccent(lower('{{ $fromAI(\"termo1\") }}')), 4) || '%'\n    OR unaccent(lower(COALESCE(titulofonte, ''))) ILIKE '%' || LEFT(unaccent(lower('{{ $fromAI(\"termo2\") }}')), 4) || '%'\n    OR unaccent(lower(COALESCE(titulofonte, ''))) % unaccent(lower('{{ $fromAI(\"termo1\") }}'))\n    OR unaccent(lower(COALESCE(titulofonte, ''))) % unaccent(lower('{{ $fromAI(\"termo2\") }}'))\n    \n    -- Buscas em fonte\n    OR unaccent(lower(COALESCE(fonte, ''))) ILIKE '%' || unaccent(lower('{{ $fromAI(\"termo1\") }}')) || '%'\n    OR unaccent(lower(COALESCE(fonte, ''))) ILIKE '%' || unaccent(lower('{{ $fromAI(\"termo2\") }}')) || '%'\n    OR unaccent(lower(COALESCE(fonte, ''))) ILIKE '%' || unaccent(lower('{{ $fromAI(\"termo3\") }}')) || '%'\n    OR unaccent(lower(COALESCE(fonte, ''))) ILIKE '%' || LEFT(unaccent(lower('{{ $fromAI(\"termo1\") }}')), 4) || '%'\n    OR unaccent(lower(COALESCE(fonte, ''))) ILIKE '%' || LEFT(unaccent(lower('{{ $fromAI(\"termo2\") }}')), 4) || '%'\n    OR unaccent(lower(COALESCE(fonte, ''))) % unaccent(lower('{{ $fromAI(\"termo1\") }}'))\n    OR unaccent(lower(COALESCE(fonte, ''))) % unaccent(lower('{{ $fromAI(\"termo2\") }}'))\n) sub\nWHERE sub.score > 0.05\nORDER BY sub.score DESC, sub.titulofonte;",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgresTool",
+      "typeVersion": 2.6,
+      "position": [
+        592,
+        112
+      ],
+      "id": "b6ee01ed-2f26-4541-b774-60aa6b240cb3",
+      "name": "Execute a SQL query in Postgres",
+      "credentials": {
+        "postgres": {
+          "id": "V7SIBgSYtENYzESs",
+          "name": "Postgres account 4"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.5-flash-lite",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        272,
+        112
+      ],
+      "id": "a3dfc653-15ed-48d3-b310-e457c4f37c30",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "UUieu47mm68WcXcq",
+          "name": "Google Gemini(PaLM) Api account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "3d71603c-4641-4dbc-92fb-47c0b8161600",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        96,
+        -80
+      ],
+      "id": "5a8fadfd-b010-4592-83b7-6c9009d0d9fe",
+      "name": "Webhook",
+      "webhookId": "3d71603c-4641-4dbc-92fb-47c0b8161600"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute a SQL query in Postgres": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "7409a047-6c1f-40d9-86a6-774122d34d68",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "209e96925ac0aa19856eb28be92201b1eb5d757ab17f6faf2b2b37f4966866a2"
+  },
+  "id": "KVEEdYfAm2mmtRxr",
+  "tags": []
+}

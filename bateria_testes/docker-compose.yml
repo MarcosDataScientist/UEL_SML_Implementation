@@ -1,0 +1,103 @@
+services:
+  ollama:
+    image: ollama/ollama:latest
+    container_name: homelab-slm-ollama
+    restart: unless-stopped
+    ports:
+      - "${OLLAMA_PORT:-11434}:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+    environment:
+      - OLLAMA_KEEP_ALIVE=24h
+      - OLLAMA_HOST=0.0.0.0
+      - OLLAMA_NUM_PARALLEL=1
+      - OLLAMA_MAX_LOADED_MODELS=1
+    deploy:
+      resources:
+        limits:
+          memory: 4096M
+          cpus: '6.0'
+        reservations:
+          memory: 1024M
+    networks:
+      - lab-network
+    healthcheck:
+      test: ["CMD-SHELL", "ollama list >/dev/null 2>&1 || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+  postgres:
+    image: postgres:16-alpine
+    container_name: homelab-slm-postgres
+    restart: unless-stopped
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    environment:
+      - POSTGRES_DB=${POSTGRES_DB:-orcamento_db}
+      - POSTGRES_USER=${POSTGRES_USER:-postgres}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-postgres}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./sql/init.sql:/docker-entrypoint-initdb.d/01_init.sql:ro
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+          cpus: '1.0'
+        reservations:
+          memory: 128M
+    networks:
+      - lab-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-postgres} -d ${POSTGRES_DB:-orcamento_db}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  n8n:
+    image: n8nio/n8n:latest
+    container_name: homelab-slm-n8n
+    restart: unless-stopped
+    ports:
+      - "${N8N_PORT:-5678}:5678"
+    environment:
+      - N8N_HOST=0.0.0.0
+      - N8N_PORT=5678
+      - N8N_PROTOCOL=http
+      - WEBHOOK_URL=http://localhost:${N8N_PORT:-5678}/
+      - GENERIC_TIMEZONE=America/Sao_Paulo
+      - TZ=America/Sao_Paulo
+      - N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true
+      - N8N_AI_ENABLED=true
+      - N8N_RUNNERS_ENABLED=true
+    volumes:
+      - n8n_data:/home/node/.n8n
+      - ./n8n_workflows:/workflows:ro
+    depends_on:
+      ollama:
+        condition: service_healthy
+      postgres:
+        condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          memory: 1024M
+          cpus: '2.0'
+        reservations:
+          memory: 256M
+    networks:
+      - lab-network
+
+volumes:
+  ollama_data:
+    name: homelab_slm_ollama_data
+  postgres_data:
+    name: homelab_slm_postgres_data
+  n8n_data:
+    name: homelab_slm_n8n_data
+
+networks:
+  lab-network:
+    external: true
