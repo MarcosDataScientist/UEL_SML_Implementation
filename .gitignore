@@ -42,10 +42,11 @@ ehthumbs.db
 Thumbs.db
 
 # ==========================================
-# IDEs e Editores
+# IDEs, Editores e Agentes Locais
 # ==========================================
 .vscode/
 .idea/
+.agents/
 *.swp
 *~
 
