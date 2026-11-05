@@ -39,7 +39,7 @@ The end-to-end architecture is structured into three decoupled layers:
 
 1. **Orchestration Layer (n8n)**:
    - Ingests public servant requests through Webhooks and Chat Triggers.
-   - Manages conversational history using context-aware buffer memory (`Window Buffer Memory`).
+   - Manages multi-user conversational state via a PostgreSQL-backed Session Mini-Memory (`slm_session_memory`) and in-memory `K-Medoids` clustering.
    - Dispatches structured database lookup tools (`Postgres Tool`).
 2. **Local CPU Inference Layer (Ollama / `llama.cpp`)**:
    - Executes quantized SLMs in 4-bit block formats (**GGUF Q4_K_M**), vectorized via **AVX** CPU instruction sets.
@@ -54,19 +54,22 @@ The end-to-end architecture is structured into three decoupled layers:
 
 ```
 .
-├── testbench/                      # 🧪 Containerized testbench and benchmark suite
+├── test_environment/               # 🧪 Containerized test environment and benchmark suite
 │   ├── docker-compose.yml          # Stack orchestration (Ollama, n8n, PostgreSQL)
 │   ├── Makefile                    # Lifecycle automation (make up, make pull-models, etc.)
 │   ├── sql/init.sql                # pg_trgm + unaccent extensions & official seed dataset
 │   ├── scripts/setup_models.sh     # Automated download and verification of SLM candidates
-│   ├── benchmark/                  # Python benchmark runner (TTFT, Throughput, Precision)
-│   └── n8n_workflows/              # Pre-configured workflow for local Ollama & Postgres
+│   ├── model_selection_benchmark/  # Candidate model screening for Fine-Tuning & workflow tests
+│   └── n8n_workflows/              # Workflows (legacy baseline & proposed Session Memory + K-Medoids)
+├── notebooks/                      # 📓 Jupyter notebooks (Embeddings, K-Medoids & Fine-Tuning)
+│   ├── embeddings_kmedoids_silhouette_exploration.ipynb
+│   └── fine_tuning/                # 🎯 QLoRA fine-tuning dataset, Colab notebook & Ollama Modelfile
 ├── n8n_production_workflows/       # 🔄 Reference workflows exported from active production (SEFA-PR)
-├── docs/                           # 📄 Academic documentation and theoretical specifications
-│   ├── assets/                     # Visual assets, banners, and architecture diagrams
-│   ├── diagrams/                   # Editable Draw.io diagrams (.drawio)
-│   ├── latex/                      # Full LaTeX academic paper source (main.tex, BibTeX, figures)
-│   └── main.pdf                    # Compiled scientific paper (8 pages)
+├── docs/                           # 📄 Technical documentation and architecture diagrams
+│   ├── 01_fine_tuning/             # Model screening & QLoRA fine-tuning docs + PDF
+│   ├── 02_spec/                    # System architecture, K-Medoids & Session Memory specs + PDF
+│   ├── 03_diagrams/                # Editable Excalidraw & Draw.io diagrams
+│   └── assets/                     # Visual banners and SVG diagrams
 ├── .gitignore                      # Git ignore specifications (context, .env, temporary files)
 └── README.md                       # This document
 ```
@@ -87,13 +90,13 @@ We focus on compact and intermediate SLM models selected to run smoothly within 
 
 ---
 
-## 🚀 Quickstart: Running the Testbench (Home Lab / Local Server)
+## 🚀 Quickstart: Running the Test Environment (Home Lab / Local Server)
 
 The test environment is fully containerized and can be launched on any Linux/Ubuntu server or local machine:
 
 ### 1. Launch the Stack
 ```bash
-cd testbench
+cd test_environment
 make up
 ```
 *Creates the shared `lab-network` bridge and boots Ollama (port 11434), PostgreSQL (port 5432), and n8n (port 5678) with healthchecks.*
@@ -113,7 +116,7 @@ make test-direct MODEL=qwen2.5:1.5b
 make test-direct MODEL=llama3.2:3b
 ```
 
-The benchmark runner records **Time-To-First-Token (TTFT)**, **Throughput ($T_{\text{gen}}$ tokens/s)**, and **Radical Accuracy** in [`testbench/benchmark/benchmark_report.md`](testbench/benchmark/benchmark_report.md).
+The benchmark runner records **Time-To-First-Token (TTFT)**, **Throughput ($T_{\text{gen}}$ tokens/s)**, and **Radical Accuracy** in [`test_environment/model_selection_benchmark/README.md`](test_environment/model_selection_benchmark/README.md).
 
 ---
 

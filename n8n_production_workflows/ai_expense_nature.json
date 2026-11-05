@@ -152,7 +152,7 @@
       {
         "json": {
           "headers": {
-            "host": "72.60.249.186:5678",
+            "host": "localhost:5678",
             "content-type": "application/json",
             "accept": "application/json",
             "content-length": "111"
@@ -163,7 +163,7 @@
             "message": "Serviço de limpeza predial Pessoa Física",
             "sessionId": "c9943ae3689c3b4a403515439249040f"
           },
-          "webhookUrl": "http://72.60.249.186:5678/webhook/agente-solitacao",
+          "webhookUrl": "http://localhost:5678/webhook/agente-solitacao",
           "executionMode": "production"
         }
       }

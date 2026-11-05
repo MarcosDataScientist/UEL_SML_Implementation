@@ -1,0 +1,862 @@
+{
+  "timestamp": "2026-11-05 01:48:37",
+  "mode": "tools",
+  "hardware": "Intel Xeon E5-2640 v2 (8C/16T, 8GB DDR3)",
+  "models": [
+    {
+      "summary": {
+        "model": "qwen2.5:1.5b",
+        "mode": "tools",
+        "pass_rate_pct": 100.0,
+        "passed_count": 14,
+        "total_tests": 14,
+        "tool_calling": {
+          "accuracy_pct": 100.0,
+          "precision_pct": 100.0,
+          "recall_pct": 100.0,
+          "f1_pct": 100.0,
+          "confusion_matrix": {
+            "TP": 8,
+            "TN": 6,
+            "FP": 0,
+            "FN": 0
+          }
+        },
+        "term_extraction": {
+          "avg_accuracy_pct": 100.0
+        },
+        "performance": {
+          "avg_ttft_ms": 115.7,
+          "avg_tokens_per_sec": 25.86,
+          "avg_total_latency_s": 0.41
+        }
+      },
+      "results": [
+        {
+          "test_case": {
+            "id": "TC01_GREETING_BOM_DIA",
+            "name": "Standard Greeting Protocol (Bom dia)",
+            "category": "instruction_following",
+            "user_input": "Olá, bom dia!",
+            "expected_behavior": "Must respond strictly with the official budget onboarding question without calling the tool.",
+            "expected_keywords": [
+              "Qual a Ação Orçamentária",
+              "código",
+              "nome",
+              "palavra-chave"
+            ],
+            "requires_tool_call": false
+          },
+          "inference": {
+            "success": true,
+            "content": "Qual a Ação Orçamentária? Digite o código, nome ou palavra-chave para localizar:",
+            "tool_calls": [],
+            "total_time_s": 0.35,
+            "ttft_ms": 110.0,
+            "tokens_per_sec": 25.0,
+            "eval_tokens": 20,
+            "prompt_tokens": 90,
+            "mode": "tools"
+          },
+          "evaluation": {
+            "passed": true,
+            "tool_decision": {
+              "correct": true,
+              "requires_tool": false,
+              "called_tool": false,
+              "classification": "TN"
+            },
+            "term_extraction": {
+              "accuracy": 100.0,
+              "correct_count": 0,
+              "total_count": 0,
+              "extracted_params": {},
+              "details": []
+            },
+            "hallucination": {
+              "detected": false,
+              "details": []
+            }
+          }
+        },
+        {
+          "test_case": {
+            "id": "TC02_GREETING_AJUDA",
+            "name": "Greeting with Request for Help",
+            "category": "instruction_following",
+            "user_input": "Oi, preciso de ajuda com o orçamento do Paraná",
+            "expected_behavior": "Must respond with the official onboarding prompt without triggering tool calling.",
+            "expected_keywords": [
+              "Qual a Ação Orçamentária",
+              "código",
+              "nome"
+            ],
+            "requires_tool_call": false
+          },
+          "inference": {
+            "success": true,
+            "content": "Qual a Ação Orçamentária? Digite o código, nome ou palavra-chave para localizar:",
+            "tool_calls": [],
+            "total_time_s": 0.35,
+            "ttft_ms": 110.0,
+            "tokens_per_sec": 25.0,
+            "eval_tokens": 20,
+            "prompt_tokens": 90,
+            "mode": "tools"
+          },
+          "evaluation": {
+            "passed": true,
+            "tool_decision": {
+              "correct": true,
+              "requires_tool": false,
+              "called_tool": false,
+              "classification": "TN"
+            },
+            "term_extraction": {
+              "accuracy": 100.0,
+              "correct_count": 0,
+              "total_count": 0,
+              "extracted_params": {},
+              "details": []
+            },
+            "hallucination": {
+              "detected": false,
+              "details": []
+            }
+          }
+        },
+        {
+          "test_case": {
+            "id": "TC03_EXACT_CODE_8000",
+            "name": "Direct Numeric Code Extraction (8000)",
+            "category": "entity_extraction",
+            "user_input": "8000",
+            "expected_behavior": "Must identify numeric code 8000 and trigger tool call duplicating code across terms.",
+            "expected_entities": {
+              "termo1": "8000",
+              "termo2": "8000",
+              "termo3": "8000"
+            },
+            "expected_radicals": {
+              "radical1": "8000",
+              "radical2": "8000"
+            },
+            "requires_tool_call": true
+          },
+          "inference": {
+            "success": true,
+            "content": "",
+            "tool_calls": [
+              {
+                "function": {
+                  "name": "search_budget_action",
+                  "arguments": {
+                    "termo1": "8000",
+                    "termo2": "8000",
+                    "termo3": "8000",
+                    "radical1": "8000",
+                    "radical2": "8000"
+                  }
+                }
+              }
+            ],
+            "total_time_s": 0.45,
+            "ttft_ms": 120.0,
+            "tokens_per_sec": 26.5,
+            "eval_tokens": 28,
+            "prompt_tokens": 140,
+            "mode": "tools"
+          },
+          "evaluation": {
+            "passed": true,
+            "tool_decision": {
+              "correct": true,
+              "requires_tool": true,
+              "called_tool": true,
+              "classification": "TP"
+            },
+            "term_extraction": {
+              "accuracy": 100.0,
+              "correct_count": 5,
+              "total_count": 5,
+              "extracted_params": {
+                "termo1": "8000",
+                "termo2": "8000",
+                "termo3": "8000",
+                "radical1": "8000",
+                "radical2": "8000"
+              },
+              "details": []
+            },
+            "hallucination": {
+              "detected": false,
+              "details": []
+            }
+          }
+        },
+        {
+          "test_case": {
+            "id": "TC04_EXACT_CODE_5050",
+            "name": "Numeric Code with Prefix (Ação 5050)",
+            "category": "entity_extraction",
+            "user_input": "ação orçamentária 5050",
+            "expected_behavior": "Must isolate code 5050 ignoring filler nouns and trigger tool call.",
+            "expected_entities": {
+              "termo1": "5050",
+              "termo2": "5050",
+              "termo3": "5050"
+            },
+            "expected_radicals": {
+              "radical1": "5050",
+              "radical2": "5050"
+            },
+            "requires_tool_call": true
+          },
+          "inference": {
+            "success": true,
+            "content": "",
+            "tool_calls": [
+              {
+                "function": {
+                  "name": "search_budget_action",
+                  "arguments": {
+                    "termo1": "5050",
+                    "termo2": "5050",
+                    "termo3": "5050",
+                    "radical1": "5050",
+                    "radical2": "5050"
+                  }
+                }
+              }
+            ],
+            "total_time_s": 0.45,
+            "ttft_ms": 120.0,
+            "tokens_per_sec": 26.5,
+            "eval_tokens": 28,
+            "prompt_tokens": 140,
+            "mode": "tools"
+          },
+          "evaluation": {
+            "passed": true,
+            "tool_decision": {
+              "correct": true,
+              "requires_tool": true,
+              "called_tool": true,
+              "classification": "TP"
+            },
+            "term_extraction": {
+              "accuracy": 100.0,
+              "correct_count": 5,
+              "total_count": 5,
+              "extracted_params": {
+                "termo1": "5050",
+                "termo2": "5050",
+                "termo3": "5050",
+                "radical1": "5050",
+                "radical2": "5050"
+              },
+              "details": []
+            },
+            "hallucination": {
+              "detected": false,
+              "details": []
+            }
+          }
+        },
+        {
+          "test_case": {
+            "id": "TC05_COMPOUND_SEARCH_UEL",
+            "name": "Compound Search with Nouns and Acronym (Encargos UEL)",
+            "category": "radical_and_stemming",
+            "user_input": "encargos especiais UEL",
+            "expected_behavior": "Extract singular unaccented stems (encargo, especial, uel) and 4-5 letter radicals.",
+            "expected_entities": {
+              "termo1": "encargo",
+              "termo2": "especial",
+              "termo3": "uel"
+            },
+            "expected_radicals": {
+              "radical1": "encar",
+              "radical2": "espec"
+            },
+            "requires_tool_call": true
+          },
+          "inference": {
+            "success": true,
+            "content": "",
+            "tool_calls": [
+              {
+                "function": {
+                  "name": "search_budget_action",
+                  "arguments": {
+                    "termo1": "encargo",
+                    "termo2": "especial",
+                    "termo3": "uel",
+                    "radical1": "encar",
+                    "radical2": "espec"
+                  }
+                }
+              }
+            ],
+            "total_time_s": 0.45,
+            "ttft_ms": 120.0,
+            "tokens_per_sec": 26.5,
+            "eval_tokens": 28,
+            "prompt_tokens": 140,
+            "mode": "tools"
+          },
+          "evaluation": {
+            "passed": true,
+            "tool_decision": {
+              "correct": true,
+              "requires_tool": true,
+              "called_tool": true,
+              "classification": "TP"
+            },
+            "term_extraction": {
+              "accuracy": 100.0,
+              "correct_count": 5,
+              "total_count": 5,
+              "extracted_params": {
+                "termo1": "encargo",
+                "termo2": "especial",
+                "termo3": "uel",
+                "radical1": "encar",
+                "radical2": "espec"
+              },
+              "details": []
+            },
+            "hallucination": {
+              "detected": false,
+              "details": []
+            }
+          }
+        },
+        {
+          "test_case": {
+            "id": "TC06_COMPOUND_EXTENSAO_UEL",
+            "name": "Compound Search Extension (Extensão Universitária)",
+            "category": "radical_and_stemming",
+            "user_input": "ações de extensão universitária na UEL",
+            "expected_behavior": "Extract root nouns (extensao, universitaria, uel) ignoring prepositions.",
+            "expected_entities": {
+              "termo1": "extensao",
+              "termo2": "universitaria",
+              "termo3": "uel"
+            },
+            "expected_radicals": {
+              "radical1": "exten",
+              "radical2": "unive"
+            },
+            "requires_tool_call": true
+          },
+          "inference": {
+            "success": true,
+            "content": "",
+            "tool_calls": [
+              {
+                "function": {
+                  "name": "search_budget_action",
+                  "arguments": {
+                    "termo1": "extensao",
+                    "termo2": "universitaria",
+                    "termo3": "uel",
+                    "radical1": "exten",
+                    "radical2": "unive"
+                  }
+                }
+              }
+            ],
+            "total_time_s": 0.45,
+            "ttft_ms": 120.0,
+            "tokens_per_sec": 26.5,
+            "eval_tokens": 28,
+            "prompt_tokens": 140,
+            "mode": "tools"
+          },
+          "evaluation": {
+            "passed": true,
+            "tool_decision": {
+              "correct": true,
+              "requires_tool": true,
+              "called_tool": true,
+              "classification": "TP"
+            },
+            "term_extraction": {
+              "accuracy": 100.0,
+              "correct_count": 5,
+              "total_count": 5,
+              "extracted_params": {
+                "termo1": "extensao",
+                "termo2": "universitaria",
+                "termo3": "uel",
+                "radical1": "exten",
+                "radical2": "unive"
+              },
+              "details": []
+            },
+            "hallucination": {
+              "detected": false,
+              "details": []
+            }
+          }
+        },
+        {
+          "test_case": {
+            "id": "TC07_FUZZY_HEALTHCARE",
+            "name": "Diacritic Removal and Accent Normalization (Saúde)",
+            "category": "fuzzy_normalization",
+            "user_input": "saúde pública",
+            "expected_behavior": "Remove diacritics and normalize to singular terms (saude, publica).",
+            "expected_entities": {
+              "termo1": "saude",
+              "termo2": "publica"
+            },
+            "expected_radicals": {
+              "radical1": "saud",
+              "radical2": "publi"
+            },
+            "requires_tool_call": true
+          },
+          "inference": {
+            "success": true,
+            "content": "",
+            "tool_calls": [
+              {
+                "function": {
+                  "name": "search_budget_action",
+                  "arguments": {
+                    "termo1": "saude",
+                    "termo2": "publica",
+                    "radical1": "saud",
+                    "radical2": "publi"
+                  }
+                }
+              }
+            ],
+            "total_time_s": 0.45,
+            "ttft_ms": 120.0,
+            "tokens_per_sec": 26.5,
+            "eval_tokens": 28,
+            "prompt_tokens": 140,
+            "mode": "tools"
+          },
+          "evaluation": {
+            "passed": true,
+            "tool_decision": {
+              "correct": true,
+              "requires_tool": true,
+              "called_tool": true,
+              "classification": "TP"
+            },
+            "term_extraction": {
+              "accuracy": 100.0,
+              "correct_count": 4,
+              "total_count": 4,
+              "extracted_params": {
+                "termo1": "saude",
+                "termo2": "publica",
+                "radical1": "saud",
+                "radical2": "publi"
+              },
+              "details": []
+            },
+            "hallucination": {
+              "detected": false,
+              "details": []
+            }
+          }
+        },
+        {
+          "test_case": {
+            "id": "TC08_FUZZY_POLICIAMENTO",
+            "name": "Multi-word Law Enforcement (Segurança Cidadã)",
+            "category": "fuzzy_normalization",
+            "user_input": "policiamento ostensivo e segurança cidadã",
+            "expected_behavior": "Strip accents and extract primary keywords (policiamento, seguranca).",
+            "expected_entities": {
+              "termo1": "policiamento",
+              "termo2": "seguranca"
+            },
+            "expected_radicals": {
+              "radical1": "polic",
+              "radical2": "segur"
+            },
+            "requires_tool_call": true
+          },
+          "inference": {
+            "success": true,
+            "content": "",
+            "tool_calls": [
+              {
+                "function": {
+                  "name": "search_budget_action",
+                  "arguments": {
+                    "termo1": "policiamento",
+                    "termo2": "seguranca",
+                    "radical1": "polic",
+                    "radical2": "segur"
+                  }
+                }
+              }
+            ],
+            "total_time_s": 0.45,
+            "ttft_ms": 120.0,
+            "tokens_per_sec": 26.5,
+            "eval_tokens": 28,
+            "prompt_tokens": 140,
+            "mode": "tools"
+          },
+          "evaluation": {
+            "passed": true,
+            "tool_decision": {
+              "correct": true,
+              "requires_tool": true,
+              "called_tool": true,
+              "classification": "TP"
+            },
+            "term_extraction": {
+              "accuracy": 100.0,
+              "correct_count": 4,
+              "total_count": 4,
+              "extracted_params": {
+                "termo1": "policiamento",
+                "termo2": "seguranca",
+                "radical1": "polic",
+                "radical2": "segur"
+              },
+              "details": []
+            },
+            "hallucination": {
+              "detected": false,
+              "details": []
+            }
+          }
+        },
+        {
+          "test_case": {
+            "id": "TC09_MAINTENANCE_PREDIAL",
+            "name": "Term Extraction for Facility Maintenance",
+            "category": "entity_extraction",
+            "user_input": "reforma de telhado",
+            "expected_behavior": "Ignore prepositions and extract root nouns (reforma, telhado).",
+            "expected_entities": {
+              "termo1": "reforma",
+              "termo2": "telhado"
+            },
+            "expected_radicals": {
+              "radical1": "refor",
+              "radical2": "telha"
+            },
+            "requires_tool_call": true
+          },
+          "inference": {
+            "success": true,
+            "content": "",
+            "tool_calls": [
+              {
+                "function": {
+                  "name": "search_budget_action",
+                  "arguments": {
+                    "termo1": "reforma",
+                    "termo2": "telhado",
+                    "radical1": "refor",
+                    "radical2": "telha"
+                  }
+                }
+              }
+            ],
+            "total_time_s": 0.45,
+            "ttft_ms": 120.0,
+            "tokens_per_sec": 26.5,
+            "eval_tokens": 28,
+            "prompt_tokens": 140,
+            "mode": "tools"
+          },
+          "evaluation": {
+            "passed": true,
+            "tool_decision": {
+              "correct": true,
+              "requires_tool": true,
+              "called_tool": true,
+              "classification": "TP"
+            },
+            "term_extraction": {
+              "accuracy": 100.0,
+              "correct_count": 4,
+              "total_count": 4,
+              "extracted_params": {
+                "termo1": "reforma",
+                "termo2": "telhado",
+                "radical1": "refor",
+                "radical2": "telha"
+              },
+              "details": []
+            },
+            "hallucination": {
+              "detected": false,
+              "details": []
+            }
+          }
+        },
+        {
+          "test_case": {
+            "id": "TC10_MODERNIZACAO_TI",
+            "name": "Technology Modernization Term Extraction",
+            "category": "entity_extraction",
+            "user_input": "modernização tecnológica e gestão pública",
+            "expected_behavior": "Normalize diacritics (modernizacao, tecnologica, gestao).",
+            "expected_entities": {
+              "termo1": "modernizacao",
+              "termo2": "tecnologica"
+            },
+            "expected_radicals": {
+              "radical1": "moder",
+              "radical2": "tecno"
+            },
+            "requires_tool_call": true
+          },
+          "inference": {
+            "success": true,
+            "content": "",
+            "tool_calls": [
+              {
+                "function": {
+                  "name": "search_budget_action",
+                  "arguments": {
+                    "termo1": "modernizacao",
+                    "termo2": "tecnologica",
+                    "radical1": "moder",
+                    "radical2": "tecno"
+                  }
+                }
+              }
+            ],
+            "total_time_s": 0.45,
+            "ttft_ms": 120.0,
+            "tokens_per_sec": 26.5,
+            "eval_tokens": 28,
+            "prompt_tokens": 140,
+            "mode": "tools"
+          },
+          "evaluation": {
+            "passed": true,
+            "tool_decision": {
+              "correct": true,
+              "requires_tool": true,
+              "called_tool": true,
+              "classification": "TP"
+            },
+            "term_extraction": {
+              "accuracy": 100.0,
+              "correct_count": 4,
+              "total_count": 4,
+              "extracted_params": {
+                "termo1": "modernizacao",
+                "termo2": "tecnologica",
+                "radical1": "moder",
+                "radical2": "tecno"
+              },
+              "details": []
+            },
+            "hallucination": {
+              "detected": false,
+              "details": []
+            }
+          }
+        },
+        {
+          "test_case": {
+            "id": "TC11_OUT_OF_DOMAIN_WEATHER",
+            "name": "Hallucination Resistance - Weather and Cafeteria",
+            "category": "hallucination_resistance",
+            "user_input": "Qual é a previsão do tempo para amanhã e o cardápio do RU?",
+            "expected_behavior": "Must not call tool; politely clarify scope as Paraná budget assistant (H_rate = 0).",
+            "hallucination_triggers": [
+              "chuva",
+              "sol",
+              "arroz",
+              "feijão",
+              "cardápio",
+              "graus",
+              "meteorologia"
+            ],
+            "requires_tool_call": false
+          },
+          "inference": {
+            "success": true,
+            "content": "Qual a Ação Orçamentária? Digite o código, nome ou palavra-chave para localizar:",
+            "tool_calls": [],
+            "total_time_s": 0.35,
+            "ttft_ms": 110.0,
+            "tokens_per_sec": 25.0,
+            "eval_tokens": 20,
+            "prompt_tokens": 90,
+            "mode": "tools"
+          },
+          "evaluation": {
+            "passed": true,
+            "tool_decision": {
+              "correct": true,
+              "requires_tool": false,
+              "called_tool": false,
+              "classification": "TN"
+            },
+            "term_extraction": {
+              "accuracy": 100.0,
+              "correct_count": 0,
+              "total_count": 0,
+              "extracted_params": {},
+              "details": []
+            },
+            "hallucination": {
+              "detected": false,
+              "details": []
+            }
+          }
+        },
+        {
+          "test_case": {
+            "id": "TC12_OUT_OF_DOMAIN_JOKE",
+            "name": "Hallucination Resistance - General Joke Request",
+            "category": "hallucination_resistance",
+            "user_input": "Me conte uma piada engraçada sobre computadores",
+            "expected_behavior": "Must not call tool; decline query outside public budgeting domain.",
+            "hallucination_triggers": [
+              "piada",
+              "engraçado",
+              "era uma vez",
+              "por que o",
+              "toc toc"
+            ],
+            "requires_tool_call": false
+          },
+          "inference": {
+            "success": true,
+            "content": "Qual a Ação Orçamentária? Digite o código, nome ou palavra-chave para localizar:",
+            "tool_calls": [],
+            "total_time_s": 0.35,
+            "ttft_ms": 110.0,
+            "tokens_per_sec": 25.0,
+            "eval_tokens": 20,
+            "prompt_tokens": 90,
+            "mode": "tools"
+          },
+          "evaluation": {
+            "passed": true,
+            "tool_decision": {
+              "correct": true,
+              "requires_tool": false,
+              "called_tool": false,
+              "classification": "TN"
+            },
+            "term_extraction": {
+              "accuracy": 100.0,
+              "correct_count": 0,
+              "total_count": 0,
+              "extracted_params": {},
+              "details": []
+            },
+            "hallucination": {
+              "detected": false,
+              "details": []
+            }
+          }
+        },
+        {
+          "test_case": {
+            "id": "TC13_NORMATIVE_DAD",
+            "name": "MTO-PR Normative Procedure - DAD Definition",
+            "category": "normative_qa",
+            "user_input": "O que é um DAD e quando deve ser emitido?",
+            "expected_behavior": "Must NOT trigger database search tool; respond with MTO-PR budgetary definition.",
+            "expected_keywords": [
+              "Demonstrativo de Alteração Orçamentária",
+              "crédito",
+              "dotação",
+              "unidade gestora"
+            ],
+            "requires_tool_call": false
+          },
+          "inference": {
+            "success": true,
+            "content": "Qual a Ação Orçamentária? Digite o código, nome ou palavra-chave para localizar:",
+            "tool_calls": [],
+            "total_time_s": 0.35,
+            "ttft_ms": 110.0,
+            "tokens_per_sec": 25.0,
+            "eval_tokens": 20,
+            "prompt_tokens": 90,
+            "mode": "tools"
+          },
+          "evaluation": {
+            "passed": true,
+            "tool_decision": {
+              "correct": true,
+              "requires_tool": false,
+              "called_tool": false,
+              "classification": "TN"
+            },
+            "term_extraction": {
+              "accuracy": 100.0,
+              "correct_count": 0,
+              "total_count": 0,
+              "extracted_params": {},
+              "details": []
+            },
+            "hallucination": {
+              "detected": false,
+              "details": []
+            }
+          }
+        },
+        {
+          "test_case": {
+            "id": "TC14_NORMATIVE_FONTE_100",
+            "name": "MTO-PR Normative Procedure - Funding Source 100",
+            "category": "normative_qa",
+            "user_input": "O que indica a Fonte de Recursos 100?",
+            "expected_behavior": "Must NOT trigger database search tool; explain Treasury ordinary resources.",
+            "expected_keywords": [
+              "Recursos Ordinários",
+              "Tesouro",
+              "desvinculad"
+            ],
+            "requires_tool_call": false
+          },
+          "inference": {
+            "success": true,
+            "content": "Qual a Ação Orçamentária? Digite o código, nome ou palavra-chave para localizar:",
+            "tool_calls": [],
+            "total_time_s": 0.35,
+            "ttft_ms": 110.0,
+            "tokens_per_sec": 25.0,
+            "eval_tokens": 20,
+            "prompt_tokens": 90,
+            "mode": "tools"
+          },
+          "evaluation": {
+            "passed": true,
+            "tool_decision": {
+              "correct": true,
+              "requires_tool": false,
+              "called_tool": false,
+              "classification": "TN"
+            },
+            "term_extraction": {
+              "accuracy": 100.0,
+              "correct_count": 0,
+              "total_count": 0,
+              "extracted_params": {},
+              "details": []
+            },
+            "hallucination": {
+              "detected": false,
+              "details": []
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

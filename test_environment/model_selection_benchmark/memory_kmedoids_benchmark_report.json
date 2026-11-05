@@ -1,0 +1,71 @@
+{
+  "timestamp": "2026-11-05T03:20:23Z",
+  "webhook_url": "http://localhost:5678/webhook/natureza-despesa-memoria",
+  "passed": 6,
+  "total": 6,
+  "avg_slm_turn_latency_ms": 5096.36,
+  "avg_memory_turn_latency_ms": 176.84,
+  "speedup_factor": 28.8,
+  "turns": [
+    {
+      "turn": 1,
+      "name": "Broad Search -> K-Medoids Clustering (k=4)",
+      "input": "serviço",
+      "expects_slm": true,
+      "expected_action": "desambiguacao_kmedoids_salva_em_memoria",
+      "actual_action": "desambiguacao_kmedoids_salva_em_memoria",
+      "latency_ms": 5891.05,
+      "passed": true
+    },
+    {
+      "turn": 2,
+      "name": "Cluster Selection #2 -> Instant Memory Expansion (SLM Bypassed)",
+      "input": "2",
+      "expects_slm": false,
+      "expected_action": "expansao_cluster_direta",
+      "actual_action": "expansao_cluster_direta",
+      "latency_ms": 199.92,
+      "passed": true
+    },
+    {
+      "turn": 3,
+      "name": "Cluster Selection #3 -> Instant Memory Expansion (SLM Bypassed)",
+      "input": "3",
+      "expects_slm": false,
+      "expected_action": "expansao_cluster_direta",
+      "actual_action": "expansao_cluster_direta",
+      "latency_ms": 173.01,
+      "passed": true
+    },
+    {
+      "turn": 4,
+      "name": "Auto-Reset on Turn Limit (turnCount=3) + Specific Search",
+      "input": "equipamento de informática",
+      "expects_slm": true,
+      "expected_action": "exibicao_direta",
+      "actual_action": "exibicao_direta",
+      "latency_ms": 4654.14,
+      "passed": true
+    },
+    {
+      "turn": 5,
+      "name": "Incremental Short Refinement ('mas apenas locação')",
+      "input": "mas apenas locação",
+      "expects_slm": true,
+      "expected_action": "exibicao_direta",
+      "actual_action": "exibicao_direta",
+      "latency_ms": 4743.88,
+      "passed": true
+    },
+    {
+      "turn": 6,
+      "name": "Explicit Session Reset Command ('reiniciar')",
+      "input": "reiniciar",
+      "expects_slm": false,
+      "expected_action": "contexto_reiniciado",
+      "actual_action": "contexto_reiniciado",
+      "latency_ms": 157.6,
+      "passed": true
+    }
+  ]
+}

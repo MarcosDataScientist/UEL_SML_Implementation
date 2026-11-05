@@ -1,0 +1,1561 @@
+codigo,descricao,detalhe,titulo
+3.1.50.43.00,Subvenções Sociais,,
+3.1.50.43.01,Subvenções Sociais - APAES,"Registra o valor para cobertura de despesas das APAES, conforme o art.16, Parágrafo Único e o art.17 da Lei nº 4.320, de 17 de março de 1964, observado o disposto no art.16 da Lei Complementar nº 101, de 04 de maio de 2000.",APAES
+3.1.50.43.01,APAES,"Registra o valor para cobertura de despesas das APAES, conforme o art.16, Parágrafo Único e o art.17 da Lei nº 4.320, de 17 de março de 1964, observado o disposto no art.16 da Lei Complementar nº 101, de 04 de maio de 2000.",APAES
+3.1.50.43.03,Subvenção Social a Fundações de Apoio,,
+3.1.50.43.05,Auxílios e Contribuições a Entidades Privadas - DESPESA DE PESSOAL,,
+3.1.90.01.00,"Aposentadorias do RPPS, Reserva Remunerada e Reformas dos Militares",,
+3.1.90.01.11,Aposentadorias do Pessoal Civil do Poder Executivo,Registra o valor das despesas com o pagamento de proventos aos inativos civis do Poder Executivo.,Aposentadorias do Pessoal Civil do Poder Executivo
+3.1.90.01.12,Aposentadorias do Pessoal Militar,,
+3.1.90.01.13,Aposentadorias do Pessoal Civil da Assembléia Legislativa,,
+3.1.90.01.14,Aposentadorias do Pessoal Civil do Tribunal de Contas,,
+3.1.90.01.15,Aposentadorias do Pessoal Civil do Tribunal de Justiça,Registra o valor das despesas com o pagamento de proventos aos inativos do Tribunal de Justiça.,Aposentadorias do Pessoal Civil do Tribunal de Justiça
+3.1.90.01.16,Aposentadorias do Pessoal Civil do Ministério Público,Registra o valor das despesas com o pagamento de proventos aos inativos do Ministério Público.,Aposentadorias do Pessoal Civil do Ministério Público
+3.1.90.01.17,Décimo Terceiro Salário do Pessoal Civil do Poder Executivo,Registra o valor das despesas com pagamento do décimo terceiro salário aos inativos civis do Poder Executivo.,Décimo Terceiro Salário do Pessoal Civil do Poder Executivo
+3.1.90.01.18,Décimo Terceiro Salário do Pessoal Militar,Registra o valor das despesas com pagamento do décimo terceiro salário aos Inativos Militares.,Décimo Terceiro Salário do Pessoal Militar
+3.1.90.01.19,Décimo Terceiro Salário da Assembléia Legislativa,Registra o valor das despesas com pagamento do décimo terceiro salário aos Inativos da Assembleia Legislativa.,Décimo Terceiro Salário da Assembleia Legislativa
+3.1.90.01.20,Décimo Terceiro Salário do Tribunal de Contas,Registra o valor das despesas com pagamento do décimo terceiro salário aos Inativos do Tribunal de Contas.,Décimo Terceiro Salário do Tribunal de Contas
+3.1.90.01.21,Décimo Terceiro Salário do Tribunal de Justiça,Registra o valor das despesas com pagamento do décimo terceiro salário aos Inativos do Tribunal de Justiça.,Décimo Terceiro Salário do Tribunal de Justiça
+3.1.90.01.22,Décimo Terceiro Salário do Ministério Público,Registra o valor das despesas com pagamento do décimo terceiro salário aos Inativos do Ministério Público.,Décimo Terceiro Salário do Ministério Público
+3.1.90.01.23,Aposentadorias Especiais,Registra o valor das despesas com o pagamento de Aposentadorias Especiais.,Aposentadorias Especiais
+3.1.90.01.24,Décimo Terceiro Salário de Aposentadorias Especiais,Registra o valor das despesas com pagamento do décimo terceiro salário referente às Aposentadorias Especiais.,Décimo Terceiro Salário de Aposentadorias Especiais
+3.1.90.01.25,Aposentadorias do Pessoal Civil da Defensoria Pública,Registra o valor das despesas com o pagamento de proventos aos inativos da Defensoria Pública.,Aposentadorias do Pessoal Civil da Defensoria Pública
+3.1.90.01.26,Décimo Terceiro Salário da Defensoria Pública,Registra o valor das despesas com pagamento do décimo terceiro salário aos Inativos da Defensoria Pública.,Décimo Terceiro Salário da Defensoria Pública
+3.1.90.01.94,Apropriação do Décimo Terceiro Salário,Registra o valor das estimativas de empenho para o décimo terceiro salário do pessoal inativo.,Apropriação do Décimo Terceiro Salário
+3.1.90.03.00,Pensões do RPPS e do Militar,,
+3.1.90.03.11,Pensões do Pessoal Civil do Poder Executivo,Registra o valor das despesas com o pagamento de pensões do pessoal civil do Poder Executivo.,Pensões do Pessoal Civil do Poder Executivo
+3.1.90.03.12,Pensões do Pessoal Militar,Registra o valor das despesas com o pagamento de pensões dos Militares.,Pensões do Pessoal Militar
+3.1.90.03.13,Pensões do Pessoal Civil da Assembléia Legislativa,Registra o valor das despesas com o pagamento de pensões da Assembleia Legislativa.,Pensões do Pessoal Civil da Assembleia Legislativa
+3.1.90.03.14,Pensões do Pessoal Civil do Tribunal de Contas,Registra o valor das despesas com o pagamento de pensões do Tribunal de Contas.,Pensões do Pessoal Civil do Tribunal de Contas
+3.1.90.03.15,Pensões do Pessoal Civil do Tribunal de Justiça,Registra o valor das despesas com o pagamento de pensões do Tribunal de Justiça.,Pensões do Pessoal Civil do Tribunal de Justiça
+3.1.90.03.16,Pensões do Pessoal Civil do Ministério Público,Registra o valor das despesas com o pagamento de pensões do Ministério Público.,Pensões do Pessoal Civil do Ministério Público
+3.1.90.03.17,Décimo Terceiro Salário do Pessoal Civil do Poder Executivo,Registra o valor das despesas com pagamento do décimo terceiro salário ao pessoal civil do Poder Executivo.,Décimo Terceiro Salário do Pessoal Civil do Poder Executivo
+3.1.90.03.18,Décimo Terceiro Salário do Pessoal Militar,Registra o valor das despesas com pagamento do décimo terceiro salário ao pessoal militar.,Décimo Terceiro Salário do Pessoal Militar
+3.1.90.03.19,Décimo Terceiro Salário do Pessoal Civil da Assembléia Legislativa,Registra o valor das despesas com pagamento do décimo terceiro salário ao pessoal civil da Assembleia Legislativa.,Décimo Terceiro Salário do Pessoal Civil da Assembleia Legislativa
+3.1.90.03.20,Décimo Terceiro Salário do Pessoal Civil do Tribunal de Contas,Registra o valor das despesas com pagamento do décimo terceiro salário ao pessoal civil do Tribunal de Contas.,Décimo Terceiro Salário do Pessoal Civil do Tribunal de Contas
+3.1.90.03.21,Décimo Terceiro Salário do Pessoal Civil do Tribunal de Justiça,Registra o valor das despesas com pagamento do décimo terceiro salário ao pessoal civil do Tribunal de Justiça.,Décimo Terceiro Salário do Pessoal Civil do Tribunal de Justiça
+3.1.90.03.22,Décimo Terceiro Salário do Pessoal Civil do Ministério Público,Registra o valor das despesas com pagamento do décimo terceiro salário ao pessoal civil do Ministério Público.,Décimo Terceiro Salário do Pessoal Civil do Ministério Público
+3.1.90.03.23,Pensões Especiais,Registra o valor das despesas com o pagamento de pensões especiais.,Pensões Especiais
+3.1.90.03.24,Décimo Terceiro Salário de Pensões Especiais,Registra o valor das despesas com pagamento do décimo terceiro salário aos pensionistas especiais.,Décimo Terceiro Salário de Pensões Especiais
+3.1.90.03.25,Pensões do Pessoal Civil da Defensoria Pública,Registra o valor das despesas com o pagamento de pensões da Defensoria Pública.,Pensões do Pessoal Civil da Defensoria Pública
+3.1.90.03.26,Décimo Terceiro Salário do Pessoal Civil da Defensoria Pública,Registra o valor das despesas com pagamento do décimo terceiro salário ao pessoal civil da Defensoria Pública.,Décimo Terceiro Salário do Pessoal Civil da Defensoria Pública
+3.1.90.03.94,Apropriação do Décimo Terceiro Salário,Registra o valor das estimativas de empenho para o décimo terceiro salário de pensionistas.,Apropriação do Décimo Terceiro Salário
+3.1.90.04.00,Contratação por Tempo Determinado,,
+3.1.90.04.10,Bônus de Resultado de Aprendizagem - BRA,"Registra o valor das despesas com o Bônus de Resultado de Aprendizagem aos servidores que exerçam atividades nas instituições de ensino, nos Núcleos Regionais de Educação, na Secretaria de Estado da Educação e nas unidades a ela vinculadas de acordo com o disposto na Lei nº 21.847/2023 e regulamentada pelo Decreto nº 6.044/2024.",– Bônus de Resultado de Aprendizagem – BRA
+3.1.90.04.21,Salário Lei 8.745/93 - Contrato Temporário,"Registra o valor das despesas com a remuneração de Pessoal Civil, contratado por tempo determinado, para atender necessidade temporária de excepcional interesse público, de acordo com a legislação em vigor.",Salário Lei nº 8.745/93 – Contrato Temporário
+3.1.90.04.22,Adicional Noturno - Contrato Temporário,"Registra o valor das despesas com pagamento de adicional noturno do pessoal contratado por tempo determinado, de acordo com a legislação em vigor.",Adicional Noturno – Contrato Temporário
+3.1.90.04.23,Adicional de Periculosidade - Contrato Temporário,"Registra o valor das despesas com pagamento de adicional de periculosidade do pessoal contratado por tempo determinado, de acordo com a legislação em vigor.",Adicional de Periculosidade – Contrato Temporário
+3.1.90.04.24,Adicional de Insalubridade - Contrato Temporário,"Registra o valor das despesas com pagamento de adicional de insalubridade do pessoal contratado por tempo determinado, de acordo com a legislação em vigor.",Adicional de Insalubridade – Contrato Temporário
+3.1.90.04.25,Serviços Extraordinários - Contrato Temporário,"Registra o valor das despesas com pagamento de serviços extraordinários do pessoal contratado por tempo determinado, de acordo com a legislação em vigor.",Serviços Extraordinários – Contrato Temporário
+3.1.90.04.26,Serviços Extraordinários Noturno - Contrato Temporário,"Registra o valor das despesas com pagamento de serviços extraordinários em horário noturno do pessoal contratado por tempo determinado, de acordo com a legislação em vigor.",Serviços Extraordinários Noturno – Contrato Temporário
+3.1.90.04.27,Férias Vencidas ou Proporcionais - Contrato Temporário,"Registra o valor das despesas com pagamento de férias vencidas ou proporcionais do pessoal contratado por tempo determinado, de acordo com a legislação em vigor.",Férias Vencidas ou Proporcionais – Contrato Temporário
+3.1.90.04.28,Décimo Terceiro Salário - Contrato Temporário,"Registra o valor das despesas com pagamento de décimo terceiro salário do pessoal contratado por tempo determinado, de acordo com a legislação em vigor.",Décimo Terceiro Salário – Contrato Temporário
+3.1.90.04.29,Férias Abono Constitucional - Contrato Temporário,"Registra o valor das despesas com pagamento do abono de férias, 1/3, do pessoal contratado por tempo determinado, de acordo com a legislação em vigor.",Férias Abono Constitucional – Contrato Temporário
+3.1.90.04.30,Obrigações Patronais - Contrato Temporário,Registra o valor das despesas com o pagamento das obrigações patronais do pessoal contratado por tempo determinado.,Obrigações Patronais – Contrato Temporário
+3.1.90.04.31,INSS Patronal - Contrato Temporário,"Registra o valor das despesas com o pagamento do INSS, inclusive multas e juros de mora, que a Administração Pública tem pela sua condição de empregadora, resultado do pagamento de pessoal contratado por tempo determinado.",INSS Patronal – Contrato Temporário
+3.1.90.04.32,FGTS - Contrato Temporário,"Registra o valor das despesas com o pagamento do FGTS, inclusive multas e juros de mora, que a Administração Pública tem pela sua condição de empregadora, resultante do pagamento de pessoal contratado por tempo determinado.",FGTS – Contrato Temporário
+3.1.90.04.33,Décimo Terceiro INSS Patronal - Contrato Temporário,"Registra o valor do décimo terceiro das despesas com o pagamento do INSS, inclusive multas e juros de mora, que a Administração Pública tem pela sua condição de empregadora, resultado do pagamento de pessoal contratado por tempo determinado.",Décimo Terceiro INSS Patronal – Contrato Temporário
+3.1.90.04.34,Décimo Terceiro FGTS - Contrato Temporário,"Registra o valor do décimo terceiro das despesas com o pagamento do FGTS, inclusive multas e juros de mora, que a Administração Pública tem pela sua condição de empregadora, resultante do pagamento de pessoal contratado por tempo determinado.",Décimo Terceiro FGTS – Contrato Temporário
+3.1.90.04.35,Apropriação INSS Patronal - Contrato Temporário,"Registra o valor estimado das despesas com o pagamento do INSS, inclusive multas e juros de mora, que a Administração Pública tem pela sua condição de empregadora, resultado do pagamento de pessoal contratado por tempo determinado.",Apropriação INSS Patronal – Contrato Temporário
+3.1.90.04.36,Apropriação FGTS - Contrato Temporário,"Registra o valor estimado das despesas com o pagamento do FGTS, inclusive multas e juros de mora, que a Administração Pública tem pela sua condição de empregadora, resultante do pagamento de pessoal contratado por tempo determinado.",Apropriação FGTS – Contrato Temporário
+3.1.90.04.94,Apropriação Décimo Terceiro Salário - Contrato Temporário,Registra o valor das estimativas de empenho para o décimo terceiro salário do pessoal contratado por tempo determinado.,Apropriação Décimo Terceiro Salário – Contrato Temporário
+3.1.90.04.99,Outras Despesas com a Contratação de Pessoal Temporário,,
+3.1.90.07.00,Contribuição a Entidades Fechadas de Previdência,,
+3.1.90.07.01,Antecipação de valores de contribuições à Previdência Complementar,Registra o valor das antecipações de valores de contribuições necessárias à adesão ou implantação do plano de benefício previdenciário complementar para servidores públicos ocupantes de cargo efetivo. A ser classificado no Grupo de Natureza de Despesa: Pessoal e Encargos Sociais,Antecipação de valores de contribuições à Previdência Complementar
+3.1.90.07.02,Contribuição do Ente Público Patrocinador ao Regime de Previdência Complementar ¿ Ativo,Registra o valor das despesas com a contribuição a ser paga pelo patrocinador conforme adesão dos servidores públicos efetivos ativos ao Regime de Previdência Complementar.,- Contribuição do Ente Público Patrocinador ao Regime de Previdência Complementar – Ativo
+3.1.90.11.00,Vencimentos e Vantagens Fixas - Pessoal Civil,,
+3.1.90.11.09,Licença-Prêmio,"Registra o valor das despesas com pagamento dos vencimentos durante a fruição da licença-prêmio a que tem direito o servidor pela assiduidade, de acordo com a legislação em vigor.",Licença-Prêmio
+3.1.90.11.10,Adicional de Atividade Socieducativa (AAS),"Registra Despesa com retribuição financeira fixada em valor, de natureza permanente, exclusiva para o cargo de Agente de Segurança Socioeducativo, relativa ao caráter penoso, perigoso, insalubre e com risco de vida inerente à função, com incidência de contribuição previdenciária.",Adicional de Atividade Socioeducativa (AAS)
+3.1.90.11.21,Vencimentos e Salários - RPPS,"Registra o valor das despesas de caráter permanente, enquanto durar a situação do cargo ou função, ou seja, vencimentos de pessoal ativo civil permanente.",Vencimentos e Salários – RPPS
+3.1.90.11.22,Adicional Noturno - RPPS,Registra o valor das despesas com o pagamento de adicional noturno devido ao pessoal civil.,Adicional Noturno – RPPS
+3.1.90.11.23,Abono de Permanência - RPPS,Registra o valor das despesas com o pagamento do abono de permanência devido ao pessoal civil.,Abono de Permanência – RPPS
+3.1.90.11.24,Adicional de Periculosidade - RPPS,Registra o valor das despesas com o pagamento de adicional de periculosidade devido ao pessoal civil.,Adicional de Periculosidade – RPPS
+3.1.90.11.25,Adicional de Insalubridade - RPPS,Registra o valor das despesas com o pagamento de adicional de insalubridade devido ao pessoal civil.,Adicional de Insalubridade – RPPS
+3.1.90.11.26,Adicional de Atividades Penosas - RPPS,Registra o valor das despesas com o pagamento de adicional de atividades penosas devido ao pessoal civil.,Adicional de Atividades Penosas – RPPS
+3.1.90.11.27,Abono Provisório Pessoal Civil - RPPS,Registra o valor das despesas com o pagamento do abono provisório devido ao pessoal civil.,Abono Provisório Pessoal Civil – RPPS
+3.1.90.11.28,Gratificação por Exercício de Cargos - RPPS,Registra o valor das despesas com o pagamento da gratificação por exercício de cargos devida ao pessoal civil.,Gratificação por Exercício de Cargos – RPPS
+3.1.90.11.29,Gratificação por Exercício de Funções - RPPS,Registra o valor das despesas com o pagamento da gratificação por exercício de funções devida ao pessoal civil.,Gratificação por Exercício de Funções – RPPS
+3.1.90.11.30,Gratificação de Tempo de Serviço - RPPS,Registra o valor das despesas com o pagamento da gratificação de tempo de serviço devida ao pessoal civil.,Gratificação de Tempo de Serviço – RPPS
+3.1.90.11.31,Gratificações Especiais - RPPS,Registra o valor das despesas com o pagamento de gratificações especiais devidas ao pessoal civil.,Gratificações Especiais – RPPS
+3.1.90.11.32,Férias Vencidas ou Proporcionais - RPPS,Registra o valor das despesas com o pagamento de férias vencidas ou proporcionais devidas ao pessoal civil.,Férias Vencidas ou Proporcionais – RPPS
+3.1.90.11.33,Décimo Terceiro Salário - RPPS,Registra o valor das despesas com o pagamento do décimo terceiro salário devido ao pessoal civil.,Décimo Terceiro Salário – RPPS
+3.1.90.11.34,Férias - Abono Constitucional - RPPS,"Registra o valor das despesas com o pagamento do abono de férias, 1/3, devido ao pessoal civil.",Férias – Abono Constitucional – RPPS
+3.1.90.11.35,Representação Mensal - RPPS,Registra o valor das despesas com o pagamento de verba de representação conforme legislação em vigor.,Representação Mensal – RPPS
+3.1.90.11.36,Subsídios - RPPS,Registra o valor das despesas com o pagamento de Subsídios devido ao pessoal civil.,Subsídios – RPPS
+3.1.90.11.37,Gratificação por Exercício de Cargo em Comissão - RPPS,Registra o valor das despesas com o pagamento de gratificação por exercício de cargo em comissão devida ao pessoal civil.,Gratificação por Exercício de Cargo em Comissão – RPPS
+3.1.90.11.38,Outros Vencimentos e Vantagens Fixas - Pessoal Civil - RPPS,Registra o valor das outras despesas não enquadradas nos itens anteriores.,Outros Vencimentos e Vantagens Fixas – Pessoal Civil – RPPS
+3.1.90.11.39,Apropriação Décimo Terceiro Salário - RPPS,Registra o valor das estimativas de empenho para o décimo terceiro salário do pessoal civil regido pelo regime próprio de previdência social.,Apropriação Décimo Terceiro Salário – RPPS
+3.1.90.11.45,Gratificação de Incentivo a Titularidade - GITI,"Registra o valor de despesas com Gratificação de Incentivo a Titularidade – GITI, inclusive as previstas no inciso VI do art. 38 da Lei Complementar nº 257 de 14 de julho de 2023.",– Gratificação de Incentivo a Titularidade – GITI
+3.1.90.11.61,Vencimentos e Salários - RGPS,"Registra o valor das despesas de caráter permanente, enquanto durar a situação do cargo ou função, ou seja, vencimentos ou salários de pessoal permanente regido pelo regime geral de previdência social.",Vencimentos e Salários – RGPS
+3.1.90.11.62,Adicional de Periculosidade - RGPS,Registra o valor das despesas com o pagamento de adicional de periculosidade devido ao pessoal regido pelo regime geral de previdência social.,Adicional de Periculosidade – RGPS
+3.1.90.11.63,Gratificações Especiais - RGPS,Registra o valor das despesas com o pagamento de gratificação especial devida ao pessoal regido pelo regime geral de previdência social.,Gratificações Especiais – RGPS
+3.1.90.11.64,Férias Vencidas e Proporcionais - RGPS,Registra o valor das despesas com o pagamento de férias vencidas ou proporcionais devidas ao pessoal regido pelo regime geral de previdência social.,Férias Vencidas e Proporcionais – RGPS
+3.1.90.11.65,Décimo Terceiro Salário - RGPS,Registra o valor das despesas com o pagamento do décimo terceiro salário devido ao pessoal regido pelo regime geral de previdência social.,Décimo Terceiro Salário – RGPS
+3.1.90.11.66,Representação Mensal - RGPS,Registra o valor das despesas com o pagamento de verba de representação conforme legislação em vigor.,Representação Mensal – RGPS
+3.1.90.11.67,Gratificação por Exercício de Cargo em Comissão - RGPS,Registra o valor das despesas com o pagamento de gratificação por exercício de cargo em comissão devida ao pessoal regido pelo regime geral de previdência social.,Gratificação por Exercício de Cargo em Comissão – RGPS
+3.1.90.11.68,Outros Vencimentos e Vantagens Fixas - Pessoal Civil - RGPS,Registra o valor das outras despesas não enquadradas nos itens anteriores.,Outros Vencimentos e Vantagens Fixas – Pessoal Civil – RGPS
+3.1.90.11.69,Apropriação Décimo Terceiro Salário - RGPS,Registra o valor das estimativas de empenho para o décimo terceiro salário do pessoal regido pelo regime geral de previdência social.,Apropriação Décimo Terceiro Salário – RGPS
+3.1.90.11.70,Adicional de Insalubridade - RGPS,Registra o valor das despesas com o pagamento de adicional de insalubridade devido ao pessoal ativo regido pelo regime geral de previdência social.,Adicional de Insalubridade – RGPS
+3.1.90.11.71,Férias - Abono Constitucional - RGPS,"Registra o valor das despesas com o pagamento do abono de férias, 1/3, devido ao pessoal ativo regido pelo regime geral de previdência social.",Férias – Abono Constitucional – RGPS
+3.1.90.11.72,Auxílio-Doença - RPPS,Registra o valor das despesas com o pagamento de auxílio-doença devido ao segurado que ficar incapacitado para o trabalho.,Auxílio-Doença – RPPS
+3.1.90.11.73,Auxílio-Maternidade - RPPS,"Registra o valor das despesas com o pagamento de auxílio-maternidade devido à segurada, por ocasião do parto, da adoção ou da guarda judicial para fins de adoção.",Auxílio-Maternidade – RPPS
+3.1.90.11.80,Remuneração de Membros de Conselhos,Registra o valor das despesas realizadas a título de remuneração (jetons) aos membros de órgãos de deliberação coletiva (conselhos).,Remuneração de Membros de Conselhos
+3.1.90.11.81,"Tempo Integral de Dedicação Exclusiva, Carreira Técnica Universitária - TIDE","Registra o valor das despesas com Tempo Integral de Dedicação Exclusiva, Carreira Técnica Universitária, instituído pelo Art. 5º da Lei 20.932 de 17 de dezembro de 2021.","Tempo Integral de Dedicação Exclusiva, Carreira Técnica Universitária – TIDE"
+3.1.90.12.00,Vencimentos e Vantagens Fixas - Pessoal Militar,,
+3.1.90.12.11,Soldo - Pessoal Militar,"Registra o valor das despesas de caráter permanente resultante da prestação de serviços dos militares, ou a eles assemelhados, de forma contínua e sistemática.",Soldo – Pessoal Militar
+3.1.90.12.12,Adicional de Permanência - Pessoal Militar,Registra o valor das despesas com o pagamento de adicional de permanência devido aos militares.,Adicional de Permanência – Pessoal Militar
+3.1.90.12.13,Gratificação de Localidade Especial - Pessoal Militar,"Registra o valor das despesas com o pagamento da remuneração do pessoal ativo militar, correspondente à gratificação de localidade especial.",Gratificação de Localidade Especial – Pessoal Militar
+3.1.90.12.14,Gratificação de Representação - Pessoal Militar,"Registra o valor das despesas com o pagamento da remuneração do pessoal ativo militar, correspondente à gratificação representação.",Gratificação de Representação – Pessoal Militar
+3.1.90.12.15,Férias Vencidas e Proporcionais - Pessoal Militar,Registra o valor das despesas com o pagamento de férias vencidas ou proporcionais devido aos militares.,Férias Vencidas e Proporcionais – Pessoal Militar
+3.1.90.12.16,Férias - Abono Constitucional - Pessoal Militar,"Registra o valor das despesas com o pagamento do abono de férias, 1/3, devido aos militares.",Férias – Abono Constitucional – Pessoal Militar
+3.1.90.12.17,Décimo Terceiro Salário - Pessoal Militar,Registra o valor das despesas com o pagamento do décimo terceiro salário devido ao pessoal militar.,Décimo Terceiro Salário – Pessoal Militar
+3.1.90.12.94,Apropriação para o Décimo Terceiro Salário - Pessoal Militar,Registra o valor das estimativas de empenho para o décimo terceiro salário do pessoal militar.,Apropriação para o Décimo Terceiro Salário – Pessoal Militar
+3.1.90.13.00,Obrigações Patronais,,
+3.1.90.13.01,Contribuições de Previdência Social - INSS,"Registra o valor das contribuições para Institutos de Previdência, do valor principal, que a Administração Pública Estadual tem pela sua condição de empregadora, resultante do pagamento de pessoal.",Contribuições de Previdência Social – INSS
+3.1.90.13.02,Fundo de Garantia por Tempo de Serviço - FGTS,"Registra o valor das despesas com o pagamento do Fundo de Garantia por Tempo de Serviço, que o Governo Estadual se obriga a pagar na qualidade de empregador.",Fundo de Garantia por Tempo de Serviço – FGTS
+3.1.90.13.03,Salário Família do Pessoal Temporário e do Pessoal Comissionado sem Vínculo,"Registra o valor das despesas com o pagamento do salário família do pessoal temporário e do pessoal comissionado sem vínculo, de acordo com a legislação em vigor.",Salário Família do Pessoal Temporário e do Pessoal Comissionado sem Vínculo
+3.1.90.13.05,União Nacional de Parlamentares,Registra o valor das despesas com a contribuição da Assembleia Legislativa à União Nacional de Parlamentares.,União Nacional de Parlamentares
+3.1.90.13.06,INSS - Empresas Estatais Dependentes,"Registra o valor das despesas com o pagamento da contribuição previdenciária pelas Empresas Estatais Dependentes ao INSS, na qualidade de empregadoras.",INSS – Empresas Estatais Dependentes
+3.1.90.13.07,FGTS - Empresas Estatais Dependentes,"Registra o valor das despesas com o pagamento do Fundo de Garantia por Tempo de Serviço- FGTS, pelas Empresas Estatais Dependentes, na qualidade de empregadoras.",FGTS – Empresas Estatais Dependentes
+3.1.90.13.08,Contribuições a Fundos de Previdência - Contrapartida Patrocinador,Registra o valor das despesas com outras contribuições patronais da Previdência Privada.,Contribuição a Outros Fundos de Previdência
+3.1.90.13.08,Contribuições a Outros Fundos de Previdência,Registra o valor das despesas com outras contribuições patronais da Previdência Privada.,Contribuição a Outros Fundos de Previdência
+3.1.90.13.09,Contribuição Patronal ao Fundo de Previdência - Inativo,,
+3.1.90.13.10,Obrigações Patronais - RPPS ( NÃO UTILIZAR),,
+3.1.90.13.11,Contribuição Patronal ao Fundo Militar - Inativo,,
+3.1.90.13.11,Contribuição Patronal ao Fundo Militar - Ativo,,
+3.1.90.13.11,Contribuição Patronal ao Fundo Militar - Pensionista,,
+3.1.90.13.14,Salário Família Pessoal Ativo RGPS,"Registra o valor das despesas com o pagamento do salário família do pessoal ativo regido pelo regime geral de previdência social, de acordo com a legislação em vigor.",Salário Família Pessoal Ativo RGPS
+3.1.90.13.15,Auxílio Maternidade RGPS,"Registra o valor das despesas com o pagamento do auxílio maternidade a que tem direito as seguradas, por ocasião do parto, da adoção ou da guarda judicial para fins de adoção.",Auxílio Maternidade RGPS
+3.1.90.13.16,Auxílio Natalidade RGPS,"Registra o valor das despesas com o pagamento do auxílio natalidade devido ao servidor por motivo de nascimento de filho, de acordo com a legislação em vigor.",Auxílio Natalidade RGPS
+3.1.90.13.17,Auxílio Doença RGPS,Registra o valor das despesas com o pagamento de auxílio-doença devido ao segurado que ficar incapacitado para o trabalho.,Auxílio-Doença RGPS
+3.1.90.13.18,Multas sobre o pagamento em atraso de obrigações patronais,,
+3.1.90.13.19,Juros sobre o pagamento em atraso de obrigações patronais,,
+3.1.90.13.21,Décimo Terceiro Contribuições de Previdência Social - INSS,"Registra o valor do décimo terceiro das contribuições para Institutos de Previdência, do valor principal, que a Administração Pública Estadual tem pela sua condição de empregadora, resultante do pagamento de pessoal.",Décimo Terceiro Contribuições de Previdência Social – INSS
+3.1.90.13.22,Décimo Terceiro Fundo de Garantia por Tempo de Serviço - FGTS,"Registra o valor do décimo terceiro das despesas com o pagamento do Fundo de Garantia por Tempo de Serviço, que o Governo Estadual se obriga a pagar na qualidade de empregador.",Décimo Terceiro Fundo de Garantia por Tempo de Serviço – FGTS
+3.1.90.13.23,Décimo Terceiro INSS - Empresas Estatais Dependentes,"Registra o valor do décimo terceiro das despesas com o pagamento da contribuição previdenciária pelas Empresas Estatais Depen dentes ao INSS, na qualidade de empregadoras.",Décimo Terceiro INSS – Empresas Estatais Dependentes
+3.1.90.13.24,Décimo Terceiro FGTS - Empresas Estatais Dependentes,"Registra o valor do décimo terceiro das despesas com o pagamento do Fundo de Garantia por Tempo de Serviço - FGTS, pelas Empresas Estatais Dependentes, na qualidade de empregadoras.",Décimo Terceiro FGTS – Empresas Estatais Dependentes
+3.1.90.13.25,Décimo Terceiro Contribuição a Outros Fundos de Previdência,Registra o valor do décimo terceiro das despesas com outras contribuições patronais da Previdência Privada.,Décimo Terceiro Contribuição a Outros Fundos de Previdência
+3.1.90.13.30,Apropriação Contribuições de Previdência Social - INSS,"Registra o valor estimado das contribuições para Institutos de Previdência, do valor principal, que a Administração Pública Estadual tem pela sua condição de empregadora, resultante do pagamento de pessoal.",Apropriação Contribuições de Previdência Social – INSS
+3.1.90.13.31,Apropriação Fundo de Garantia por Tempo de Serviço - FGTS,"Registra o valor estimado das despesas com o pagamento do Fundo de Garantia por Tempo de Serviço, que o Governo Estadual se obriga a pagar na qualidade de empregador.",Apropriação Fundo de Garantia por Tempo de Serviço – FGTS
+3.1.90.13.32,Apropriação INSS - Empresas Estatais Dependentes 3,"Registra o valor estimado das despesas com o pagamento da contribuição previdenciária pelas Empresas Estatais Dependentes ao INSS, na qualidade de empregadoras.",Apropriação INSS – Empresas Estatais Dependentes
+3.1.90.13.33,Apropriação FGTS - Empresas Estatais Dependentes,"Registra o valor estimado das despesas com o pagamento do Fundo de Garantia por Tempo de Serviço- FGTS, pelas Empresas Estatais Dependentes, na qualidade de empregadoras.",Apropriação FGTS – Empresas Estatais Dependentes
+3.1.90.13.34,Apropriação Contribuição a Outros Fundos de Previdência,Registra o valor estimado das despesas com outras contribuições patronais da Previdência Privada.,Apropriação Contribuição a Outros Fundos de Previdência
+3.1.90.13.37,Apropriação Contribuição ao Fundo Militar,,
+3.1.90.16.00,Outras Despesas Variáveis - Pessoal Civil,,
+3.1.90.16.10,Bônus de Resultado de Aprendizagem - BRA,"Registra o valor das despesas com o Bônus de Resultado de Aprendizagem aos servidores que exerçam atividades nas instituições de ensino, nos Núcleos Regionais de Educação, na Secretaria de Estado da Educação e nas unidades a ela vinculadas de acordo com o disposto na Lei nº 21.847/2023 e regulamentada pelo Decreto nº 6.044/2024.",Bônus de Resultado de Aprendizagem – BRA
+3.1.90.16.15,Gratificação Intra Muros - GRAIM,"Registra o valor das despesas com a Gratificação Intra Muros instituída pela Lei nº 19.130, de 25 de setembro de 2017.",Gratificação Intra Muros – GRAIM
+3.1.90.16.16,Gratificação pela Realização de Trabalho Relevante para Atividade de Agente Multiplicador - GRTR,"Registra o valor das despesas com pagamento de gratificação pela realização de trabalho relevante para atividade de agente multiplicador ao servidor público estatutário do Poder Executivo Estadual, conforme Decreto nº 7.462, de 04 de março de 2013.",Gratificação pela Realização de Trabalho Relevante para Atividade de Agente Multiplicador – GRTR
+3.1.90.16.17,Gratificação pelo Exercicio de Encargos de Auxiliar ou Professor de cursos regularmente instituídos - GEEP,"Registra o valor das despesas com pagamento de gratificação pelo exercício de encargos de auxiliar ou professor de curso regularmente instituído ao servidor público estatutário do Poder Executivo Estadual, conforme Decreto nº 3.686, de 5 de outubro de 2004.",Gratificação pelo Exercício de Encargos de Auxiliar ou Professor de Cursos Regularmente Instituídos – GEEP
+3.1.90.16.21,Substituições - RPPS,Registra o valor das despesas com o pagamento ao servidor que vier a substituir outro que exerça cargo ou função de confiança.,Substituições – RPPS
+3.1.90.16.22,Serviços Extraordinários - RPPS,Registra o valor das despesas com o pagamento de serviços extraordinários devido ao pessoal ativo civil.,Serviços Extraordinários – RPPS
+3.1.90.16.23,Adicional por Plantão Hospitalar - RPPS,"Registra o valor das despesas com o pagamento de adicional por plantão hospitalar devido aos servidores em efetivo exercício de atividades hospitalares, desempenhadas em regime de plantão, nas áreas indispensáveis ao funcionamento ininterrupto dos hospitais constantes no artigo 298 da Lei nº 12.155, de 2009, que altera a Lei nº 11.907, de 02 de fevereiro de 2009.",Adicional por Plantão Hospitalar – RPPS
+3.1.90.16.24,Auxílio Moradia - RPPS,Registra o valor das despesas com o pagamento de Auxílio Moradia devido ao pessoal ativo civil.,Auxílio Moradia – RPPS
+3.1.90.16.25,Outros Vencimentos e Vantagens Variáveis - Pessoal Civil - RPPS,Registra o valor das outras despesas variáveis não enquadradas nos itens anteriores.,Outros Vencimentos e Vantagens Variáveis – Pessoal Civil – RPPS
+3.1.90.16.26,Outros Plantões - RPPS,"Registra o valor das despesas com o pagamento de plantão, exceto hospitalar, devido aos servidores ativos civis.",Outros Plantões – RPPS
+3.1.90.16.31,Substituições - RGPS,"Registra o valor das despesas com o pagamento ao pessoal, pessoal regido pelo regime geral de previdência social, que vier a substituir outro que exerça cargo ou função de confiança.",Substituições – RGPS
+3.1.90.16.32,Aviso Prévio - RGPS,Registra o valor das despesas com o pagamento do aviso prévio devido ao pessoal regido pelo regime geral de previdência social.,Aviso Prévio – RGPS
+3.1.90.16.33,Outras Despesas Variáveis - Pessoal Civil - RGPS,Registra o valor das outras despesas variáveis não enquadradas nos itens anteriores.,Outras Despesas Variáveis – Pessoal Civil – RGPS
+3.1.90.16.34,Décimo Terceiro Salário Outras Despesas Variáveis - Pessoal Civil,Registra o valor das despesas com pagamento do décimo terceiro salário incidente sobre Outras Despesas Variáveis – Pessoal Civil.,Décimo Terceiro Salário Outras Despesas Variáveis – Pessoal Civil
+3.1.90.16.35,Apropriação do Décimo Terceiro Salário Outras Despesas Variáveis - Pessoal Civil,Registra o valor das estimativas do empenho para provisão de gastos com o décimo terceiro salário incidente sobre Outras Despesas Variáveis – Pessoal Civil.,Apropriação Décimo Terceiro Salário Outras Despesas Variáveis – Pessoal Civil
+3.1.90.16.36,Gratificação de Tecnologia e Ensino - GTE,"Registra o valor das despesas com a Gratificação de Tecnologia e Ensino, conforme instituído pelo Art. 7º da Lei Complementar nº 242, de 17 de dezembro de 2021.",Gratificação de Tecnologia e Ensino – GTE
+3.1.90.16.37,Gratificação de Incentivo Escalonada e Mensal - GIEM,"Registra o valor das despesas com a Gratificação de Incentivo Escalonada e Mensal instituída pela Lei nº 20.935, de 17 de dezembro de 2021.",Gratificação de Incentivo Escalonada e Mensal – GIEM
+3.1.90.16.38,Gratificação de Resultado de Aprendizagem - GRAP,"Registra o valor das despesas com a Gratificação de Resultado de Aprendizagem instituída pela Lei nº 20.935, de 17 de dezembro de 2021.",Gratificação de Resultado de Aprendizagem – GRAP
+3.1.90.16.39,Gratificação de Plantão ao Docente - GPD,"Registra o valor das despesas com a Gratificação de Plantão ao Docente, instituída pela Lei nº 12.457, de 16 de janeiro de 1999, alterada pelo Art. 6º da Lei nº 18.387, de 18 de dezembro de 2014.",Gratificação de Plantão ao Docente - GPD
+3.1.90.16.40,Gratificação de Plantão de Sobreaviso - GPS,"Registra o valor das despesas com a Gratificação de Plantão de Sobreaviso, conforme Art. 4º e seus incisos, do Decreto nº 2.471, de 14 de janeiro de 2004.",Gratificação de Plantão de Sobreaviso – GPS
+3.1.90.16.41,Gratificação de Responsabilidade Acadêmica - GRA,"Registra o valor das despesas com a Gratificação de Responsabilidade Acadêmica, instituída pelo Art. 9º da Lei nº 20.932, de 17 de dezembro de 2021.",Gratificação de Responsabilidade Acadêmica – GRA
+3.1.90.16.42,Gratificação Especial Pelo Serviço do Inativo Dos Integrantes do Colégio Cívico-Militar - GESICM,,
+3.1.90.16.43,Parcelas Transitórias pelo Exercício do Ensino nas Escolas de Polícia - PTEEEP - Civil,,
+3.1.90.16.44,Parcela transitória pelo exercício de ensino ministrado ou supervisionado pela Escola de Formação e Aperfeiçoamento Penitenciário.,"Registra o valor das despesas com a parcela transitória destinada ao servidor policial penal pelo exercício de ensino na Escola de Formação e Aperfeiçoamento Penitenciário, conforme disposto no Decreto nº 3.843, de 31 de outubro de 2023.",Parcela transitória pelo exercício de ensino ministrado ou supervisionado pela Escola de Formação e Aperfeiçoamento Penitenciário.
+3.1.90.17.00,Outras Despesas Variáveis - Pessoal Militar,,
+3.1.90.17.01,Outras Despesas Variáveis - Pessoal Militar,,
+3.1.90.17.11,Indenizações - Militar,Registra o valor das despesas com o pagamento de indenização devida ao pessoal militar.,Indenizações – Militar
+3.1.90.17.21,Parcelas Transitórias Pelo Exercício do Ensino Nas Escolas de Polícia - PTEEEP - Militar,,
+3.1.90.91.00,Sentenças Judiciais,,
+3.1.90.91.04,Sentenças Judiciais - FUNSAÚDE,,
+3.1.90.91.05,Sentenças Judiciais Não Alimentares - Do Exercício,,
+3.1.90.91.06,Precatórios - Sentenças Judiciais Não Alimentares - Exercícios Anteriores a 05/05/2000,,
+3.1.90.91.07,Precatórios - Sentenças Judiciais Não Alimentares - Exercícios Anteriores a partir de 05/05/2000,,
+3.1.90.91.08,Outras Sentenças Judiciais Alimentares - do Exercício - Pessoal,,
+3.1.90.91.08,Precatórios - Outras Sentenças Judiciais Alimentares - Do Exercício,,
+3.1.90.91.09,Outras Sentenças Judiciais Alimentares - Exercícios Anteriores a 05/05/2000 (Pessoal),,
+3.1.90.91.10,Outras Sentenças Judiciais Alimentares - Exercícios Anteriores a partir de 05/05/2000 (Pessoal),,
+3.1.90.91.11,Precatórios a partir de 05/05/2000 - Vencidos e não pagos,,
+3.1.90.91.12,Precatórios a partir de 05/05/2000 - Não Vencidos,,
+3.1.90.91.13,Precatórios antes de 05/05/2000,,
+3.1.90.91.14,Sentenças Judiciais Alimentares a Servidores Ativos e Inativos - Pessoal,,
+3.1.90.92.00,Despesas de Exercícios Anteriores,,
+3.1.90.92.01,DEA - Contribuição de Previdência Social - INSS,,
+3.1.90.92.02,DEA - FGTS,,
+3.1.90.92.03,DEA - Outras Despesas de Pessoal e Encargos,,
+3.1.90.92.03,DEA,,
+3.1.90.92.06,Precatórios - Sentenças Judiciais Não Alimentares - Exercícios Anteriores a 05/05/2000,,
+3.1.90.92.07,Precatórios - Sentenças Judiciais Não Alimentares - Exercícios Anteriores a partir de 05/05/2000,,
+3.1.90.92.08,Precatórios - Outras Sentenças Judiciais Alimentares - Do Exercício,,
+3.1.90.92.12,Precatórios a partir de 05/05/2000 - Não Vencidos,,
+3.1.90.92.13,Precatórios antes de 05/05/2000,,
+3.1.90.92.29,DEA - Despesas Administrativas com os Fundos de Natureza Previdenciária,,
+3.1.90.92.61,DEA - Indenizações,,
+3.1.90.92.61,DEA,,
+3.1.90.92.62,DEA - Aposentadorias,,
+3.1.90.92.63,DEA - Pensões,,
+3.1.90.92.64,DEA - Parcela Autônoma de Equivalência - PAE (TJPR),,
+3.1.90.92.64,DEA - Parcela Autônoma de Equivalência - PAE,,
+3.1.90.92.99,DEA - Outras Despesas de Exercícios Anteriores,,
+3.1.90.93.00,Indenizações e Restituições,,
+3.1.90.93.08,Indenizações - Pessoal,,
+3.1.90.94.00,Indenizações e Restituições Trabalhistas,,
+3.1.90.94.01,SALÁRIO,,
+3.1.90.94.02,FGTS,,
+3.1.90.94.03,FGTS (40%),,
+3.1.90.94.04,AVISO PRÉVIO,,
+3.1.90.94.05,FÉRIAS VENCIDAS,,
+3.1.90.94.06,FÉRIAS PROPORCIONAIS,,
+3.1.90.94.07,PROGRAMA DE DEMISSÃO VOLUNTÁRIA - PDV,,
+3.1.90.94.08,INDENIZAÇÃO DE LICENÇA COMPENSATÓRIA - PESSOAL ATIVO,,
+3.1.90.94.09,Indenização de licença capacitação não usufruída - Pessoal Ativo,,
+3.1.90.94.10,"Indenização de licença compensatória ""Confia Paraná"" - Pessoal Ativo",,
+3.1.90.94.11,Demais Restituições Trabalhistas,,
+3.1.90.96.00,Ressarcimento de Despesas de Pessoal Requisitado,,
+3.1.90.96.01,Ressarcimento de Despesas de Pessoal Requisitado,,
+3.1.91.13.00,Obrigações Patronais,,
+3.1.91.13.09,Contribuição Patronal ao Fundo de Previdência - Pensinonista,,
+3.1.91.13.09,Contribuição Patronal ao Fundo de Previdência - Inativo,,
+3.1.91.13.09,Contribuição Patronal ao Fundo de Previdência - Ativo,,
+3.1.91.13.10,Contribuição Patronal ao Fundo Financeiro - Pensionista,,
+3.1.91.13.10,Contribuição Patronal ao Fundo Financeiro - Ativo,,
+3.1.91.13.10,Contribuição Patronal ao Fundo Financeiro - Inativo,,
+3.1.91.13.11,Contribuição Patronal ao Fundo Militar - Inativo,,
+3.1.91.13.11,Contribuição Patronal ao Fundo Militar - Pensionista,,
+3.1.91.13.11,Contribuição Patronal ao Fundo Militar - Ativo,,
+3.1.91.13.13,Contribuição Patronal Adicional ao Fundo de Previdência - Ativo,"Registra o valor das contribuições adicionais ao Fundo de Previdência gerido pela PARANAPREVIDÊNCIA, conforme art. 19 da Lei Estadual nº 17.435/2012.",Contribuição Patronal Adicional ao Fundo de Previdência
+3.1.91.13.18,Multas sobre o pagamento em atraso de Obrigações Patronais,,
+3.1.91.13.19,Juros sobre o pagamento em atraso de Obrigações Patronais,,
+3.1.91.13.26,Décimo Terceiro Contribuição ao Fundo de Previdência,"Registra o valor do décimo terceiro da contribuição patronal (Ativos, Inativos e Pensionistas) ao Fundo de Previdência gerido pela Paranaprevidência, a que o Estado se obriga a pagar, de acordo com a legislação em vigor.",Décimo Terceiro Contribuição ao Fundo de Previdência
+3.1.91.13.27,Décimo Terceiro Contribuição ao Fundo Financeiro,"Registra o valor do décimo terceiro da contribuição patronal (Ativos, Inativos e Pensionistas) ao Fundo Financeiro gerido pela Paranaprevidência, a que o Estado se obriga a pagar, de acordo com a legislação em vigor.",Décimo Terceiro Contribuição ao Fundo Financeiro
+3.1.91.13.28,Décimo Terceiro Contribuição ao Fundo Militar,"Registra o valor do décimo terceiro da contribuição patronal (Ativos, Inativos e Pensionistas) ao Fundo Militar gerido pela Paranaprevidência, a que o Estado se obriga a pagar, de acordo com a legislação em vigor.",Décimo Terceiro Contribuição ao Fundo Militar
+3.1.91.13.29,Décimo Terceiro Contribuição Patronal Adicional ao Fundo de Previdência,"Registra o valor do décimo terceiro das contribuições adicionais ao Fundo de Previdência gerido pela Paranaprevidência, conforme art. 19 da Lei Estadual nº 17.435/2012.",Décimo Terceiro Contribuição Patronal Adicional ao Fundo de Previdência
+3.1.91.13.35,Apropriação Contribuição ao Fundo de Previdência,"Registra o valor estimado da contribuição patronal (Ativos, Inativos e Pensionistas) ao Fundo de Previdência gerido pela Paranaprevidência, a que o Estado se obriga a pagar, de acordo com a legislação em vigor.",Apropriação Contribuição ao Fundo de Previdência
+3.1.91.13.36,Apropriação Contribuição ao Fundo Financeiro,"Registra o valor estimado da contribuição patronal (Ativos, Inativos e Pensionistas) ao Fundo Financeiro gerido pela Paranaprevidência, a que o Estado se obriga a pagar, de acordo com a legislação em vigor.",Apropriação Contribuição ao Fundo Financeiro
+3.1.91.13.37,Apropriação Contribuição ao Fundo Militar,,
+3.1.91.13.38,Apropriação Contribuição Patronal Adicional ao Fundo de Previdência,"Registra o valor estimado das contribuições adicionais ao Fundo de Previdência gerido pela Paranaprevidência, conforme art. 19 da Lei Estadual nº 17.435/2012.",Apropriação Contribuição Patronal Adicional ao Fundo de Previdência
+3.1.91.91.00,Sentenças Judiciais,,
+3.1.91.91.06,Precatórios - Sentenças Judiciais Não Alimentares - Exercícios Anteriores a 05/05/2000,,
+3.1.91.91.07,Precatórios - Sentenças Judiciais Não Alimentares - Exercícios Anteriores a partir de 05/05/2000,,
+3.1.91.91.08,Precatórios - Outras Sentenças Judiciais Alimentares - Do Exercício,,
+3.1.91.91.11,Precatórios a partir de 05/05/2000 - Vencidos e não pagos,,
+3.1.91.91.12,Precatórios a partir de 05/05/2000 - Não Vencidos,,
+3.1.91.91.13,Precatórios antes de 05/05/2000,,
+3.1.91.91.14,Sentenças Judiciais Alimentares a Servidores Ativos e Inativos (Pessoal - INTRA),,
+3.1.91.92.00,Despesas de Exercícios Anteriores,,
+3.1.91.92.03,DEA - Outras Despesas de Pessoal e Encargos,,
+3.1.91.92.31,DEA - Fundos de Natureza Previdenciária - Fundo Financeiro,,
+3.1.91.92.32,DEA - Fundos de Natureza Previdenciária - Fundo de Previdência,,
+3.1.91.92.40,DEA - Fundo de Natureza Previdenciária - Fundo Militar,,
+3.1.91.92.64,DEA - Parcela Autônoma de Equivalência - PAE,,
+3.1.91.96.00,Ressarcimento de Despesas de Pessoal Requisitado,,
+3.1.91.96.01,Ressarcimento de Despesas de Pessoal Requisitado,,
+3.2.90.21.00,Juros Sobre a Dívida por Contrato,,
+3.2.90.21.04,Juros de Empréstimos Internos com Instituições Financeiras,Registra o valor das despesas com o pagamento de juros referentes a empréstimos contratados junto a instituições financeiras sediadas no território nacional.,Juros de Empréstimos Internos com Instituições Financeiras
+3.2.90.21.05,Juros de Financiamentos Internos com Instituições Financeiras,Registra o valor das despesas com o pagamento de juros referentes a financiamentos contratados junto a instituições financeiras sediadas no território nacional.,Juros de Financiamentos Internos com Instituições Financeiras
+3.2.90.21.06,Juros de Empréstimos Internos com Outras Entidades,Registra o valor das despesas com o pagamento de juros referentes a empréstimos contratados junto a instituições nacionais de caráter não financeiro.,Juros de Empréstimos Internos com Outras Entidades
+3.2.90.21.07,Juros de Financiamentos Internos com Outras Entidades,Registra o valor das despesas com o pagamento de juros referentes a financiamentos contratados junto a instituições nacionais de caráter não financeiro.,Juros de Financiamentos Internos com Outras Entidades
+3.2.90.21.08,Juros de Empréstimos Externos com Instituições Financeiras,Registra o valor das despesas com o pagamento de juros referentes a empréstimos contratados junto a instituições financeiras sediadas no fora do território nacional.,Juros de Empréstimos Externos com Instituições Financeiras
+3.2.90.21.09,Juros e encargos correntes sobre o PIS/PASEP,"Registra o valor das despesas com pagamentos de juros e encargos sobre a dívida corrente do PIS/PASEP, de acordo com a legislação vigente.",Juros e encargos correntes sobre o PIS/PASEP
+3.2.90.21.10,Juros e encargos sobre parcelamento do PIS/PASEP anos anteriores,"Registra o valor das despesas com pagamento de juros e encargos de parcelamentos sobre o PIS/PASEP, de exercício anterior.",Juros e encargos sobre parcelamento do PIS/PASEP anos anteriores
+3.2.90.21.11,Juros da Divida Contratual Ref. (Dívida 9496/97),"Registra o valor das despesas orçamentárias com juros do refinanciamento da dívida pública contratual, interna e externa, inclusive correção monetária ou cambial.",– Juros da Dívida Contratual Refinanciada
+3.2.90.21.11,Juros da Dívida Contratual Refinanciada,"Registra o valor das despesas orçamentárias com juros do refinanciamento da dívida pública contratual, interna e externa, inclusive correção monetária ou cambial.",– Juros da Dívida Contratual Refinanciada
+3.2.90.22.00,Outros Encargos Sobre a Dívida por Contrato,,
+3.2.90.22.04,Encargos - Empréstimos Internos com Instituições Financeiras,"Registra o valor das despesas com o pagamento de encargos (taxas, comissões bancárias, prêmios, imposto de renda e outros) referentes a empréstimos contratados junto a instituições financeiras sediadas no território nacional.",Encargos de Empréstimos Internos com Instituições Financeiras
+3.2.90.22.05,Encargos - Financiamentos Internos do Ativo Permanente,"Registra o valor das despesas com o pagamento de encargos (taxas, comissões bancárias, prêmios, imposto de renda e outros) referentes a financiamentos contratados junto a instituições financeiras sediadas no território nacional.",Encargos de Financiamentos Internos com Instituições Financeiras (financiamentos Internos do Ativo Permanente)
+3.2.90.22.06,Encargos - Empréstimos Internos com Outras Entidades,"Registra o valor das despesas com o pagamento de encargos (taxas, comissões bancárias, prêmios, imposto de renda e outros) referentes a empréstimos contratados junto a instituições nacionais de caráter não financeiro.",Encargos de Empréstimos Internos com Outras Entidades
+3.2.90.22.07,Encargos - Outros Financiamentos Internos,"Registra o valor das despesas com o pagamento de encargos (taxas, comissões bancárias, prêmios, imposto de renda e outros) referentes a financiamentos contratados junto a instituições nacionais de caráter não financeiro.",Encargos de Financiamentos Internos com Outras Entidades
+3.2.90.22.08,Encargos - Empréstimos Externos,"Registra o valor das despesas com o pagamento de encargos (taxas, comissões bancárias, prêmios, imposto de renda e outros) referentes a empréstimos contratados junto a instituições financeiras sediadas fora do território nacional.",Encargos de Empréstimos Externos com Instituições Financeiras
+3.2.90.22.09,Encargos da Dívida Contratual Refinanciada,"Registra o valor das despesas orçamentárias com encargos do refinanciamento da dívida pública contratual, interna e externa, inclusive correção monetária ou cambial.",– Encargos da Dívida Contratual Refinanciada
+3.2.90.22.09,Encargos da Divida Contratual Ref. (Dívida 9496/97),"Registra o valor das despesas orçamentárias com encargos do refinanciamento da dívida pública contratual, interna e externa, inclusive correção monetária ou cambial.",– Encargos da Dívida Contratual Refinanciada
+3.2.90.25.00,Encargos Sobre Operações de Crédito por Antecipação da Receita,,
+3.2.90.25.01,Encargos Sobre Operações de Crédito por Antecipação da Receita,"Registra o valor das despesas com o pagamento de encargos da dívida pública, inclusive os juros decorrentes de operações de crédito por antecipação da receita, conforme art. 165, § 8º, da Constituição Federal e art. 133, § 9º, da Constituição Estadual.",Encargos Sobre Operações de Crédito por Antecipação da Receita
+3.3.20.41.00,Contribuições,,
+3.3.20.41.21,Contribuições para Órgãos e Entidades Federais,,
+3.3.20.93.00,Indenizações e Restituições,,
+3.3.20.93.09,Restituições de Transferências Recebidas - Despesa de Custeio,,
+3.3.30.41.21,Contribuições para Órgãos e Entidades Federais,,
+3.3.40.32.00,"Material, Bem Ou Serviço para Distribuição Gratuita",,
+3.3.40.32.07,Material Distribuído em Campanhas Informativas,,
+3.3.40.41.00,Contribuições,,
+3.3.40.41.01,Contribuições a Municípios,,
+3.3.40.41.19,Contribuições às Prefeituras - Transporte Escolar,,
+3.3.40.41.20,Contribuições aos Fundos Municipais de Saúde,,
+3.3.40.81.00,Distribuição Constitucional ou Legal de Receitas,,
+3.3.40.81.01,Transferência a Municípios - Parcela do ICMS,,
+3.3.40.81.02,Transferência a Municípios - Parcela do IPVA,,
+3.3.40.81.03,Transferência a Municípios - Parcela do IPI,,
+3.3.40.81.04,Transferência a Municípios - Parcela do Royalties,,
+3.3.40.81.05,Outras Receitas,,
+3.3.40.81.06,Transferência a Municípios - Parcela da Cota Estadual do Salário Educação,,
+3.3.40.81.07,Transferência a Municípios - Parcela da CIDE,,
+3.3.40.81.08,Transferência a Órgão e Entidades Públicos,,
+3.3.41.41.00,Contribuições,,
+3.3.41.41.01,Contribuições a Municípios,,
+3.3.41.41.15,Contribuições ao Serviço de Atendimento Móvel de Urgência - SAMU,"Registra o valor das contribuições ao Serviço de Atendimento Móvel de Urgência – SAMU, para despesas correntes, conforme legislação em vigor.",Contribuições ao Serviço de Atendimento Móvel de Urgência – SAMU
+3.3.41.41.19,Contribuições às Prefeituras - Transporte Escolar,,
+3.3.41.41.20,Contribuições aos Fundos Municipais de Saúde,,
+3.3.41.41.32,Contribuição a Assistência Financeira Complementar,,
+3.3.41.92.00,Despesas de Exercícios Anteriores,,
+3.3.41.92.08,DEA - Consumo Imediato,,
+3.3.50.33.00,Passagens e Despesas com Locomoção,,
+3.3.50.33.02,Passagens Aéreas,,
+3.3.50.33.10,Passagem e despesas com Locomoção para Tratamento Fora de Domicílio - TFD,,
+3.3.50.34.00,Outras Despesas de Pessoal Decorrentes de Contratos de Terceirização,,
+3.3.50.34.05,Auxílios e Contribuições a Entidades Privadas - DESPESA DE CUS,,
+3.3.50.39.00,Outros Serviços de Terceiros - Pessoa Jurídica,,
+3.3.50.39.10,Locação de Softwares (NÃO UTILIZAR),,
+3.3.50.39.79,"Serviços de Apoio Administrativo, Técnico e Operacional",,
+3.3.50.41.00,Contribuições,,
+3.3.50.41.02,Contribuições a Entidades Privadas,,
+3.3.50.41.05,Auxílios e Contribuições a Entidades Privadas - DESPESA DE CUS,,
+3.3.50.41.14,Contribuições ao Programa Saúde da Família - PSF,"Registra o valor das contribuições ao Programa Saúde da Família – PSF, para despesas correntes, conforme legislação em vigor.",Contribuições ao Programa Saúde da Família – PSF
+3.3.50.41.16,Contribuições para os Hospitais de Pequeno Porte - HPP,"Registra o valor das contribuições para hospitais de pequeno porte, para atendimento de despesas correntes, de acordo com a legislação em vigor.",Contribuições para os Hospitais de Pequeno Porte – HPP
+3.3.50.41.17,Contribuições às APAES,"Registra o valor das contribuições às APAEs para despesas correntes, conforme legislação vigente.",Contribuições às APAES
+3.3.50.41.30,Contribuições ao Paraná Previdência,Registra o valor das despesas com Contribuições ao ParanáPrevidência.,Contribuições ao ParanáPrevidência
+3.3.50.41.32,Contribuição a Assistência Financeira Complementar (335041),,
+3.3.50.41.32,41.32 Contribuição a Assistência Financeira Complementar,,
+3.3.50.41.32,Contribuição a Assistência Financeira Complementar,,
+3.3.50.43.00,Subvenções Sociais,,
+3.3.50.43.02,Outras Subvenções Sociais,"Registra o valor para cobertura de despesas de outras instituições privadas de caráter assistencial ou cultural, sem finalidade lucrativa, conforme o art.16, Parágrafo Único e o art.17 da Lei nº 4.320, de 17 de março de 1964, observado o disposto no art.16 da Lei Complementar nº 101, de 2000.",Outras Subvenções Sociais
+3.3.50.43.03,Subvenção Social a Fundações de Apoio (Discricionária),,
+3.3.50.43.03,Subvenção Social a Fundações de Apoio,,
+3.3.50.85.00,Contrato de Gestão,,
+3.3.50.85.01,Contrato de Gestão - PalcoParaná,Registra o valor das despesas orçamentárias para execução de prestação de serviços no âmbito do contrato de gestão firmado com o serviço social autônomo PalcoParaná.,Contrato de Gestão – PalcoParaná
+3.3.50.85.02,Contrato de Gestão - Museu Oscar Niemeyer (MON),Registra o valor das despesas orçamentárias para execução de prestação de serviços no âmbito do contrato de gestão firmado com o Museu Oscar Niemeyer.,Contrato de Gestão – Museu Oscar Niemeyer (MON)
+3.3.50.85.03,Contrato de Gestão - E-Paraná,Registra o valor das despesas orçamentárias para execução de prestação de serviços no âmbito do contrato de gestão firmado com a E-Paraná Comunicação.,Contrato de Gestão – E-Paraná
+3.3.50.85.04,Contrato de Gestão - RTVE,,
+3.3.50.85.05,Contrato de Gestão - Invest Paraná,Registra o valor das despesas orçamentárias para execução de prestação de serviços no âmbito do contrato de gestão firmado com a InvestParaná.,Contrato de Gestão – InvestParaná
+3.3.50.85.06,Contrato de Gestão - ParanaEducação,Registra o valor das despesas orçamentárias para execução de prestação de serviços no âmbito do contrato de gestão firmado com o serviço social autônomo ParanaEducação.,Contrato de Gestão – ParanaEducação
+3.3.50.85.07,Contrato de Gestão - Paraná Projetos,,
+3.3.50.85.08,Contrato de Gestão - FUNEAS,Registra o valor das despesas orçamentárias para execução de prestação de serviços no âmbito do contrato de gestão firmado com a Fundação Estatal de Atenção em Saúde do Estado do Paraná - FUNEAS.,Contrato de Gestão – FUNEAS
+3.3.50.85.09,Contrato de Gestão - Viaje Paraná,Registra o valor das despesas orçamentárias para execução de prestação de serviços no âmbito do contrato de gestão firmado com o serviço social autônomo Viaje Paraná.,– Contrato de Gestão – VIAJE PARANÁ
+3.3.50.85.10,Contrato de Gestão - FAASP,,
+3.3.50.92.00,Despesas de Exercícios Anteriores,,
+3.3.50.92.13,DEA - Contrato de Gestão,,
+3.3.60.41.00,Contribuições,,
+3.3.60.41.02,Contribuições a Entidades Privadas,,
+3.3.60.41.32,41.32 Contribuição a Assistência Financeira Complementar,,
+3.3.60.41.32,Contribuição a Assistência Financeira Complementar (336041),,
+3.3.60.41.32,Contribuição a Assistência Financeira Complementar,,
+3.3.70.41.00,Contribuições,,
+3.3.70.41.02,Contribuições a Entidades Privadas,,
+3.3.70.41.31,Contribuições à Consórcios Intermunicipais,"Registra o valor das contribuições à consórcios intermunicipais para despesas correntes, conforme legislação vigente.",Contribuições à Consórcios Intermunicipais
+3.3.70.41.32,41.32 Contribuição a Assistência Financeira Complementar,,
+3.3.70.41.32,Contribuição a Assistência Financeira Complementar (337041),,
+3.3.70.41.32,Contribuição a Assistência Financeira Complementar,,
+3.3.71.70.00,Rateio pela Participação em Consórcio Público,,
+3.3.71.70.01,Rateio pela Participação em Consórcio Público,"Registra o valor das despesas relativa ao rateio das despesas decorrentes da participação do ente Federativo em Consórcios Públicos instituídos nos termos da Lei nº 11.107, de 6 de abril de 2005.",Rateio pela Participação em Consórcio Público
+3.3.80.41.00,Contribuições,,
+3.3.80.41.29,Contribuições para Organizações Internacionais,Registra o valor das despesas de contribuição a Organizações Internacionais.,Contribuições para Organizações Internacionais
+3.3.90.07.00,Contribuição a Entidades Fechadas de Previdência,,
+3.3.90.07.10,Antecipação do custeio administrativo Previdência Complementar,,
+3.3.90.07.20,Contribuição do Ente Público Patrocinador ao Regime de Previdência Complementar - Poder Executivo,,
+3.3.90.07.21,Contribuição do Ente Público Patrocinador ao Regime de Previdência Complementar - Poder Legislativo,,
+3.3.90.07.22,Contribuição do Ente Público Patrocinador ao Regime de Previdência Complementar - Poder Judiciário,,
+3.3.90.07.23,Contribuição do Ente Público Patrocinador ao Regime de Previdência Complementar - Tribunal de Contas,,
+3.3.90.07.24,Contribuição do Ente Público Patrocinador ao Regime de Previdência Complementar - Ministério Público,,
+3.3.90.08.00,Outros Benefícios Assistenciais do Servidor e do Militar,,
+3.3.90.08.02,Auxílio Funeral Ativo e Inativo Civil - RPPS,Registra o valor das despesas com o pagamento de auxílio funeral devido à família do servidor ativo civil falecido.,Auxílio Funeral Ativo e Inativo Civil – RPPS
+3.3.90.08.02,Auxílio Funeral Ativo e Inativo Civil - RPPS,Registra o valor das despesas com o pagamento de auxílio funeral devido à família do militar falecido.,Auxílio Funeral – Ativo e Inativo Militar
+3.3.90.08.03,Auxílio Funeral - Ativo e Inativo Militar,,
+3.3.90.08.04,Outros Benefícios Assistenciais do Servidor Ativo Civil - RGPS,,
+3.3.90.08.05,Outros Benefícios Assistenciais do Servidor Ativo Civil - RPPS,"Registra o valor das despesas com benefícios assistenciais devido ao servidor ativo civil, tais como: auxílio-natalidade, auxílio-creche ou assistência pré-escolar.",Outros Benefícios Assistenciais do Servidor Ativo Civil – RPPS
+3.3.90.08.06,Outros Benefícios Assistenciais do Militar Ativo,"Registra o valor das despesas com benefícios assistenciais devido ao militar ativo, tais como: auxílio-natalidade, auxílio-creche ou assistência pré-escolar.",Outros Benefícios Assistenciais do Militar Ativo
+3.3.90.08.12,Benefício Assistencial por Invalidez,"Registra o valor das despesas com o pagamento de benefício assistencial por invalidez aos servidores inativos enquadrados segundo termos da Lei nº 17.449, de 27 de dezembro de 2012, regulamentada pelo Decreto Estadual nº 8.419, de 25 de junho de 2013.",Benefício Assistencial por Invalidez
+3.3.90.08.13,Auxílio Reclusão Ativo Civil - RPPS,Registra o valor das despesas com o pagamento de auxílio reclusão devido à família do servidor ativo civil afastado por motivo de prisão.,Auxílio Reclusão Ativo Civil – RPPS
+3.3.90.08.14,Salário Família - Ativo Civil,Registra o valor das despesas com o pagamento de salário família devido ao servidor ativo civil.,Salário Família – Ativo Civil – RPPS
+3.3.90.08.15,Auxílio Reclusão - Ativo Militar,Registra o valor das despesas com o pagamento de auxílio reclusão devido à família do militar afastado por motivo de prisão.,Auxílio Reclusão – Ativo Militar
+3.3.90.08.16,Salário Família - Ativo Militar,Registra o valor das despesas com o pagamento de salário família devido ao militar.,Salário Família – Ativo Militar
+3.3.90.08.17,Salário Família - Inativo Civil - RPPS,Registra o valor das despesas com o pagamento de salário família devido ao servidor inativo civil.,– Salário Família – Inativo Civil – RPPS
+3.3.90.08.18,Salário Família - Inativo Militar,Registra o valor das despesas com o pagamento de salário família devido ao servidor inativo militar.,– Salário Família – Inativo Militar
+3.3.90.08.19,Benefício de reembolso com plano privado de assistência à saúde odontológica - Ativo Civil,Registra o valor das despesas com plano privado de assistência à saúde odontológica de Servidores Públicos Civis Efetivos do Poder executivo do Estado do Paraná.,– Benefício de reembolso com plano privado de assistência à saúde odontológica – Ativo Civil
+3.3.90.08.20,Benefício de reembolso com plano privado de assistência à saúde odontológica - Ativo Militar,Registra o valor das despesas com plano privado de assistência à saúde odontológica de Servidores Públicos Militares Efetivos do Poder executivo do Estado do Paraná.,– Benefício de reembolso com plano privado de assistência à saúde odontológica – Ativo Militar
+3.3.90.14.00,Diárias - Pessoal Civil,,
+3.3.90.14.01,Diárias,"Registra o valor da cobertura das despesas com alimentação, pousada e locomoção urbana, com servidor público estatutário ou celetistas ou cargos comissionados, inclusive os contratados em caráter temporário e os de outros níveis de Governo à disposição do Estado, que se deslocarem de sua sede de trabalho em objeto de serviço, em caráter eventual ou transitório, de acordo com a legislação em vigor.",Diárias
+3.3.90.14.02,34 - Combustíveis em Geral,"Registra o valor da cobertura das despesas com alimentação, pousada, com servidor público estatutário ou celetistas ou cargos comissionados, inclusive os contratados em caráter temporário e os de outros níveis de Governo à disposição do Estado, que se deslocarem de sua sede de trabalho em objeto de serviço, em caráter eventual ou transitório, mediante a comprovação das despesas, de acordo com a legislação em vigor.",Ressarcimento de Alimentação e Pousada
+3.3.90.14.02,Ressarcimento de Alimentação e Pousada,"Registra o valor da cobertura das despesas com alimentação, pousada, com servidor público estatutário ou celetistas ou cargos comissionados, inclusive os contratados em caráter temporário e os de outros níveis de Governo à disposição do Estado, que se deslocarem de sua sede de trabalho em objeto de serviço, em caráter eventual ou transitório, mediante a comprovação das despesas, de acordo com a legislação em vigor.",Ressarcimento de Alimentação e Pousada
+3.3.90.14.02,38 - Diárias para o exercício de atividade parlamentar,"Registra o valor da cobertura das despesas com alimentação, pousada, com servidor público estatutário ou celetistas ou cargos comissionados, inclusive os contratados em caráter temporário e os de outros níveis de Governo à disposição do Estado, que se deslocarem de sua sede de trabalho em objeto de serviço, em caráter eventual ou transitório, mediante a comprovação das despesas, de acordo com a legislação em vigor.",Ressarcimento de Alimentação e Pousada
+3.3.90.14.02,37 - Transporte realizado em veículo próprio,"Registra o valor da cobertura das despesas com alimentação, pousada, com servidor público estatutário ou celetistas ou cargos comissionados, inclusive os contratados em caráter temporário e os de outros níveis de Governo à disposição do Estado, que se deslocarem de sua sede de trabalho em objeto de serviço, em caráter eventual ou transitório, mediante a comprovação das despesas, de acordo com a legislação em vigor.",Ressarcimento de Alimentação e Pousada
+3.3.90.14.03,Ajuda de Custo Para Viagem,"Registra o valor das despesas com ajuda de custo para viagens, de acordo com a legislação em vigor.",Ajuda de Custo para Viagem
+3.3.90.14.04,Ajuda de Custo Para Remoção,Registra o valor das despesas de ajuda de custo de remoção para o servidor que for designado para trabalhar em local diferente daquele em que se encontrava.,Ajuda de Custo para Remoção
+3.3.90.14.05,Cartão Corporativo,"Registra o valor das coberturas de despesas com alimentação, pousada e locomoção urbana, com servidor público estatutário ou celetistas ou cargos comissionados, inclusive os contratados em caráter temporário e os de outros níveis de Governo à disposição do Estado, que se deslocarem de sua sede de trabalho em objeto de serviço, em caráter eventual ou transitório, utilizando-se do cartão corporativo, de acordo com a legislação em vigor.",Cartão Corporativo
+3.3.90.14.06,Diárias Especiais por Atividade Extrajornada Voluntária do Pessoal Civil - Daev,"Registra o valor das despesas com Diária Especial por Atividade Extrajornada Voluntária para Educador Social, Agente Penitenciário e integrantes dos quadros próprios da Polícia Civil e Polícia Científica, instituída pela Lei nº 19.130, de 26 de setembro de 2017.",Diárias Especiais por Atividade Extrajornada Voluntária do Pessoal Civil – DAEV
+3.3.90.14.07,Diárias de Colaboradores Externos,"Registra o valor da cobertura das despesas com alimentação, pousada e locomoção urbana, paga a colaboradores sem vínculo, conforme legislação vigente.",– Diárias de colaboradores externos
+3.3.90.15.00,Diárias - Pessoal Militar,,
+3.3.90.15.01,Diárias,"Registra o valor das coberturas de despesas com alimentação, pousada e locomoção urbana, do pessoal militar, que se deslocarem de sua sede de trabalho em objeto de serviço, em caráter eventual ou transitório, de acordo com a legislação em vigor.",Diárias
+3.3.90.15.02,Ressarcimento de Alimentação e Pousada,"Registra o valor das coberturas de despesas com alimentação, pousada do pessoal militar, que se deslocarem de sua sede de trabalho em objeto de serviço, em caráter eventual ou transitório, mediante a comprovação das despesas, de acordo com a legislação em vigor.",Ressarcimento de Alimentação e Pousada
+3.3.90.15.03,Ajuda de Custo Para Viagem,"Registra o valor das despesas com ajuda de custo para viagens, de acordo com a legislação em vigor.",Ajuda de Custo para Viagem
+3.3.90.15.04,Ajuda de Custo por Remoção,Registra o valor das despesas de ajuda de custo de remoção para militar que for designado para trabalhar em local diferente daquele em que se encontra.,Ajuda de Custo por Remoção
+3.3.90.15.05,Cartão Corporativo,"Registra o valor das coberturas de despesas com alimentação, pousada e locomoção urbana do servidor militar, que se deslocar de sua sede de trabalho em objeto de serviço, em caráter eventual ou transitório, utilizando-se do cartão Corporativo, de acordo com a legislação em vigor.",Cartão Corporativo
+3.3.90.15.06,Diárias Especiais por Atividade Extrajornada Voluntária do Pessoal Militar - Daev,"Registra o valor das despesas com Diária Especial por Atividade Extrajornada Voluntária para Policial Militar e Bombeiro Militar, instituída pela Lei nº 19.130, de 26 de setembro de 2017.",Diárias Especiais por Atividade Extrajornada Voluntária do Pessoal Militar – DAEV
+3.3.90.16.00,Outras Despesas Variáveis - Pessoal Civil,,
+3.3.90.16.43,Parcelas Transitórias pelo Exercício do Ensino nas Escolas de Polícia - PTEEEP - Civil (Discricionária),,
+3.3.90.17.00,Outras Despesas Variáveis - Pessoal Militar,,
+3.3.90.17.01,Outras Despesas Variáveis - Pessoal Militar (Discricionária),,
+3.3.90.17.21,Parcelas Transitórias Pelo Exercício do Ensino Nas Escolas de Polícia - PTEEEP - Militar (Discricionária),,
+3.3.90.18.00,Auxílio Financeiro a Estudantes,,
+3.3.90.18.01,AUXÍLIO FINANCEIRO A ESTUDANTES,"Registra o valor da ajuda financeira concedida pelo Estado a estudantes comprovadamente carentes e concessão de auxílio para o desenvolvimento de estudos e pesquisas de natureza científica, realizados por pessoas físicas na condição de estudante, observado o disposto no art. 26 da Lei Complementar nº 101, de 2000.",Auxílio Financeiro a Estudantes
+3.3.90.18.02,AUXÍLIO FINANCEIRO A PROFESSORES DA SEED NA CONDIÇÃO DE ESTUDANTE,"Registra o valor da ajuda financeira concedida aos professores da SEED, quando na condição de estudantes.",Auxílio Financeiro a Professores da SEED na Condição de Estudante
+3.3.90.18.03,Bolsa Auxílio,"Registra o valor da ajuda financeira concedida a servidores, professores e estudantes para desenvolvimento de projetos de extensão, curso de especialização, mestrado e doutorado e para profissionais recém-formados que atendam a condição estipulada no inciso II do art. 7º da Lei nº 16.643, de 2010, bem como, a profissionais que em igual condição participem de programas regularmente estabelecidos, similares ao instituído na supracitada Lei.",Bolsa Auxílio
+3.3.90.20.00,Auxílio Financeiro a Pesquisadores,,
+3.3.90.20.01,AUXÍLIO FINANCEIRO A PESQUISADORES,"Registra o valor do apoio financeiro concedido a pesquisadores, individual ou coletivamente, exceto na condição de estudante, no desenvolvimento de pesquisas científicas e tecnológicas, nas suas mais diversas modalidades, observado o disposto no art. 26 da Lei Complementar nº 101, de 2000.",Auxílio Financeiro a Pesquisadores
+3.3.90.30.00,Material de Consumo,,
+3.3.90.30.01,Combustíveis e Lubrificantes Automotivos,,
+3.3.90.30.02,Combustíveis e Lubrificantes de Aviação,,
+3.3.90.30.03,Combustíveis e Lubrificantes para Outras Finalidades,"Registra o valor das despesas com combustíveis e lubrificantes para outras finalidades que não se classificam em itens anteriores, tais como: carbureto, carvão mineral, carvão vegetal, lenha, querosene comum, combustíveis e lubrificantes de uso ferroviário e afins.",Combustíveis e Lubrificantes para Outras Finalidades
+3.3.90.30.04,Gás Engarrafado,,
+3.3.90.30.05,Explosivos e Munições,"Registra o valor das despesas com as cargas de projeção utilizadas em peças de artilharia, mísseis guiados e não guiados, cápsulas ou estojos para recarga e explosivos de uso militar e paramilitar, balas e similares, estopim, explosivos, tais como: artefatos explosivos, artigos pirotécnicos, cápsulas de detonação, dinamite, espoleta, fogos de artifício, granada, pólvora e afins.",Explosivos e Munições
+3.3.90.30.06,Alimentos para Animais,"Registra o valor das despesas com alimentos destinados a gado bovino, equino, muar e bufalino, caprinos, suínos, ovinos, aves de qualquer espécie, como também para animais silvestres em cativeiro (jardins zoológicos ou laboratórios) e afins, tais como: alfafa, alpiste, capim verde, farelo, farinhas em geral, fubá grosso, milho em grão, ração balanceada, sal mineral, suplementos vitamínicos e afins.",Alimentos para Animais
+3.3.90.30.07,Gêneros de Alimentação,,
+3.3.90.30.08,Animais para Pesquisa e Abate,"Registra o valor das despesas com animais para pesquisa e abate. Incluem-se nesta classificação os peixes e mariscos, todas as espécies de mamíferos, abelhas para estudos, pesquisa e produção de mel, bem assim qualquer outro animal destinado a estudo genético ou alimentação, tais como: boi, cabrito, cobaias em geral, macaco, rato, rã e afins.",Animais para Pesquisa e Abate
+3.3.90.30.09,Material Farmacológico,,
+3.3.90.30.10,Material Odontológico,,
+3.3.90.30.11,Material Químico,,
+3.3.90.30.12,Material de Coudelaria ou de uso Zootécnico,"Registra o valor das despesas com materiais utilizados no arreamento de animais destinados a montaria, com exceção da sela, como também aqueles destinados ao adestramento de cães de guarda ou outro animal doméstico, tais como: argolas de metal, arreamento, barrigueiras, bridões, cabrestos, cinchas, cravos, escovas para animais, estribos, ferraduras, mantas de pano, material para apicultura, material de ferragem e contenção de animais, peitorais, raspadeiras e afins.",Material de Coudelaria ou de uso Zootécnico
+3.3.90.30.13,Material de Caça e Pesca,"Registra o valor das despesas com materiais utilizados na caça e pesca de animais, tais como: anzóis, cordoalhas para redes chumbadas, iscas, linhas de nylon, máscaras para visão submarina, molinetes, nadadeiras de borracha, redes, roupas e acessórios para mergulho, varas e afins.",Material de Caça e Pesca
+3.3.90.30.14,Material Educativo e Esportivo,"Registra o valor das despesas com materiais utilizados ou consumidos diretamente nas atividades educativas e esportivas de crianças e adultos, tais como: apitos, bolas, bonés, botas especiais, brinquedos educativos, calções, camisas de malha, chuteiras, cordas, esteiras, joelheiras, luvas, materiais pedagógicos, meias, óculos para motociclistas, patins, quimonos, raquetes, redes para prática de esportes, tênis e sapatilhas, tornozeleiras, touca para natação e afins.",Material Educativo e Esportivo
+3.3.90.30.15,Material para Festividades e Homenagens,"Registra o valor das despesas com materiais de consumo utilizados em festividades e homenagens, incluindo artigos para decoração e buffet, tais como: arranjos e coroas de flores, bebidas, doces, salgados e afins.",Material para Festividades e Homenagens
+3.3.90.30.16,Material de Expediente,,
+3.3.90.30.17,Material de Processamento de Dados,,
+3.3.90.30.18,Materiais e Medicamentos para Uso Veterinário,,
+3.3.90.30.19,Material de Acondicionamento e Embalagem,"Registra o valor das despesas com materiais aplicados diretamente nas preservações, acomodações ou embalagens de qualquer produto, tais como: arame, barbante, caixas plásticas, de madeira, papelão e isopor, cordas, engradados, fitas de aço ou metálicas, fitas gomadoras, garrafas e potes, linha, papel de embrulho, papelão, sacolas, sacos e afins.",Material de Acondicionamento e Embalagem
+3.3.90.30.20,"Material de Cama, Mesa e Banho",,
+3.3.90.30.21,Material de Copa e Cozinha,,
+3.3.90.30.22,Material de Limpeza e Produção de Higienização,,
+3.3.90.30.23,"Uniformes, Tecidos e Aviamentos","Registra o valor das despesas com uniformes ou qualquer tecido ou material sintético que se destine à confecção de roupas, com linhas de qualquer espécie destinadas a costuras e afins. Materiais de consumo empregados direta ou indiretamente na confecção de roupas, tais como: agasalhos, artigos de costura, aventais, blusas, botões, cadarços, calçados, calças, camisas, capas, chapéus, cintos, elásticos, gravatas, guarda-pós, linhas, macacões, meias, tecidos em geral, uniformes militares ou de uso civil, zíperes e afins.","Uniformes, Tecidos e Aviamentos"
+3.3.90.30.24,Material para Manutenção de Bens Imóveis (Materiais de Construção),,
+3.3.90.30.24,Material para Manutenção de Bens Imóveis (Material de Consumo),,
+3.3.90.30.25,Material para Manutenção de Bens Móveis,"Registra o valor das despesas com componentes, peças, acessórios e sobressalentes para aplicação, manutenção e reposição em bens móveis em geral, tais como: cabos, chaves, cilindros para máquinas copiadoras, compressor para ar-condicionado, esfera para máquina datilográfica, mangueira para fogão margaridas, peças de reposição de aparelhos e máquinas em geral, materiais de reposição para instrumentos musicais e afins.",Material para Manutenção de Bens Móveis
+3.3.90.30.26,Material Elétrico e Eletrônico,,
+3.3.90.30.27,Material de Manobra e Patrulhamento,,
+3.3.90.30.28,Material de Proteção e Segurança,"Registra o valor das despesas com materiais de consumo utilizados diretamente na proteção de pessoas ou bens públicos, para socorro de pessoas e animais ou para socorro de veículos, aeronaves e embarcações assim como qualquer outro item aplicado diretamente nas atividades de sobrevivência de pessoas, na selva, no mar ou em sinistros diversos, tais como: botas, cadeados, calcados especiais, capacetes, chaves, cintos, coletes, dedais, guarda-chuvas, lona, luvas, mangueira, de lona, máscaras, óculos e afins.",Material de Proteção e Segurança
+3.3.90.30.29,"Material para Áudio, Vídeo e Foto","Registra o valor das despesas com materiais de consumo de emprego direto em filmagem e revelação, ampliações e reproduções de sons e imagens, tais como: haste especial para chapa de papel, álbuns para retratos, alto-falantes, antenas, artigos para gravação em acetato, filmes virgens, fitas virgens de áudio e vídeo, lâmpadas especiais, material para radiografia, microfilmagem e cinematografia, molduras, papel para revelação de fotografias, pegadores, reveladores e afins.","Material para Áudio, Vídeo e Foto"
+3.3.90.30.30,Material para Comunicações,"Registra o valor das despesas com materiais utilizados em comunicações assim como os componentes, circuitos impressos ou integrados, peças ou partes de equipamentos de comunicações, como materiais para instalações, tais como: radiofônicas, radiotelegráficas, telegráficas e afins.",Material para Comunicações
+3.3.90.30.31,"Sementes, Mudas de Plantas e Insumos","Registra o valor das despesas com qualquer tipo de semente destinada ao plantio e mudas de plantas frutíferas ou ornamentais, assim como todos os insumos utilizados para fertilização, tais como: adubos, argila, plantas ornamentais, borbulhas, bulbos, enxertos, fertilizantes, mudas envasadas ou com raízes nuas, sementes, terra, tubérculos, xaxim e afins.","Sementes, Mudas de Plantas e Insumos"
+3.3.90.30.32,Suprimento de Aviação,"Registra o valor das despesas com aquisição de materiais empregados na manutenção e reparo de aeronaves, tais como: acessórios, peças de reposição de aeronaves, sobressalentes e afins.",Suprimento de Aviação
+3.3.90.30.33,Material para Produção Industrial,,
+3.3.90.30.34,"Sobressalentes, Máquinas e Motores de Navios e Embarcações","Registra o valor das despesas com a aquisição de material utilizado na manutenção e reparo de máquinas e motores de navios, inclusive da esquadra e de embarcações em geral.","Sobressalentes, Máquinas e Motores de Navios e Embarcações"
+3.3.90.30.35,Material Laboratorial,,
+3.3.90.30.36,Material Hospitalar,,
+3.3.90.30.37,Sobressalentes de Armamento,"Registra o valor das despesas com aquisição de material utilizado na manutenção e reparo de armamento, tais como: material de manutenção e armamento, peças de reposição e afins.",Sobressalentes de Armamento
+3.3.90.30.38,Suprimento de Proteção ao Voo,Registra o valor das despesas com peças de reposição de radares e sistema de comunicação.,Suprimento de Proteção ao Voo
+3.3.90.30.39,Material para Manutenção de Veículos,,
+3.3.90.30.40,Material Biológico,"Registra o valor das despesas com amostras e afins de materiais biológicos utilizados em estudos e pesquisas científicas em seres vivos e inseminação artificial, tais como: meios de cultura, sêmen e afins.",Material Biológico
+3.3.90.30.41,Material para Utilização em Gráfica,,
+3.3.90.30.42,Ferramentas,"Registra o valor das despesas com todos os tipos de ferramentas utilizadas em oficinas, carpintarias, jardins etc., tais como: alicate, broca, caixa para ferramentas, canivete, chaves em geral, enxada, espátulas, ferro de solda, foice, lâmina de serra, lima, machado, martelo, pá, picareta, ponteira, primo, serrote, tesoura de podar, trena e afins.",Ferramentas
+3.3.90.30.43,Material para Reabilitação Profissional,,
+3.3.90.30.43,"OPME (Órteses, Próteses e Materiais Especiais)",,
+3.3.90.30.44,Material de Sinalização Visual e Afins,,
+3.3.90.30.45,Material Técnico para Seleção e Treinamento,"Registra o valor das apropriações das despesas com materiais técnicos utilizados em processos de seleção e treinamento pela própria unidade ou para distribuição não gratuita, tais como: apostilas e similares, folhetos de orientação, livros, manuais explicativos para candidatos e afins.",Material Técnico para Seleção e Treinamento
+3.3.90.30.46,Material Bibliográfico não Imobilizável,"Registra o valor das despesas com material bibliográfico não destinado a bibliotecas, cuja defasagem ocorre em um prazo máximo de dois anos, tais como: jornais, revistas, periódicos em geral, anuários médicos, anuário estatístico e afins (podendo estar na forma de CD-ROM).",Material Bibliográfico não Imobilizável
+3.3.90.30.47,Aquisição de Softwares de Base - Classificáveis como Estoque.,,
+3.3.90.30.48,Bens Móveis não Ativáveis,"Registra o valor das despesas com aquisição de bens móveis de natureza permanente não ativáveis, ou seja, aqueles considerados como despesa operacional, para fins de dedução de imposto de renda, desde que atenda as especificações contidas no art. 301 do RIR (Regulamento de Imposto de Renda). Conta utilizada exclusivamente pelas unidades regidas pela Lei nº 6.404, de 1976.",Bens Móveis não Ativáveis
+3.3.90.30.49,Bilhetes de Passagem,Registra o valor das despesas com aquisição de bilhetes de passagem para guarda em estoque.,Bilhetes de Passagem
+3.3.90.30.50,"Bandeiras, Flâmulas e Insignias","Registra o valor das despesas com aquisição de bandeiras flâmulas e insígnias, a saber, tais como: brasões, escudos, armas da república, selo nacional e afins.","Bandeiras, Flâmulas e Insígnias"
+3.3.90.30.54,Material para Manutenção e Conservação de Estradas e Vias,,
+3.3.90.30.60,Cartão Combustível,"Registra o valor das despesas com aquisição de combustíveis, compreendendo etanol, gasolina comum, diesel e biodiesel, para veículos automotores e equipamentos da frota da Administração Direta e Indireta do Estado do Paraná, mediante a utilização de cartão de pagamento magnético ou micro processado (chip).",Cartão Combustível
+3.3.90.30.91,Fundo Rotativo,,
+3.3.90.30.91,Fundo Rotativo - Material de Consumo,,
+3.3.90.30.92,Cartão Corporativo,"Registra o valor das despesas com materiais de consumo pagas através do cartão corporativo, pelo funcionário público estadual, fora da sua sede de trabalho, para posterior reclassificação no subelemento correto.",Cartão Corporativo
+3.3.90.30.93,Fundo Fixo de Caixa - Empresas Dependentes,Registra o valor das despesas com o Fundo Fixo de Caixa de empresas dependentes.,Fundo Fixo de Caixa – Empresas Dependentes
+3.3.90.30.96,Suprimento de Fundos - Adiantamento,"Registra o valor das apropriações das despesas referentes ao pagamento de pequenas despesas com material de consumo, executadas por suprimentos de fundos (regime de adiantamento), para posterior prestação de contas, conforme legislação específica",- Suprimento de Fundos (Regime de adiantamento)
+3.3.90.30.96,Suprimento de Fundos (Regime de adiantamento),"Registra o valor das apropriações das despesas referentes ao pagamento de pequenas despesas com material de consumo, executadas por suprimentos de fundos (regime de adiantamento), para posterior prestação de contas, conforme legislação específica",- Suprimento de Fundos (Regime de adiantamento)
+3.3.90.30.99,Outros Materiais de Consumo,,
+3.3.90.31.00,"Premiações Culturais, Artísticas, Científicas, Desportivas e Outras",,
+3.3.90.31.03,Bônus Pecuniário pela Entrega de Armas,"Registra o valor das despesas com pagamento do Prêmio pela Entrega de Armas, de acordo com a legislação em vigor.",Bônus Pecuniário pela Entrega de Armas
+3.3.90.31.04,Premiações Culturais,"Registra o valor gasto com prêmios, condecorações, medalhas, troféus, etc. de caráter cultural, inclusive em pecúnia.",Premiações Culturais
+3.3.90.31.05,Premiações Artísticas,"Registra o valor gasto com prêmios, condecorações, medalhas, troféus, etc. de caráter artístico, inclusive em pecúnia.",Premiações Artísticas
+3.3.90.31.06,Premiações Científicas,"Registra o valor gasto com prêmios, condecorações, medalhas, troféus, etc. de caráter científico, inclusive em pecúnia.",Premiações Científicas
+3.3.90.31.07,Premiações Desportivas,"Registra o valor gasto com prêmios, condecorações, medalhas, troféus, etc. de caráter desportivo, inclusive em pecúnia.",Premiações Desportivas
+3.3.90.31.08,Ordens Honoríficas,"Registra o valor gasto com prêmios, condecorações, medalhas, troféus, etc., relativo a ordens honoríficas.",Ordens Honoríficas
+3.3.90.31.09,Premiações Referentes à Cidadania Fiscal,"Registra o valor com prêmios de caráter promocional, inclusive em pecúnia.",Premiações Referentes à Cidadania Fiscal
+3.3.90.31.99,Outras Premiações,,
+3.3.90.32.00,"Material, Bem Ou Serviço para Distribuição Gratuita",,
+3.3.90.32.01,Merenda Escolar,Registra as despesas com aquisição de merenda escolar.,Merenda Escolar
+3.3.90.32.02,Material Destinado à Assistência Social,Registra o valor das despesas com a aquisição de material destinado à assistência social.,Material Destinado à Assistência Social
+3.3.90.32.03,Material Escolar,Registra o valor das despesas realizadas com a aquisição de material escolar para distribuição gratuita.,Material Escolar
+3.3.90.32.04,Material Didático,Registra o valor das despesas com aquisição de material didático para distribuição gratuita.,Material Didático
+3.3.90.32.05,Medicamentos e Material Farmacêutico,,
+3.3.90.32.06,Material Destinado a Defesa Civil,Registra o valor das despesas com a aquisição de material destinado à defesa civil.,Material Destinado à Defesa Civil
+3.3.90.32.07,Material Distribuído em Campanhas Informativas,,
+3.3.90.32.99,Outros Materiais de Distribuição Gratuita,,
+3.3.90.33.00,Passagens e Despesas com Locomoção,,
+3.3.90.33.01,Passagens Terrestres,"Registra o valor das despesas com aquisição de passagens terrestres, incluindo locação de veículos para transporte de pessoas e respectivas bagagens em decorrência de mudanças de domicílio no interesse da administração, bem como, taxas de embarque e seguros.",Passagens Terrestres
+3.3.90.33.02,Passagens Aéreas,,
+3.3.90.33.03,Adiantamento para Passagens e Despesas com Locomoção,,
+3.3.90.33.04,Pedágios,Registra o valor das despesas com o pagamento de pedágios.,Pedágios
+3.3.90.33.05,Cartão Corporativo,Registra o valor das despesas com o pagamento de passagens e locomoção realizadas por meio de Cartão Corporativo.,Cartão Corporativo
+3.3.90.33.07,Passagens Feroviárias,"Registra o valor das despesas com a aquisição de passagens ferroviárias, incluindo: taxas de embarque e seguros.",Passagens Ferroviárias
+3.3.90.33.08,Passagens Marítimas,"Registra o valor das despesas com aquisição de passagens marítimas, incluindo: taxas de embarque e seguros.",Passagens Marítimas
+3.3.90.33.09,Táxi,Registra o valor das despesas realizadas pela utilização de serviços de táxi.,Táxi
+3.3.90.33.10,Passagem e despesas com Locomoção para Tratamento Fora de Domicílio - TFD,,
+3.3.90.33.99,Outras Despesas de Locomoção,,
+3.3.90.34.00,Outras Despesas de Pessoal Decorrentes de Contratos de Terceirização,,
+3.3.90.34.01,PARANAEDUCAÇÃO,Registra o valor das despesas com pessoal terceirizado contratado pela PARANAEDUCAÇÃO.,PARANAEDUCAÇÃO
+3.3.90.34.02,APAES,Registra o valor das despesas com pessoal terceirizado contratado pelas Associações de Pais e Amigos dos Excepcionais – APAES.,APAES
+3.3.90.34.03,ARCAFAR,Registra o valor das despesas com pessoal terceirizado contratado pela Associação Regional da Casas Familiares Rurais do Sul do Brasil – ARCAFAR.,ARCAFAR
+3.3.90.34.07,FUNPAR,Registra o valor das despesas com pessoal terceirizado contratado por meio da Fundação da Universidade Federal do Paraná – FUNPAR.,FUNPAR
+3.3.90.34.08,CITPAR,,
+3.3.90.34.09,HUMANITAS,Registra o valor das despesas com pessoal terceirizado contratado pela Humanitas.,HUMANITAS
+3.3.90.34.22,ACAP/SEED,Registra o valor das despesas com pessoal terceirizado contratado pela Associação de Cooperação Agrícola e Reforma Agrária do Paraná – ACAP.,ACAP/SEED
+3.3.90.34.23,Outros Contratos de Pessoal Terceirizado,Registra o valor das despesas com outros contratos de terceirização de pessoal não especificados nos itens anteriores.,Outros Contratos de Pessoal Terceirizado
+3.3.90.34.24,Pagamentos de Pessoa Física por Recibo de Pagamento Autônomo,"Registra o valor das despesas com pessoal terceirizado contratado para realizar serviços de direção de cena, produção de conteúdo, edição de imagem e texto, locução e reportagem e demais atividades correlatas na Rádio e Televisão Educativa do Paraná.",Pagamentos de Pessoa Física por Recibo de Pagamento Autônomo
+3.3.90.34.25,"Contratos de Pessoal Terceirizado Empregado em Atividades acessórias, instrumentais e auxiliares","Registra o valor das despesas de pessoal terceirizado empregado em atividades acessórias, instrumentais e auxiliares do órgão, relativas a cargo ou categoria extintos, total ou parcialmente.","Contratos de Pessoal Terceirizado Empregado em Atividades acessórias, instrumentais e auxiliares"
+3.3.90.34.99,Outros Convênios de Pessoal Terceirizado Não especificados nos subelementos anteriores,,
+3.3.90.35.00,Serviços de Consultoria,,
+3.3.90.35.01,Pessoa Física,,
+3.3.90.35.02,Pessoa Jurídica,,
+3.3.90.36.00,Outros Serviços de Terceiros - Pessoa Física,,
+3.3.90.36.01,Condomínios,"Registra o valor das apropriações das despesas com taxas condominiais a conta do locatário, quando previstas no contrato de locação.",Condomínios
+3.3.90.36.02,Diárias a Colaboradores Eventuais no País,"Registra o valor das despesas com diárias, no país, pagas a prestadores de serviços, de caráter eventual, sem vínculo com a administração pública.",Diárias a Colaboradores Eventuais no País
+3.3.90.36.03,Diárias a Colaboradores Eventuais no Exterior,"Registra o valor das despesas com diárias, no exterior, pagas a prestadores de serviços de caráter eventual, sem vínculo com a administração pública.",Diárias a Colaboradores Eventuais no Exterior
+3.3.90.36.04,Comissões e Corretagens,"Registra o valor das apropriações das despesas com comissões e corretagens decorrentes de serviços prestados por corretores, despachantes, leiloeiros e afins.",Comissões e Corretagens
+3.3.90.36.05,Direitos Autorais,"Registra o valor das despesas com direitos autorais sobre obras científicas, literárias ou em que a divulgação seja de interesse do governo.",Direitos Autorais
+3.3.90.36.06,Serviços Técnicos Profissionais,"Registra o valor das despesas com serviços prestados por profissionais técnicos, nas seguintes áreas: administração, advocacia, arquitetura, contabilidade, economia, engenharia, estatística, informática e outras.",Serviços Técnicos Profissionais
+3.3.90.36.07,Estagiários,Registra o valor das despesas com serviços prestados por estudantes na condição de estagiários ou monitores.,Estagiários
+3.3.90.36.08,Bolsa de Iniciação ao Trabalho,Registra o valor das despesas com remuneração a candidatos participantes de curso de formação para o exercício de cargo decorrente de concurso público.,Bolsa de Iniciação ao Trabalho
+3.3.90.36.09,Salários de Internos em Penitenciárias,"Registra o valor das despesas com remuneração a presos e internos, de acordo com a Lei nº 3.274, de 02/10/57.",Salários de Internos em Penitenciárias
+3.3.90.36.11,Pró-Labore a Consultores Eventuais,"Registra o valor das apropriações de despesas com pró-labore a consultores eventuais, inclusive referente ao programa PADCT (membros do colegiado do PADCT, exceto servidores públicos), nos termos do parecer da Advocacia Geral da União nº 60-76, de 30/06/1995.",Pró-Labore a Consultores Eventuais
+3.3.90.36.12,"Capatazia, Estiva e Pesagem",Registra o valor das despesas com remuneração de serviços utilizados na movimentação e pesagem de cargas (mercadorias e produtos).,"Capatazia, Estiva e Pesagem"
+3.3.90.36.13,Conferências e Exposições,Registra os valores referentes às despesas com o pagamento direto aos conferencistas e/ou expositores pelos serviços prestados.,Conferências e Exposições
+3.3.90.36.14,Armazenagem,"Registra o valor das despesas com remuneração de serviços de aluguel de galpões, silos e outros locais destinados à armazenagem de mercadorias e produtos. Inclui, ainda, os dispêndios de garantia dos estoques armazenados.",Armazenagem
+3.3.90.36.15,Locação de Imóveis,"Registra o valor das despesas com remuneração de serviços de aluguel de prédios, salas e outros imóveis de propriedade de pessoa física.",Locação de Imóveis
+3.3.90.36.16,Locação de Bens Móveis e Intangíveis,"Registra o valor das despesas com serviços de aluguéis de máquinas, equipamentos, telefone fixo e celular e outros bens móveis de propriedade de pessoa física.",Locação de Bens Móveis e Intangíveis
+3.3.90.36.18,Manutenção e Conservação de Equipamentos,"Registra o valor das despesas com serviços de reparos, consertos, revisões e adaptações tais como: máquinas e equipamentos de processamento de dados e periféricos, máquinas e equipamentos gráficos, aparelhos de fax, aparelhos de medição e aferição, aparelhos médicos, odontológicos, hospitalares e laboratoriais, calculadoras, eletrodomésticos, máquinas de escrever e afins.",Manutenção e Conservação de Equipamentos
+3.3.90.36.20,Manutenção e Conservação de Veículos,"Registra o valor das despesas com serviços de reparos, consertos e revisões de veículos, tais como: estofamento, funilaria, instalação elétrica, lanternagem, mecânica, pintura e afins.",Manutenção e Conservação de Veículos
+3.3.90.36.21,Manutenção e Conservação de Bens Móveis de Outras Naturezas,"Registra o valor das despesas com serviços de reparos, consertos, revisões e adaptações de bens móveis não classificados em subitens específicos.",Manutenção e Conservação de Bens Móveis de Outras Naturezas
+3.3.90.36.22,Manutenção e Conservação de Bens Imóveis,"Registra o valor das despesas com serviços de reparos, consertos, revisões e adaptações de bens imóveis, tais como: pedreiro, carpinteiro e serralheiro, pintura, reparos em instalações elétricas e hidráulicas, reparos, recuperações e adaptações de biombos, carpetes, divisórias e lambris e afins.",Manutenção e Conservação de Bens Imóveis
+3.3.90.36.23,Fornecimento de Alimentação,"Registra o valor das despesas com aquisição de refeições preparadas, inclusive lanches e similares.",Fornecimento de Alimentação
+3.3.90.36.24,Serviços de Caráter Secreto ou Reservado,Registra o valor das despesas com serviços de caráter sigiloso constantes em regulamento do órgão.,Serviços de Caráter Secreto ou Reservado
+3.3.90.36.25,Serviços de Limpeza e Conservação,"Registra o valor das despesas com serviços de limpeza e conservação de bens imóveis, tais como: dedetização, faxina e afins.",Serviços de Limpeza e Conservação
+3.3.90.36.26,Serviços Domésticos,"Registra o valor das despesas com serviços domésticos prestados por pessoa física sem vínculo empregatício, tais como: cozinha, lavagem de roupas e afins.",Serviços Domésticos
+3.3.90.36.27,Serviços de Comunicação em Geral,"Registra o valor das despesas com serviços de comunicação geral prestados por pessoa física, tais como: confecção de material para comunicação visual; geração de materiais para divulgação por meio dos veículos de comunicação e afins.",Serviços de Comunicação em Geral
+3.3.90.36.28,Serviço de Seleção e Treinamento,,
+3.3.90.36.30,Serviços Médicos e Odontológicos,"Registra o valor das despesas com serviços médicos e odontológicos prestados por pessoa física, sem vínculo empregatício, tais como: consultas, raio-X, tratamento odontológico e afins.",Serviços Médicos e Odontológicos
+3.3.90.36.31,Serviços de Reabilitação Profissional,"Registra o valor das despesas realizadas com serviços de reabilitação profissional prestados por pessoa física sem vínculo empregatício, tais como: transporte e locomoção urbana, alimentação e inscrição em cursos profissionalizantes, instrumentos de trabalho e implementos profissionais de órtese e prótese.",Serviços de Reabilitação Profissional
+3.3.90.36.32,Serviços de Assistência Social,"Registra o valor das despesas realizadas com serviços de assistência social prestados por pessoa física sem vínculo empregatício a servidores, segurados carentes, abrigados, internados e a seus dependentes, tais como ajuda de custo supletiva, gêneros alimentícios, documentação, transporte e sepultamento.",Serviços de Assistência Social
+3.3.90.36.34,Serviços de Perícias Médicas por Benefícios,"Registra o valor das despesas realizadas com serviços de perícias médicas por benefícios devidos aos médicos credenciados, para exames realizados em segurados e/ou servidores.",Serviços de Perícias Médicas por Benefícios
+3.3.90.36.35,"Serviço de Apoio Administrativo, Técnico e Operacional","Registra o valor das despesas com serviços de natureza eventual prestados por pessoa física, tais como: assistência técnica, capina, jardinagem, operadores de máquinas e motoristas, recepcionistas, serviços auxiliares e afins.","Serviço de Apoio Administrativo, Técnico e Operacional"
+3.3.90.36.36,Serviço de Conservação e Rebeneficiamento de Mercadorias,Registra o valor das despesas com serviços de natureza eventual prestados por pessoa física na conservação e rebeneficiamento de mercadorias.,Serviço de Conservação e Rebeneficiamento de Mercadorias
+3.3.90.36.37,Confecção de Material de Acondicionamento e Embalagem,"Registra o valor das despesas com serviços prestados por pessoa física na confecção de tais como: bolsas, caixas, mochilas, sacolas e afins.",Confecção de Material de Acondicionamento e Embalagem
+3.3.90.36.38,"Confecção de Uniformes, Bandeiras e Flâmulas","Registra o valor das despesas com serviços de costureiras, alfaiates e outros utilizados na confecção de uniformes, bandeiras, flâmulas, brasões e estandartes.","Confecção de Uniformes, Bandeiras e Flâmulas"
+3.3.90.36.39,Fretes e Transportes de Encomendas,"Registra o valor das despesas com serviços prestados por pessoa física, tais como: fretes e carretos, remessa de encomendas, transporte de mercadorias e produtos e afins.",Fretes e Transportes de Encomendas
+3.3.90.36.40,Encargos Financeiros Dedutíveis,Registra o valor das despesas com correção monetária incidente sobre obrigações devidas a pessoas físicas (considerada como despesa operacional para efeito de apuração do lucro tributável).,Encargos Financeiros Dedutíveis
+3.3.90.36.41,Multas Dedutíveis,Registra o valor das despesas com multas incidentes sobre obrigações devidas a pessoas físicas (considerada como despesa operacional para efeito de apuração do lucro tributável).,Multas Dedutíveis
+3.3.90.36.42,Juros,Registra o valor das despesas com juros incidentes sobre obrigações decorrentes de cláusula contratual ou pagamento após vencimento.,Juros
+3.3.90.36.43,Encargos Financeiros Indedutíveis,"Registra o valor das despesas com correção monetária incidente sobre obrigações, devidos a pessoas físicas (não considerada como despesa operacional para efeito de apuração do lucro tributável).",Encargos Financeiros Indedutíveis
+3.3.90.36.44,Multas Indedutíveis,"Registra o valor das despesas com multas incidentes sobre obrigações, devidas a pessoas físicas (não consideradas como despesa operacional para efeito de apuração do lucro tributável).",Multas Indedutíveis
+3.3.90.36.45,Jetons a Conselheiros,,
+3.3.90.36.46,Diárias a Conselheiros,Registra o valor das despesas realizadas a título de pagamento de diárias a membros de órgãos de deliberação Coletiva (Conselhos).,Diárias a Conselheiros
+3.3.90.36.51,Bolsa Auxílio a Atletas,Registra o valor das despesas com bolsa auxílio financeiro a atletas participantes dos eventos esportivos ou de programas desenvolvidos no Estado.,Bolsa Auxílio a Atletas
+3.3.90.36.55,Tributos,"Registra o valor das despesas com tributos à conta do locatário, quando previstas no contrato de locação.",Tributos
+3.3.90.36.59,"Serviços de Áudio, Vídeo e Foto","Registra o valor das despesas com serviços de filmagens, gravações e fotografias, prestados por pessoa física.","Serviços de Áudio, Vídeo e Foto"
+3.3.90.36.62,Gratificação pelo Exercício de Encargos de Membro de Banca Examinadora de Concurso - GEEBE,"Registra o valor das despesas com pagamento de gratificação de Banca Examinadora de concursos e promoções, avaliações psicológicas e teste seletivo.",Gratificação pelo Exercício de Encargos de Membro de Banca Examinadora de Concurso – GEEBE
+3.3.90.36.63,Gratificação pela Realização de Trabalho Relevante para Atividade de Agente Multiplicador,Registra o valor das despesas com pagamento de gratificação pela realização de trabalho relevante para atividade de agente multiplicador ao serviço público estatutário do Poder Executivo realizado por professores das unidades de ensino superior do Estado do Paraná para o desempenho e  coordenação do Programa de Desenvolvimento Educacional – PDE.,Gratificação pela Realização de Trabalho Relevante para Atividade de Agente Multiplicador
+3.3.90.36.91,Fundo Rotativo - Serviços PF,"Registra o valor de outros serviços de terceiros – pessoa física – destinados a serviços de pequenos valores nas escolas públicas e delegacias, com destinação específica, conforme legislação em vigor.",Fundo Rotativo
+3.3.90.36.91,Fundo Rotativo,"Registra o valor de outros serviços de terceiros – pessoa física – destinados a serviços de pequenos valores nas escolas públicas e delegacias, com destinação específica, conforme legislação em vigor.",Fundo Rotativo
+3.3.90.36.93,Fundo Fixo de Caixa - Empresas Dependentes,Registra o valor das despesas com o Fundo Fixo de Caixa de empresas dependentes.,Fundo Fixo de Caixa – Empresas Dependentes
+3.3.90.36.96,Suprimento de Fundos (Regime de adiantamento),"Registra o valor das apropriações das despesas referentes ao pagamento de pequenas despesas com outros serviços de terceiros - pessoa física, executadas por suprimentos de fundos (regime de adiantamento), para posterior prestação de contas, conforme legislação específica",- Suprimento de Fundos (Regime de adiantamento)
+3.3.90.36.96,Suprimento de Fundos - Adiantamento,"Registra o valor das apropriações das despesas referentes ao pagamento de pequenas despesas com outros serviços de terceiros - pessoa física, executadas por suprimentos de fundos (regime de adiantamento), para posterior prestação de contas, conforme legislação específica",- Suprimento de Fundos (Regime de adiantamento)
+3.3.90.36.99,Outros Serviços de Terceiros - Pessoa Física,,
+3.3.90.37.00,Locação de Mão-de-Obra,,
+3.3.90.37.01,Limpeza e Conservação,,
+3.3.90.37.02,Guarda e Vigilância,,
+3.3.90.37.04,Copa e Portaria,Registra o valor das despesas com a prestação de serviços de copa e portaria.,Copa e Portaria
+3.3.90.37.05,Informática,Registra o valor das despesas com a contratação de mão de obra para prestação de serviços de informática.,Informática
+3.3.90.37.06,Serviços de Jardinagem,Registra o valor das despesas com a contratação de mão de obra para prestação dos serviços de jardinagem.,Serviços de Jardinagem
+3.3.90.37.07,"Serviços de Pintor, Eletricista, Encanador e Pedreiro","Registra o valor das despesas com a contratação de mão de obra para prestação dos serviços de pintor, eletricista, encanador e pedreiro.","Serviços de Pintor, Eletricista, Encanador e Pedreiro"
+3.3.90.37.08,Operadores de Máquinas e Motoristas,Registra o valor das despesas com Operadores de Máquinas e Motoristas.,Operadores de Máquinas e Motoristas
+3.3.90.37.09,"Apoio Administrativo, Técnico e Operacional","Registra o valor das despesas com Apoio Administrativo, Técnico e Operacional.","Apoio Administrativo, Técnico e Operacional"
+3.3.90.37.99,Outros Contratos de Locação de Mão de Obra,,
+3.3.90.38.00,Arrendamento Mercantil,,
+3.3.90.38.01,Veículos,"Registra o valor das despesas com a locação de veículos, com opção ou não de compra do bem de propriedade do arrendador.",Veículos
+3.3.90.38.02,Equipamentos de Informática,"Registra o valor das despesas com a locação de equipamentos de informática, com opção ou não de compra do bem de propriedade do arrendador.",Equipamentos de Informática
+3.3.90.38.03,Outros Arrendamentos,"Registra o valor das despesas com a locação de outros equipamentos não enquadrados nos itens acima, com opção ou não de compra do bem de propriedade do arrendador.",Outros Arrendamentos
+3.3.90.39.00,Outros Serviços de Terceiros - Pessoa Jurídica,,
+3.3.90.39.01,Assinaturas de Periódicos e Anuidades,,
+3.3.90.39.02,Condomínios,,
+3.3.90.39.03,Comissões e Corretagens,Registra o valor das despesas com comissões e corretagens decorrentes de serviços prestados por empresas de intermediação e representação comercial.,Comissões e Corretagens
+3.3.90.39.04,Direitos Autorais,"Registra o valor das despesas com direitos autorais sobre obras científicas, literárias ou em que a divulgação seja de interesse do governo.",Direitos Autorais
+3.3.90.39.05,Serviços Técnicos Profissionais,,
+3.3.90.39.06,"Capatazia, Estiva e Pesagem","Registra o valor das despesas com remuneração de serviços utilizados na movimentação, pesagem de cargas (mercadorias e produtos).","Capatazia, Estiva e Pesagem"
+3.3.90.39.07,Descontos Financeiros Concedidos,Registra o valor das despesas com descontos financeiros concedidos a clientes em virtude de bonificação decorrente da venda de mercadorias ou prestação de serviços.,Descontos Financeiros Concedidos
+3.3.90.39.08,Manutenção de Software (Desativado),,
+3.3.90.39.09,Armazenagem,,
+3.3.90.39.10,Locação de Imóveis,,
+3.3.90.39.10,Locação de Softwares (NÃO UTILIZAR),,
+3.3.90.39.12,Locação de Máquinas e Equipamentos,,
+3.3.90.39.14,Locação de Bens Móveis e Outras Naturezas e Intangíveis,"Registra o valor das despesas com remuneração de serviços de aluguel de bens móveis não contemplados em subitens específicos e bens intangíveis, tais como: locação de linha telefônica e afins.",Locação de Bens Móveis e Outras Naturezas e Intangíveis
+3.3.90.39.16,Manutenção e Conservação de Bens Imóveis,,
+3.3.90.39.17,Manutenção e Conservação de Máquinas e Equipamentos,,
+3.3.90.39.19,Manutenção e Conservação de Veículos,"Registra o valor das despesas com serviços de reparos, consertos e revisões de veículos, tais como: alinhamento e balanceamento, estofamento, funilaria, instalação elétrica, lanternagem, mecânica, pintura, franquia e afins.",Manutenção e Conservação de Veículos
+3.3.90.39.20,Manutenção e Conservação de Bens Móveis de Outras Naturezas,"Registra o valor das despesas com serviços de reparos, consertos, revisões, inspeções e adaptações de bens móveis não classificados em subitens específicos.",Manutenção e Conservação de Bens Móveis de Outras Naturezas
+3.3.90.39.21,Manutenção e Conservação de Estradas e Vias,,
+3.3.90.39.22,"Exposições, Congressos e Conferências","Registra o valor das despesas com serviços utilizados na instalação e manutenção de conferências, congressos, exposições, feiras, festejos populares, festivais e afins.","Exposições, Congressos e Conferências"
+3.3.90.39.23,Festividades e Homenagens,"Registra o valor das despesas com serviços utilizados na organização de eventos, tais como: coquetéis, festas de congraçamento, recepções e afins.",Festividades e Homenagens
+3.3.90.39.30,Serviços de Assistência à Saúde do Servidor,,
+3.3.90.39.35,Multas Dedutíveis,"Registra o valor das despesas com multas incidentes sobre obrigações devidas a pessoas jurídicas (consideradas como despesa operacional para efeito de apuração do lucro tributável), bem como aquelas decorrentes de penalidades aplicadas em função de infração a uma legislação existente.",Multas Dedutíveis
+3.3.90.39.36,Multas Indedutíveis,,
+3.3.90.39.37,Juros,,
+3.3.90.39.38,Encargos Financeiros Dedutíveis,"Registra o valor das despesas com correção monetária incidente sobre obrigações, devidas a pessoas jurídicas (consideradas como despesa operacional para efeito de apuração do lucro tributável).",Encargos Financeiros Dedutíveis
+3.3.90.39.39,Encargos Financeiros Indedutíveis,Registra o valor das despesas com correção monetária incidente sobre obrigações devidas a pessoa jurídica (não considerada como despesa operacional para efeito de apuração do lucro tributável).,Encargos Financeiros Indedutíveis
+3.3.90.39.40,Programa de Alimentação do Trabalhador,"Registra o valor das despesas com o fornecimento de alimentação a empregados, em que a pessoa jurídica possua programa de alimentação aprovado pelo Ministério do Trabalho e possa usufruir benefício fiscal.",Programa de Alimentação do Trabalhador
+3.3.90.39.41,Fornecimento de Alimentação,"Registra o valor das despesas com a aquisição de refeições preparadas, inclusive lanches e similares.",Fornecimento de Alimentação
+3.3.90.39.42,Serviços de Caráter Secreto ou Reservado,Registra o valor das despesas com serviços de caráter sigiloso constantes em regulamento do órgão.,Serviços de Caráter Secreto ou Reservado
+3.3.90.39.43,Serviços de Energia Elétrica,,
+3.3.90.39.44,Serviços de Água e Esgoto,,
+3.3.90.39.45,Serviços de Gás,Registra o valor das despesas com tarifas decorrentes da utilização de gás canalizado.,Serviços de Gás
+3.3.90.39.46,Serviços Domésticos,"Registra o valor das despesas com serviços domésticos prestados por pessoa jurídica, sem vínculo empregatício, tais como: cozinha, lavagem de roupas e afins.",Serviços Domésticos
+3.3.90.39.47,Serviços de Comunicação em Geral,"Registra o valor das despesas com serviços de comunicação, prestados por pessoa jurídica, tais como: correios e telégrafos, publicação de editais, extratos, convocações e assemelhados, desde que não tenham caráter de propaganda e afins.",Serviços de Comunicação em Geral
+3.3.90.39.48,Serviços de Seleção e Treinamento,,
+3.3.90.39.49,Produções Jornalísticas,"Registra o valor das apropriações de despesas com a edição de jornais, revistas, noticiários e materiais jornalísticos.",Produções Jornalísticas
+3.3.90.39.50,"Serviço Médico-Hospital, Odontológico e Laboratoriais",,
+3.3.90.39.51,Serviços de Análises e Pesquisas Científicas,"Registra o valor das despesas com serviços de análises físico-químicas e pesquisas científicas, não relacionadas com apoio ao ensino, tais como: análise mineral, análises de solo, análises químicas, coleta de dados em experimentos, tratamento e destinação de resíduos e afins.",Serviços de Análises e Pesquisas Científicas
+3.3.90.39.52,Serviços de Reabilitação Profissional,"Registra o valor das despesas realizadas com serviços de reabilitação profissional, tais como: transporte e locomoção urbana, alimentação e inscrição em cursos profissionalizantes, instrumentos de trabalho e implementos profissionais e órtese e prótese devidas aos segurados em programa de reabilitação profissional.",Serviços de Reabilitação Profissional
+3.3.90.39.53,Serviços de Assistência Social,"Registra o valor das despesas realizadas com serviços de assistência social prestada a servidores, segurados carentes, abrigados, internados e a seus dependentes, tais como: ajuda de custo supletiva, gêneros alimentícios, documentação, transporte e sepultamento e afins.",Serviços de Assistência Social
+3.3.90.39.54,Serviços de Creches e Assistência Pré-Escolar,"Registra o valor das despesas com serviços prestados por entidades de assistência social para atender os dependentes de servidores do órgão, habilitados a usufruírem desse benefício.",Serviços de Creches e Assistência Pré-Escolar
+3.3.90.39.55,Tributos,"Registra o valor das despesas com tributos à conta do locatário, quando previstas no contrato de locação.",Tributos
+3.3.90.39.56,Serviços de Perícias Médicas por Benefícios,"Registra o valor das despesas com serviços de perícias médicas por benefício, devidas a entidades médicas credenciadas, para exames realizados em segurados e/ou servidores.",Serviços de Perícias Médicas por Benefícios
+3.3.90.39.57,Serviços de Tecnologia da Informação e Comunicação - PJ ( não utilizar),,
+3.3.90.39.58,Serviços de Telecomunicações,,
+3.3.90.39.59,"Serviços de Áudio, Vídeo e Foto","Registra o valor das despesas com serviços de filmagens, gravações, revelações, ampliações e reproduções de sons e imagens, tais como: confecção de álbuns, confecções de crachás funcionais por firmas especializadas, emolduramento de fotografias, imagens de satélites, revelação de filmes, microfilmagem e afins.","Serviços de Áudio, Vídeo e Foto"
+3.3.90.39.60,Serviços de Manobra e Patrulhamento,Registra o valor das despesas com serviços utilizados com o objetivo de dar suporte às operações especiais realizadas por órgãos das forças armadas.,Serviços de Manobra e Patrulhamento
+3.3.90.39.61,Serviços de Socorro e Salvamento,"Registra o valor das despesas com serviços prestados para proteção, socorro e salvamento de pessoas e bens públicos, tais como: ambulâncias particulares – UTI móveis e afins.",Serviços de Socorro e Salvamento
+3.3.90.39.62,Serviços de Produção Industrial,"Registra o valor das despesas com serviços utilizados na transformação, beneficiamento e industrialização de matérias-primas que resultarão em um produto final.",Serviços de Produção Industrial
+3.3.90.39.63,Serviços Gráficos,,
+3.3.90.39.65,Serviços de Apoio ao Ensino,"Registra o valor das despesas de todos os serviços utilizados com o objetivo de proporcionar o desenvolvimento e o aperfeiçoamento do ensino, em todos os níveis, inclusive pesquisas, experiências e assemelhados.",Serviços de Apoio ao Ensino
+3.3.90.39.66,Serviços Judiciários,,
+3.3.90.39.67,Serviços Funerários,"Registra o valor das despesas com serviços de remoção, sepultamento, transladações.",Serviços Funerários
+3.3.90.39.68,Serviço de Conservação e Rebeneficiamento de Mercadorias,Registra o valor das despesas com serviços utilizados na conservação e rebeneficiamento de mercadorias.,Serviço de Conservação e Rebeneficiamento de Mercadorias
+3.3.90.39.69,Seguros em Geral,,
+3.3.90.39.70,"Confecção de Uniformes, Bandeiras e Flâmulas","Registra o valor das despesas com serviços utilizados na confecção de bandeiras, brasões, estandartes, flâmulas, uniformes e afins.","Confecção de Uniformes, Bandeiras e Flâmulas"
+3.3.90.39.71,Confecção de Material de Acondicionamento e Embalagem,"Registra o valor das despesas com serviços utilizados na confecção de materiais destinados a preservação, acomodação ou embalagem de produtos diversos, tais como: bolsas, caixas, mochilas, sacolas e afins.",Confecção de Material de Acondicionamento e Embalagem
+3.3.90.39.72,Vale-Transporte,Registra o valor das despesas com aquisição de vale-transporte para os servidores.,Vale-Transporte
+3.3.90.39.73,Transporte de Servidores,"Registra o valor das despesas com serviços prestados por empresas para transportar servidores no percurso residência – local de trabalho, mediante a utilização de ônibus, micro-ônibus e afins.",Transporte de Servidores
+3.3.90.39.74,Fretes e Transportes de Encomendas,"Registra o valor das despesas com serviços de transporte de mercadorias e produtos diversos, prestados por pessoa jurídica, tais como: fretes e carretos, remessa de encomendas e afins.",Fretes e Transportes de Encomendas
+3.3.90.39.76,Classificação de Produtos,"Registra o valor das despesas com serviços de classificação de produtos de origem animal, mineral e vegetal.",Classificação de Produtos
+3.3.90.39.77,Vigilância Ostensiva,"Registra o valor das despesas com serviços de vigilância e segurança de repartições públicas, de autoridades (nos casos em que o contrato não especifique o quantitativo físico do pessoal a ser utilizado).",Vigilância Ostensiva
+3.3.90.39.78,Limpeza e Conservação,,
+3.3.90.39.79,"Serviços de Apoio Administrativo, Técnico e Operacional",,
+3.3.90.39.80,Hospedagens,Registra o valor das despesas com serviços de hospedagens e alimentação de servidores e convidados do governo em viagens oficiais pagos diretamente a estabelecimentos hoteleiros (quando não houver pagamento de diárias).,Hospedagens
+3.3.90.39.81,Serviços Bancários,"Registra o valor das despesas com comissões, tarifas e remunerações decorrentes de serviços prestados por bancos e outras instituições financeiras.",Serviços Bancários
+3.3.90.39.83,Serviços de Cópias e Reprodução de Documentos,"Registra o valor das despesas com serviços de cópias xerográficas e reprodução de documentos, inclusive a locação e a manutenção de equipamentos reprográficos.",Serviços de Cópias e Reprodução de Documentos
+3.3.90.39.85,Serviços em Itens Reparáveis de Aviação,"Registra o valor das apropriações das despesas com a contratação de serviços específicos para a manutenção de itens reparáveis de aviação, tais como: asas, motores, fuselagem, equipamento de bordo, recuperação de material de aviação e afins.",Serviços em Itens Reparáveis de Aviação
+3.3.90.39.88,Serviços de Publicidade e Propaganda,,
+3.3.90.39.90,Serviços de Publicidade Legal,,
+3.3.90.39.91,Fundo Rotativo - Serviços PJ,"Registra o valor de outros serviços de terceiros – pessoa jurídica – destinados a serviços de pequenos valores nas escolas públicas e delegacias, com destinação específica, conforme legislação em vigor.",Fundo Rotativo
+3.3.90.39.91,Fundo Rotativo,"Registra o valor de outros serviços de terceiros – pessoa jurídica – destinados a serviços de pequenos valores nas escolas públicas e delegacias, com destinação específica, conforme legislação em vigor.",Fundo Rotativo
+3.3.90.39.92,Cartão Corporativo,"Registra o valor das despesas com serviços de terceiros – pessoa jurídica – pagas através do cartão corporativo, pelo funcionário público estadual, fora da sua sede de trabalho, para posterior reclassificação no subelemento correto, tais como: passagens, hospedagem, alimentação e afins.",Cartão Corporativo
+3.3.90.39.93,Fundo Fixo de Caixa - Empresas Dependentes,Registra o valor das despesas com o Fundo Fixo de Caixa de empresas dependentes.,Fundo Fixo de Caixa – Empresas Dependentes
+3.3.90.39.95,"Manutenção, Conservação de Equipamentos de Processamento de Dados",,
+3.3.90.39.96,Suprimento de Fundos (Regime de adiantamento),"Registra o valor das apropriações das despesas referentes ao pagamento de pequenas despesas com outros serviços de terceiros - pessoa jurídica, executadas por suprimentos de fundos (regime de adiantamento), para posterior prestação de contas, conforme legislação específica",- Suprimento de Fundos (Regime de adiantamento)
+3.3.90.39.96,Suprimento de Fundos - Adiantamento,"Registra o valor das apropriações das despesas referentes ao pagamento de pequenas despesas com outros serviços de terceiros - pessoa jurídica, executadas por suprimentos de fundos (regime de adiantamento), para posterior prestação de contas, conforme legislação específica",- Suprimento de Fundos (Regime de adiantamento)
+3.3.90.39.97,Intermediação de Prestação de Serviços,,
+3.3.90.39.99,Outros Serviços de Terceiros - Pessoa - Jurídica,,
+3.3.90.40.00,Serviços de Tecnologia da Informação e Comunicação - Pessoa Jurídica,,
+3.3.90.40.01,Manutenção e Conservação de Software (Contratação de Serviços não Capitalizáveis),,
+3.3.90.40.02,Locação de Softwares - (Contratação de Serviços),Registra o valor das despesas com remuneração de serviços de aluguel de programas de processamento de dados.,Locação de Softwares
+3.3.90.40.03,Locação de Equipamento,Registra os valores das despesas com remuneração de serviços de aluguel de equipamentos de processamento de dados e periféricos e afins.,Locação de Equipamento
+3.3.90.40.04,Serviços de Processamento de Dados,"Registra o valor das despesas com serviços de processamento de dados prestados por empresas especializadas na área de informática, tais como: hospedagens de sistemas, serviços relacionados à computação em nuvem, tratamento de dados, suporte a usuários de TIC e suporte de infraestrutura de TIC e outros congêneres",Serviços de Processamento de Dados
+3.3.90.40.05,Serviços de Comunicação de Dados,"Registra o valor das despesas com pessoa jurídica para serviços de comunicação de dados, inclusive tarifas decorrentes da utilização de telecomunicações e serviço de telefonia fixa e móvel quando integrarem pacote de comunicação de dados.",Serviços de Comunicação de Dados
+3.3.90.40.06,Aquisição de Softwares de Aplicação - (Desenvolvimento),,
+3.3.90.40.07,Manutenção e Conservação de Equipamentos de TIC,Registra o valor das despesas com serviços de manutenção e conservação de equipamentos de processamento de dados – hardware.,"Manutenção, Conservação de Equipamentos de TIC"
+3.3.90.40.08,Serviços Técnicos Profissionais de TIC,,
+3.3.90.40.09,Serviços de Digitalização e Outsourcing de Impressão,Registra o valor das despesas com serviços de digitalização e outsourcing de impressão.,Serviços de Digitalização e Outsourcing de Impressão
+3.3.90.40.10,Serviços de Treinamento e Capacitação,Registra o valor das despesas com serviços prestados nas áreas de treinamento e capacitação em tecnologia da informação e comunicação – TIC.,Serviços de Treinamento e Capacitação
+3.3.90.40.23,Emissão de Certificados Digitais,"Registra o valor das despesas com emissão de certificados digitais, cujo objetivo é garantir a autenticidade, a integridade e a validade jurídica de documentos em forma eletrônica, bem como possibilitar a realização de transações eletrônicas seguras.",Emissão de Certificados Digitais
+3.3.90.41.00,Contribuições,,
+3.3.90.41.01,Contribuições a Municípios,,
+3.3.90.41.02,Contribuições a Entidades Privadas,,
+3.3.90.41.21,Contribuições para Órgãos e Entidades Federais,,
+3.3.90.41.25,Contribuições às IEES - Instituições Estaduais de Ensino Superior,,
+3.3.90.41.26,Contribuições ao Fundo Estadual de Desenvolvimento Urbano - FDU,,
+3.3.90.41.27,Contribuições para o Pagamento por Serviços Ambientais - PSA,"Registra o valor das despesas às quais não corresponda contraprestação direta em bens e serviços e não seja reembolsável pelo recebedor, para o pagamento por serviços ambientais.",Contribuições para o Pagamento por Serviços Ambientais – PSA
+3.3.90.41.28,Contribuições para Órgãos e Entidades Interestaduais,Registra o valor das despesas de contribuição a Órgãos e Entidades Interestaduais.,Contribuições para Órgãos e Entidades Interestaduais
+3.3.90.41.32,41.32 Contribuição a Assistência Financeira Complementar,,
+3.3.90.45.00,Subvenções Econômicas,,
+3.3.90.45.01,Subvenções Econômicas - FEM,Registra o valor das despesas orçamentárias com o pagamento de subvenções econômicas do Fundo de Equalização do Microcrédito.,Subvenções Econômicas – FEM
+3.3.90.45.02,Subvenções Econômicas - FDE (Garantia e Sustentação de Preços),Registra o valor das despesas orçamentárias com o pagamento de subvenções econômicas do Fundo de Desenvolvimento Econômico.,Subvenções Econômicas – FDE
+3.3.90.45.02,Subvenções Econômicas - FDE (Prêmio de Seguro Garantia),Registra o valor das despesas orçamentárias com o pagamento de subvenções econômicas do Fundo de Desenvolvimento Econômico.,Subvenções Econômicas – FDE
+3.3.90.45.02,Subvenções Econômicas - FDE (Diferencial de Juros),Registra o valor das despesas orçamentárias com o pagamento de subvenções econômicas do Fundo de Desenvolvimento Econômico.,Subvenções Econômicas – FDE
+3.3.90.45.02,Subvenções Econômicas - FDE,Registra o valor das despesas orçamentárias com o pagamento de subvenções econômicas do Fundo de Desenvolvimento Econômico.,Subvenções Econômicas – FDE
+3.3.90.45.03,Subvenções Econômicas - Programa Cartão Futuro - PCF,"Registra o valor das despesas orçamentárias com o pagamento de subvenções econômicas para empresas do Programa Cartão Futuro PDCF, instituído pela Lei nº 20.084, de 18/12/2019.",Subvenções Econômicas Programa Cartão Futuro PCF
+3.3.90.45.03,Subvenções Econômicas Programa Cartão Futuro PCF,"Registra o valor das despesas orçamentárias com o pagamento de subvenções econômicas para empresas do Programa Cartão Futuro PDCF, instituído pela Lei nº 20.084, de 18/12/2019.",Subvenções Econômicas Programa Cartão Futuro PCF
+3.3.90.45.04,Subvenções a Microempresas e Microempreendedores Individuais,"Registra o valor das despesas com o pagamento de subvenções econômicas, em caráter emergencial, destinada ao atendimento de microempresas e microempreendedores individuais, pertencentes a grupos de atividades econômicas, conforme estabelecido em Lei.",Subvenções a Microempresas e Microempreendedores Individuais
+3.3.90.45.05,Auxilio Alimentação - Forças de Segurança - Lei nº 20.937/2021,"Registra o valor das despesas com a concessão de Auxílio Alimentação, instituído pela Lei nº 20.937, de 17 de dezembro de 2021.",Auxílio Alimentação - Forças de Segurança – Lei nº 20.937/2021
+3.3.90.45.05,Auxilio Alimentação - Forças de Segurança - Lei nº 20.937/2021,"Registra o valor das despesas com a concessão de Auxílio Alimentação, instituído pela Lei nº 20.937, de 17 de dezembro de 2021.",Auxílio Alimentação - Forças de Segurança – Lei nº 20.937/2021
+3.3.90.45.06,Subvenções da Inovação,"Registra o valor das despesas orçamentárias com o pagamento de subvenções econômicas da Inovação, incluindo aquelas descritas no Decreto nº 1.350 de 11 de abril de 2023, que regulamenta o disposto na Lei nº 20.541 de 20 de abril de 2021.",Subvenções da Inovação
+3.3.90.45.07,Subvenção Econômica ao Beneficiário Final - Programa Estadual de Segurança Hídrica na Agricultura,"Registra o valor das despesas com o pagamento de subvenções econômicas para o beneficiário final, conforme disposto nos §§ 1º e 2º do art. 5º da Lei nº 21.994, de 04 de junho de 2024, que institui o Programa Estadual de Segurança Hídrica na Agricultura.",– Subvenção Econômica ao beneficiário final – Programa Estadual de Segurança Hídrica na Agricultura
+3.3.90.46.00,Auxílio-Alimentação,,
+3.3.90.46.02,Auxílio Alimentação - RPPS,"Registra o valor das despesas com o auxílio-alimentação pago em forma de pecúnia, de bilhete ou de cartão magnético, diretamente ao pessoal ativo civil.",Auxílio-Alimentação – RPPS
+3.3.90.46.03,Auxílio Alimentação - RGPS,"Registra o valor das despesas com o auxílio-alimentação pago em forma de pecúnia, de bilhete ou de cartão magnético, diretamente ao pessoal ativo regido pelo regime geral de previdência social.",Auxílio-Alimentação – RGPS
+3.3.90.46.04,Auxílio Alimentação - MILITAR,"Registra o valor das despesas com o auxílio-alimentação pago em forma de pecúnia, de bilhete ou de cartão magnético, diretamente ao pessoal ativo militar.",Auxílio-Alimentação – MILITAR
+3.3.90.46.05,Auxilio Alimentação - Lei 20.937/2021,"Registra o valor das despesas com a concessão de auxílio-alimentação instituído pela Lei nº 20.937, de 17 de dezembro de 2021, e suas alterações.",Auxílio Alimentação – Lei nº 20.937/2021
+3.3.90.47.00,Obrigações Tributárias e Contributivas,,
+3.3.90.47.01,PIS/PASEP,,
+3.3.90.47.04,IPTU,Registra o valor das despesas com pagamento de IPTU referente ao próprio do Estado.,IPTU
+3.3.90.47.05,Licenciamento de Veículos,,
+3.3.90.47.08,PIS/PASEP - Parcelamento,"Registra o valor das despesas com o pagamento de 5% sobre a parcela do PASEP recolhido mensalmente conforme Medida Provisória nº 38, art. 7º, Item II, de 14.05.2002.",PIS/PASEP – Parcelamento
+3.3.90.47.11,IRPJ - Imposto de Renda Pessoa Jurídica a Recolher,"Registra o valor das despesas com o pagamento do imposto de renda devido pela pessoa jurídica, de acordo com a legislação em vigor.",IRPJ – Imposto de Renda Pessoa Jurídica a Recolher
+3.3.90.47.12,Imposto sobre Importação a Recolher,"Registra o valor das despesas com o pagamento do imposto sobre importação, de acordo com a legislação em vigor.",Imposto sobre Importação a Recolher
+3.3.90.47.13,IOF - Imposto sobre Operações Financeiras a Recolher,"Registra o valor das despesas com o pagamento do imposto sobre operações financeiras, de acordo com a legislação em vigor.",IOF – Imposto sobre Operações Financeiras a Recolher
+3.3.90.47.14,CSLL - Contribuição Social sobre Lucro Líquido a Recolher,"Registra o valor das despesas com o pagamento da contribuição social, de acordo com a legislação em vigor.",CSLL – Contribuição Social sobre Lucro Líquido a Recolher
+3.3.90.47.15,COFINS - Contribuição para Financiamento da Seguridade Social a Recolher,"Registra o valor das despesas com o pagamento da contribuição para financiamento da seguridade social, de acordo com a legislação em vigor.",COFINS – Contribuição para Financiamento da Seguridade Social a Recolher
+3.3.90.47.16,Outras Contribuições Federais a Recolher,"Registra o valor das despesas com o pagamento de outras contribuições sociais, de acordo com a legislação em vigor.",Outras Contribuições Federais a Recolher
+3.3.90.47.17,ICMS - Imposto sobre a Circulação de Mercadorias e Serviços a Recolher,"Registra o valor das despesas com o pagamento do imposto sobre a circulação de mercadorias e serviços, de acordo com a legislação em vigor.",ICMS – Imposto sobre a Circulação de Mercadorias e Serviços a Recolher
+3.3.90.47.18,IPVA - Imposto sobre a Propriedade de Veículos Automotores a Recolher,,
+3.3.90.47.19,Outros Tributos Estaduais a Recolher,,
+3.3.90.47.20,ISS - Imposto sobre Serviços de Qualquer Natureza a Recolher,"Registra o valor das despesas com o pagamento do imposto sobre serviços de qualquer natureza, de acordo com a legislação em vigor.",ISS – Imposto sobre Serviços de Qualquer Natureza a Recolher
+3.3.90.47.21,Taxa de Limpeza Pública Municipal,"Registra o valor das despesas com o pagamento de taxa de limpeza pública municipal, de acordo com a legislação em vigor.",Taxa de Limpeza Pública Municipal
+3.3.90.47.22,Contribuição de Melhoria Municipal a Recolher,"Registra o valor das despesas com o pagamento da contribuição de melhoria municipal, de acordo com a legislação em vigor.",Contribuição de Melhoria Municipal a Recolher
+3.3.90.47.23,Outros Tributos Municipais a Recolher,"Registra o valor das despesas com o pagamento de outros tributos municipais, de acordo com a legislação em vigor.",Outros Tributos Municipais a Recolher
+3.3.90.47.24,Obrigações Patronais sobre Serviços de Pessoa Física,"Registra o valor das despesas com o pagamento de obrigações patronais sobre serviços de pessoa física, de acordo com a legislação em vigor.",Obrigações Patronais sobre Serviços de Pessoa Física
+3.3.90.47.25,Obrigações Patronais sobre Serviços de Pessoa Jurídica,"Registra o valor das despesas com o pagamento de obrigações patronais sobre serviços de pessoa jurídica, de acordo com a legislação em vigor.",Obrigações Patronais sobre Serviços de Pessoa Jurídica
+3.3.90.47.26,ITR - Imposto Territorial Rural,"Registra o valor das despesas com o pagamento do imposto territorial rural, de acordo com a legislação em vigor.",ITR – Imposto Territorial Rural
+3.3.90.47.27,Responsabilidade Técnica,"Regista o valor das despesas com o pagamento da taxa de Anotação de Responsabilidade Técnica (ART), relativo à execução de obras ou prestação de serviços por profissionais abrangidos pelo Sistema do Conselho Federal de Engenharia, Arquitetura e Agronomia (CONFEA) e pelo Conselho Regional de Engenharia e Agronomia (CREA), de acordo com a Lei Federal nº 6.496, de 07 de dezembro de 1977 e com o Parecer nº 30/2018/DECOR/CGU/AGU da Advocacia Geral da União; e despesas com o pagamento da taxa de Registro de Responsabilidade Técnica (RRT), relativos à prestação de serviços técnicos por profissionais de arquitetura e urbanismo, cuja atividade está regulamentada no âmbito da Lei n° 12.378/2010, e pela Resolução n° 91/2014/CAU/BR.",Responsabilidade Técnica
+3.3.90.47.28,"Anuidade a Conselhos Profissionais ou Associações de Classes ou Entidades, Federal ou Regional","Registra o valor das despesas com o pagamento de anuidades devidas aos conselhos profissionais, associações de classe ou entidades federais ou regionais tais como Conselho Federal da Ordem dos Advogados do Brasil – OAB, Conselho Regional de Economia – CORECON, Conselho Federal de Medicina – CFM, Associação Nacional das Instituições de Planejamento, Pesquisa e Estatística – ANIPES, entre outros.","Anuidade a Conselhos Profissionais ou Associações de Classes ou Entidades, Federal ou Regional"
+3.3.90.48.00,Outros Auxílios Financeiros a Pessoas Físicas,,
+3.3.90.48.01,Outros Auxílios Financeiros a Pessoas Físicas,,
+3.3.90.48.02,Auxílio Financeiro - CMEIV,,
+3.3.90.48.03,Gratificação Especial pelo Serviço do Inativo dos Integrantes do Colégio Cívico-Militar - GESICM,,
+3.3.90.48.04,Auxílio Financeiro ao Tratamento Fora de Domicílio - TFD,Registra o valor das despesas com a concessão de auxílio financeiro a pessoas físicas para cobrir despesas relacionadas ao tratamento médico fora de domicílio (TFD).,Auxílio Financeiro ao Tratamento Fora de Domicílio – TFD
+3.3.90.49.00,Auxílio-Transporte,,
+3.3.90.49.04,Auxílio Transporte - RPPS,"Registra o valor das despesas com auxílio-transporte pago diretamente ao pessoal ativo civil destinado ao custeio parcial das despesas realizadas com transporte coletivo municipal, intermunicipal ou interestadual nos deslocamentos de suas residências para os locais de trabalho e vice-versa.",Auxílio-Transporte – RPPS
+3.3.90.49.05,Auxílio Transporte - RGPS,"Registra o valor das despesas com auxílio-transporte pago diretamente ao pessoal ativo regido pelo regime geral de previdência social destinado ao custeio parcial das despesas realizadas com transporte coletivo municipal, intermunicipal ou interestadual nos deslocamentos de suas residências para os locais de trabalho e vice-versa.",Auxílio-Transporte – RGPS
+3.3.90.49.06,Auxílio-Transporte - MILITAR,"Registra o valor das despesas com auxílio-transporte pago diretamente ao pessoal ativo militar destinado ao custeio parcial das despesas realizadas com transporte coletivo municipal, intermunicipal ou interestadual nos deslocamentos de suas residências para os locais de trabalho e vice-versa.",Auxílio-Transporte – MILITAR
+3.3.90.49.07,Auxílio Transporte - Estagiários,"Registra o valor das despesas com auxílio-transporte pago diretamente a estagiários da Administração Pública Estadual destinado ao custeio parcial das despesas realizadas com transporte coletivo municipal, intermunicipal ou interestadual nos deslocamentos de suas residências para os locais de trabalho e vice-versa.",Auxílio-Transporte – Estagiários
+3.3.90.59.00,Pensões Especiais,,
+3.3.90.59.01,Pensões Especiais,"Registra o valor das despesas orçamentárias com pagamento de pensões especiais, inclusive de caráter indenizatório, concedidas por legislação específica, não vinculadas a cargos públicos.",Pensões Especiais
+3.3.90.62.00,Aquisição de Produtos para Revenda,,
+3.3.90.62.01,Material de Consumo,Registra o valor das despesas com aquisição de materiais de consumo destinados à revenda futura.,Material de Consumo
+3.3.90.62.02,Equipamentos e Materiais Permanentes,Registra o valor das despesas com aquisição de equipamentos e materiais permanentes destinados à revenda futura.,Equipamentos e Materiais Permanentes
+3.3.90.62.03,Materiais de Consumo para Estoque Rotativo,Registra o valor das aquisições de materiais de consumo para estoque rotativo.,Materiais de Consumo para Estoque Rotativo
+3.3.90.62.99,Aquisição de Outros Bens para Revenda,,
+3.3.90.67.00,Depósitos Compusórios,,
+3.3.90.67.01,Depósitos Compulsórios,"Registra o valor das despesas com depósitos compulsórios exigidos por legislação específica, ou determinados por decisão judicial.",Depósitos Compulsórios
+3.3.90.85.00,Contrato de Gestão,,
+3.3.90.85.10,Contrato de Gestão - FAASP,,
+3.3.90.86.00,Compensações a Regimes de Previdência,,
+3.3.90.86.01,Compensações Previdenciárias ao RGPS,,
+3.3.90.86.02,Compensações Previdenciárias ao RPPS da União,,
+3.3.90.86.03,Compensações Previdenciárias aos RPPS dos Estados e Distrito Federal,,
+3.3.90.86.04,Compensações Previdenciárias aos RPPS dos Municípios,,
+3.3.90.86.05,Compensações Previdenciárias aos RGPS - Juros e Atualizações,"Registra o valor com juros e atualizações incidentes sobre às obrigações do RPPS a pagar ao RGPS decorrentes de compensação financeira entre regimes, por contagem recíproca de tempo de contribuição.",– Compensações Previdenciárias ao RGPS – Juros e Atualizações
+3.3.90.86.06,Compensações Previdenciárias ao RPPS da União - Juros e Atualizações,"Registra o valor com juros e atualizações incidentes sobre às obrigações do RPPS a pagar ao RPPS da União decorrentes de compensação financeira entre regimes, por contagem recíproca de tempo de contribuição.",– Compensações Previdenciárias ao RPPS da União – Juros e Atualizações
+3.3.90.86.07,Compensações Previdenciárias ao RPPS dos Estados e DF - Juros e Atualizações,"Registra o valor com juros e atualizações incidentes sobre às obrigações do RPPS a pagar ao RPPS de um estado e/ou do Distrito Federal decorrentes de compensação financeira entre regimes, por contagem recíproca de tempo de contribuição.",– Compensações Previdenciárias aos RPPS dos Estados e DF – Juros e Atualizações
+3.3.90.86.08,Compensações Previdenciárias ao RPPS dos Municípios - Juros e Atualizações,"Registra o valor com juros e atualizações incidentes sobre às obrigações do RPPS a pagar ao RPPS de um município decorrentes de compensação financeira entre regimes, por contagem recíproca de tempo de contribuição.",– Compensações Previdenciárias aos RPPS dos Municípios – Juros e Atualizações
+3.3.90.91.00,Sentenças Judiciais,,
+3.3.90.91.04,Sentenças Judiciais - FUNSAÚDE,,
+3.3.90.91.05,Sentenças Judiciais Não Alimentares - Do Exercício,,
+3.3.90.91.06,Sentenças Judiciais não Alimentares - Ex Ant. a 05/05/2000 - DESP DE CAPITAL,,
+3.3.90.91.06,Precatórios - Sentenças Judiciais Não Alimentares - Exercícios Anteriores a 05/05/2000,,
+3.3.90.91.07,Precatórios - Sentenças Judiciais Não Alimentares - Exercícios Anteriores a partir de 05/05/2000,,
+3.3.90.91.07,Sentenças Judiciais não Alimentares - Ex Ant. a partir de 05/05/2000 - DESP DE CAPITA,,
+3.3.90.91.08,Outras Sentenças Judiciais Alimentares - Do Exercício - ODC,,
+3.3.90.91.08,Precatórios - Outras Sentenças Judiciais Alimentares - Do Exercício,,
+3.3.90.91.09,Outras Sentenças Judiciais Alimentares - Exercícios Anteriores a 05/05/2000 (ODC),,
+3.3.90.91.10,Outras Sentenças Judiciais Alimentares - Exercícios Anteriores a Partir de 05/05/2000 (ODC),,
+3.3.90.91.11,Precatórios a partir de 05/05/2000 - Vencidos e não pagos,,
+3.3.90.91.12,Precatórios a partir de 05/05/2000 - Não Vencidos,,
+3.3.90.91.13,Precatórios antes de 05/05/2000,,
+3.3.90.91.13,Sentenças Judiciais Alimentares de Servidores - Exercícios Anteriores a partir de 05/05/2000 (ODC),,
+3.3.90.91.14,Sentenças Judiciais Alimentares a Servidores Ativos e Inativos - ODC,,
+3.3.90.91.15,Sentenças Judiciais - Honorários de Advocacia Dativa (PJ),,
+3.3.90.91.15,Sentenças Judiciais - Honorários de Advocacia Dativa (PF),,
+3.3.90.92.00,Despesas de Exercícios Anteriores,,
+3.3.90.92.01,DEA - Auxílios,,
+3.3.90.92.02,Transferência ao FEAP,,
+3.3.90.92.03,DEA - Auxílio Alimentação,,
+3.3.90.92.03,DEA - Auxilio Transporte,,
+3.3.90.92.03,DEA - Outros Benefícios Assistenciais do Servidor e do Militar,,
+3.3.90.92.03,DEA - Outras Despesas de Pessoal e Encargos,,
+3.3.90.92.06,"DEA - Energia Elétrica, Água e Esgoto, Telefonia e Telex",,
+3.3.90.92.07,DEA - Estoque,,
+3.3.90.92.08,DEA - Consumo Imediato,,
+3.3.90.92.09,DEA - Passagens e Despesas Com Locomoção,,
+3.3.90.92.10,92.10 Divulgação e Propaganda,,
+3.3.90.92.10,DEA - Divulgação e Propaganda,,
+3.3.90.92.10,Locação de Softwares (NÃO UTILIZAR),,
+3.3.90.92.11,DEA - Serviços de Consultoria,,
+3.3.90.92.12,DEA - Outros Serviços de Terceiros - Pessoa Física,,
+3.3.90.92.12,DEA - Outros Serviços de Terceiros - Pessoa Física (Contratos de Serviços),,
+3.3.90.92.12,DEA - Outros Serviços de Terceiros - Pessoa Física (Contratos de Aluguel),,
+3.3.90.92.13,DEA - Outros Serviços de Terceiros - Pessoa Jurídica (Contratos de Aluguel),,
+3.3.90.92.13,DEA - Outros Serviços de Terceiros - Pessoa Jurídica (Contratos de Serviços),,
+3.3.90.92.13,DEA - Outros Serviços de Terceiros - Pessoa Jurídica (Contratos de Seguros),,
+3.3.90.92.14,DEA - Processamento de Dados,,
+3.3.90.92.15,DEA - Material de Distribuição Gratuita,,
+3.3.90.92.16,DEA - Locação de Mão-De-Obra,,
+3.3.90.92.17,DEA - Arrendamento Mercantil,,
+3.3.90.92.19,DEA - Obras de Domínio Público,,
+3.3.90.92.20,DEA - Outras Obras e Instalações,,
+3.3.90.92.24,DEA - Aquisição de Bens para Revenda,,
+3.3.90.92.30,DEA - Contribuição do Ente Público Patrocinador ao Regime de Previdência Complementar,,
+3.3.90.92.34,DEA - Diárias - Pessoal Civil,,
+3.3.90.92.35,DEA - Diarias - Pessoal Militar,,
+3.3.90.92.36,DEA - Auxílios aos Municípios,,
+3.3.90.92.37,DEA - IPTU e Outros Tributos Municipais,,
+3.3.90.92.37,DEA - Obrigações Tributárias e Contributivas,,
+3.3.90.92.38,DEA - PASEP,,
+3.3.90.92.39,DEA - Multas de Trânsito,,
+3.3.90.92.50,DEA - Juros de Empréstimos Internos com Instituições Financeiras,,
+3.3.90.92.55,DEA - Encargos de Empréstimos Internos com Instituições Financeiras,,
+3.3.90.92.61,DEA - Indenizações,,
+3.3.90.92.65,DEA - Auxílio Reclusão - Ativo e Inativo Civil - RPPS,,
+3.3.90.92.66,DEA - Salário Família - Ativo e Inativo Civil - RPPS,,
+3.3.90.92.67,DEA - Auxílio Reclusão - Ativo e Inativo Militar,,
+3.3.90.92.68,DEA - Salário Família - Ativo e Inativo Militar,,
+3.3.90.92.99,DEA - Outras Despesas de Exercícios Anteriores,,
+3.3.90.93.00,Indenizações e Restituições,,
+3.3.90.93.02,Variação Cambial Negativa,,
+3.3.90.93.03,Restituições de Pensões,,
+3.3.90.93.04,Restituições de ICMS,,
+3.3.90.93.05,Restituições de IPVA,,
+3.3.90.93.06,Restituições de ITCMD,,
+3.3.90.93.07,"Restituições de Taxas, Multas e Emolumentos",,
+3.3.90.93.08,Indenizações,,
+3.3.90.93.09,Restituições de Transferências Recebidas - Despesa de Custeio,,
+3.3.90.93.10,Restituições de Despesas Administrativas,,
+3.3.90.93.11,Indenização Moradia,,
+3.3.90.93.12,Restituição de Remuneração do Pessoal Ativo Civil - RPPS,,
+3.3.90.93.13,Restituição de Remuneração do Pessoal Ativo - RGPS,,
+3.3.90.93.14,Restituição de Remuneração do Pessoal Ativo - MILITAR,,
+3.3.90.93.15,Restituição de Remuneração de Pessoal Inativo - Civil,,
+3.3.90.93.16,Restituição de Remuneração de Pessoal Inativo - Militar,,
+3.3.90.93.17,Restituição de Verbas Entre Fontes de Recursos,,
+3.3.90.93.18,Indenizações por Compensações Ambientais e Desapropriações,,
+3.3.90.93.19,Restituição de Auxílio Reclusão - Inativo Civil - RPPS,,
+3.3.90.93.20,Restituição de Salário Família - Inativo Civil - RPPS,,
+3.3.90.93.21,Restituição de Auxílio Reclusão - Inativo Militar,,
+3.3.90.93.22,Restituição de Salário Família - Inativo Militar,,
+3.3.90.93.23,Restituição a Terceiros,,
+3.3.90.93.24,Recomposição Dos Valores a Título de Cumprimento do Mínimo Constitucional da Saúde de Exercícios Anteriores,,
+3.3.90.93.25,Ressarcimento de plano ou seguro de assistência à saúde,,
+3.3.90.93.26,Indenizações e Restituições de Despesas com Tratamento Fora de Domicílio - TFD,,
+3.3.90.93.27,Ressarcimento a Terceiros,,
+3.3.90.93.29,Programa de Incentivo à Migração - Previdência Complementar,,
+3.3.90.93.30,32 - Ressarcimento de aquisição de alimentação ou refeição,,
+3.3.90.93.30,08 - Ressarcimento de insumos de informática,,
+3.3.90.93.30,03 - Ressarcimento de material de expediente,,
+3.3.90.93.30,"04 - Ressarcimento de material de higiene, limpeza, conservação e desinfecção",,
+3.3.90.93.30,07 - Ressarcimento de copa e cozinha,,
+3.3.90.93.33,31 - Ressarcimento de despesas com transporte realizado em embarcações,,
+3.3.90.93.33,01 - Ressarcimento de passagens e taxas de embarque,,
+3.3.90.93.33,04 - Ressarcimento de locação de veículos,,
+3.3.90.93.33,30 - Ressarcimento de despesas com locomoção de taxi ou veículo similar,,
+3.3.90.93.33,36 - Ressarcimento de pedágio,,
+3.3.90.93.36,29 - Ressarcimento de locação de imóvel para residência do parlamentar em Curitiba - Pessoa física,,
+3.3.90.93.36,28 - Ressarcimento de serviços de promoção e organização de eventos - Pessoa física,,
+3.3.90.93.36,05 - Ressarcimento de serviços de reparos e conservação de bens imóveis - Pessoa física,,
+3.3.90.93.36,06 - Ressarcimento de serviços de divulgação da atividade parlamentar - Pessoa física,,
+3.3.90.93.36,08 - Ressarcimento de serviços de informática - Pessoa Física,,
+3.3.90.93.36,10 - Ressarcimento de serviços técnicos jurídico - Pessoa física,,
+3.3.90.93.36,11 - Ressarcimento de serviços técnicos de arquitetura - Pessoa física,,
+3.3.90.93.36,12 - Ressarcimento de serviços técnicos de contabilidade - Pessoa física,,
+3.3.90.93.36,13 - Ressarcimento de serviços técnicos de economia - Pessoa física,,
+3.3.90.93.36,14 - Ressarcimento de serviços técnicos de engenharia - Pessoa física,,
+3.3.90.93.36,15 - Ressarcimento de serviços técnicos de jornalismo - Pessoa física,,
+3.3.90.93.36,16 - Ressarcimento de serviços técnicos de pesquisa e afins - Pessoa física,,
+3.3.90.93.36,23 - Ressarcimento de locação de imóveis para escritórios de representação parlamentar - Pessoa física,,
+3.3.90.93.36,"25 - Ressarcimento de serviços e locação de áudio, vídeo e foto - Pessoa física",,
+3.3.90.93.36,27 - Ressarcimento de serviços de segurança especializada - Pessoa física,,
+3.3.90.93.38,"24 - Ressarcimento de locação de equipamentos de informática, reprografia e móveis - Arrendamento mercantil",,
+3.3.90.93.39,13 - Ressarcimento de serviços técnicos de economia - Pessoa jurídica,,
+3.3.90.93.39,12 - Ressarcimento de serviços técnicos de contabilidade - Pessoa jurídica,,
+3.3.90.93.39,11 - Ressarcimento de serviços técnicos de arquitetura - Pessoa jurídica,,
+3.3.90.93.39,10 - Ressarcimento de serviços técnicos jurídicos - Pessoa jurídica,,
+3.3.90.93.39,"09 - Ressarcimento de serviços de comunicação, telefone e dados (39)",,
+3.3.90.93.39,08 - Ressarcimento de serviços de informática - Pessoa Jurídica,,
+3.3.90.93.39,06 - Ressarcimento de serviços de divulgação da atividade parlamentar - Pessoa jurídica,,
+3.3.90.93.39,05 - Ressarcimento de serviços de reparos e conservação de bens imóveis - Pessoa jurídica,,
+3.3.90.93.39,02 - Ressarcimento de serviços de hospedagens e estadia,,
+3.3.90.93.39,"26 - Ressarcimento de assinaturas de periódicos, hospedagem e manutenção de sites, TV a cabo ou similares",,
+3.3.90.93.39,27 - Ressarcimento de serviços de segurança especializada - Pessoa jurídica,,
+3.3.90.93.39,28 - Ressarcimento de serviços de promoção e organização de eventos - Pessoa jurídica,,
+3.3.90.93.39,29 - Ressarcimento de locação de imóvel para residência do parlamentar em Curitiba - Pessoa jurídica,,
+3.3.90.93.39,32 - Ressarcimento de aquisição de alimentação ou refeição - Pessoa jurídica,,
+3.3.90.93.39,"33 - Ressarcimento de participação palestra, seminários, simpósios, congressos ou eventos",,
+3.3.90.93.39,14 - Ressarcimento de serviços técnicos de engenharia - Pessoa jurídica,,
+3.3.90.93.39,15 - Ressarcimento de serviços técnico de jornalismo - Pessoa jurídica,,
+3.3.90.93.39,16 - Ressarcimento de serviços técnicos de pesquisa e afins - Pessoa jurídica,,
+3.3.90.93.39,17 - Ressarcimento de serviços de energia elétrica,,
+3.3.90.93.39,18 - Ressarcimento de serviços de água e esgoto,,
+3.3.90.93.39,19 - Ressarcimento de serviços gráficos e de encadernação,,
+3.3.90.93.39,21 - Ressarcimento de serviços de correio e postagens,,
+3.3.90.93.39,22 - Ressarcimento de fretes e transportes de encomendas,,
+3.3.90.93.39,23 - Ressarcimento de locação de imóveis para escritórios de representação parlamentares - Pessoa jurídica,,
+3.3.90.93.39,"25 - Ressarcimento de serviços e locação de áudio, vídeo e foto - Pessoa jurídica",,
+3.3.90.93.40,"09 - Ressarcimento de serviços de comunicação, telefone e dados (40)",,
+3.3.90.93.47,20 - Ressarcimento de tributos e demais despesas com imóveis,,
+3.3.90.95.00,Indenização pela Execução de Trabalhos de Campo,,
+3.3.90.95.01,Indenizações pela Execução de Trabalhos de Campo,,
+3.3.90.98.00,Compensações ao RGPS,,
+3.3.90.98.11,Compensações Previdenciárias ao RGPS (98),,
+3.3.91.30.00,Material de Consumo,,
+3.3.91.30.16,Material de Expediente,,
+3.3.91.39.00,Outros Serviços de Terceiros - Pessoa Jurídica,,
+3.3.91.39.02,Condomínios,,
+3.3.91.39.05,Serviços Técnicos Profissionais,,
+3.3.91.39.09,Armazenagem,,
+3.3.91.39.10,Locação de Imóveis (INTRA),,
+3.3.91.39.10,Locação de Imóveis,,
+3.3.91.39.10,Locação de Softwares (NÃO UTILIZAR),,
+3.3.91.39.30,Serviços de Assistência à Saúde do Servidor,,
+3.3.91.39.36,Multas Indedutíveis,,
+3.3.91.39.37,Juros,,
+3.3.91.39.48,Serviços de Seleção e Treinamento - ODC,,
+3.3.91.39.63,Serviços Gráficos,,
+3.3.91.39.66,Serviços Judiciários - ODC,,
+3.3.91.39.69,Seguros em Geral,,
+3.3.91.39.78,Limpeza e Conservação,,
+3.3.91.39.79,"Serviços de Apoio Administrativo, Técnico e Operacional",,
+3.3.91.39.79,"Serviços de Apoio Administrativo, Técnico e Operacional (INTRA)",,
+3.3.91.39.88,Serviços de Publicidade e Propaganda,,
+3.3.91.39.90,Serviços de Publicidade Legal,,
+3.3.91.39.97,Intermediação de Prestação de Serviços,,
+3.3.91.41.00,Contribuições,,
+3.3.91.41.23,Contribuições ao Fundo Financeiro,"Registra o valor das despesas de contribuição ao Fundo Financeiro, gerido pela PARANAPREVIDÊNCIA, conforme determina a legislação em vigor.",Contribuições ao Fundo Financeiro
+3.3.91.41.24,Contribuições ao Fundo Militar,"Registra o valor das despesas de contribuição ao Fundo Militar, gerido pela PARANAPREVIDÊNCIA, conforme determina a legislação em vigor.",Contribuições ao Fundo Militar
+3.3.91.41.25,Contribuições às IEES - Instituições Estaduais de Ensino Superior,,
+3.3.91.41.25,Contribuições às IEES - Instituições Estaduais de Ensino Superior (INTRA),,
+3.3.91.41.33,Contribuições ao Fundo Estadual para Calamidade Pública,"Registra o valor das contribuições destinadas ao Fundo Estadual para Calamidade Pública – FECAP, para despesas correntes e de capital, conforme legislação em vigor.",– Contribuições ao Fundo Estadual para Calamidade Pública
+3.3.91.47.00,Obrigações Tributárias e Contributivas,,
+3.3.91.47.05,Licenciamento de Veículos,,
+3.3.91.47.18,IPVA - Imposto sobre a Propriedade de Veículos Automotores a Recolher,,
+3.3.91.47.19,Outros Tributos Estaduais a Recolher,,
+3.3.91.48.00,Outros Auxílios Financeiros a Pessoas Físicas,,
+3.3.91.48.01,Outros Auxílios Financeiros a Pessoas Físicas,,
+3.3.91.48.02,Auxílio Financeiro - CMEIV,,
+3.3.91.48.03,Gratificação Especial pelo Serviço do Inativo dos Integrantes do Colégio Cívico-Militar - GESICM,,
+3.3.91.81.00,Distribuição Constitucional ou Legal de Receitas,,
+3.3.91.81.01,Transferência a Municípios - Parcela do ICMS,,
+3.3.91.81.02,Transferência a Municípios - Parcela do IPVA,,
+3.3.91.81.03,Transferência a Municípios - Parcela do IPI,,
+3.3.91.81.04,Transferência a Municípios - Parcela do Royalties,,
+3.3.91.81.05,Outras Receitas,,
+3.3.91.81.06,Transferência a Municípios - Parcela da Cota Estadual do Salário Educação,,
+3.3.91.81.07,Transferência a Municípios - Parcela da CIDE,,
+3.3.91.81.08,Transferência a Órgão e Entidades Públicos,,
+3.3.91.86.00,Compensações a Regimes de Previdência,,
+3.3.91.86.01,Compensações Previdenciárias ao RGPS,,
+3.3.91.86.02,Compensações Previdenciárias ao RPPS da União,,
+3.3.91.86.03,Compensações Previdenciárias aos RPPS dos Estados e Distrito Federal,,
+3.3.91.86.04,Compensações Previdenciárias aos RPPS dos Municípios,,
+3.3.91.91.00,Sentenças Judiciais,,
+3.3.91.91.05,Sentenças Judiciais Não Alimentares - Do Exercício,,
+3.3.91.91.06,Precatórios - Sentenças Judiciais Não Alimentares - Exercícios Anteriores a 05/05/2000,,
+3.3.91.91.07,Precatórios - Sentenças Judiciais Não Alimentares - Exercícios Anteriores a partir de 05/05/2000,,
+3.3.91.91.08,Precatórios - Outras Sentenças Judiciais Alimentares - Do Exercício,,
+3.3.91.91.11,Precatórios a partir de 05/05/2000 - Vencidos e não pagos,,
+3.3.91.91.12,Precatórios a partir de 05/05/2000 - Não Vencidos,,
+3.3.91.91.13,Precatórios antes de 05/05/2000,,
+3.3.91.91.14,Sentenças Judiciais Alimentares a Servidores Ativos e Inativos - ODC (INTRA),,
+3.3.91.92.00,Despesas de Exercícios Anteriores,,
+3.3.91.92.10,Locação de Softwares (NÃO UTILIZAR),,
+3.3.91.92.10,92.10 Divulgação e Propaganda,,
+3.3.91.92.13,DEA - Outros Serviços de Terceiros - Pessoa Jurídica (Contratos de Serviços),,
+3.3.91.92.13,DEA - Outros Serviços de Terceiros - Pessoa Jurídica (Contratos de Aluguel),,
+3.3.91.92.13,DEA - Outros Serviços de Terceiros - Pessoa Jurídica (Contratos de Seguros),,
+3.3.91.92.37,DEA - Obrigações Tributárias e Contributivas,,
+3.3.91.92.39,DEA - Multas de Trânsito,,
+3.3.91.92.61,DEA - Indenizações,,
+3.3.91.93.00,Indenizações e Restituições,,
+3.3.91.93.08,Indenizações,,
+3.3.91.93.09,Restituições de Transferências Recebidas - Despesa de Custeio,,
+3.3.91.93.10,Restituições de Despesas Administrativas,,
+3.3.91.93.10,Restituições de Despesas Administrativas (INTRA),,
+3.3.91.93.17,Restituição de Verbas Entre Fontes de Recursos,,
+3.3.91.93.19,Restituição de Auxílio Reclusão - Inativo Civil - RPPS,,
+3.3.91.93.20,Restituição de Salário Família - Inativo Civil - RPPS,,
+3.3.91.93.21,Restituição de Auxílio Reclusão - Inativo Militar,,
+3.3.91.93.22,Restituição de Salário Família - Inativo Militar,,
+3.3.91.93.24,Recomposição Dos Valores a Título de Cumprimento do Mínimo Constitucional da Saúde de Exercícios Anteriores,,
+3.3.91.93.25,Ressarcimento de plano ou seguro de assistência à saúde,,
+3.3.91.97.00,Aporte para Cobertura do Déficit Atuarial do RPPS,,
+3.3.91.97.02,Aporte para Cobertura de Déficit Atuarial do Fundo de Previdência,,
+3.3.91.97.03,Aporte para Cobertura de Déficit Atuarial do Fundo Financeiro,,
+3.3.91.97.04,Aporte para Cobertura de Déficit Atuarial do Fundo Militar,,
+3.3.91.97.05,"Aporte Para Cobertura do Déficit Atuarial do Fundo de Previdência - 8,5%",,
+3.3.91.97.10,Aporte Parcelado ao Fundo de Previdência conforme Art. 8º da Lei 19.790/2018,,
+3.3.91.97.11,Juros Sobre Parcelamento ao Fundo de Previdência conforme Art. 8º da Lei 19.790/2018,,
+3.3.95.30.00,Material de Consumo,,
+3.3.95.30.01,Combustíveis e Lubrificantes Automotivos,,
+3.3.95.30.04,Gás Engarrafado,,
+3.3.95.30.07,Gêneros de Alimentação,,
+3.3.95.30.09,Material Farmacológico,,
+3.3.95.30.10,Material Odontológico,,
+3.3.95.30.11,Material Químico,,
+3.3.95.30.16,Material de Expediente,,
+3.3.95.30.17,Material de Processamento de Dados,,
+3.3.95.30.18,Materiais e Medicamentos para Uso Veterinário,,
+3.3.95.30.20,"Material de Cama, Mesa e Banho",,
+3.3.95.30.21,Material de Copa e Cozinha,,
+3.3.95.30.22,Material de Limpeza e Produção de Higienização,,
+3.3.95.30.24,Material para Manutenção de Bens Imóveis (Materiais de Construção),,
+3.3.95.30.24,Material para Manutenção de Bens Imóveis (Material de Consumo),,
+3.3.95.30.26,Material Elétrico e Eletrônico,,
+3.3.95.30.27,Material de Manobra e Patrulhamento,,
+3.3.95.30.33,Material para Produção Industrial,,
+3.3.95.30.35,Material Laboratorial,,
+3.3.95.30.36,Material Hospitalar,,
+3.3.95.30.39,Material para Manutenção de Veículos,,
+3.3.95.30.41,Material para Utilização em Gráfica,,
+3.3.95.30.43,"OPME (Órteses, Próteses e Materiais Especiais)",,
+3.3.95.30.43,Material para Reabilitação Profissional,,
+3.3.95.30.47,Aquisição de Softwares de Base - Classificáveis como Estoque.,,
+3.3.95.30.54,Material para Manutenção e Conservação de Estradas e Vias,,
+3.3.95.32.00,"Material, Bem Ou Serviço para Distribuição Gratuita",,
+3.3.95.32.05,Medicamentos e Material Farmacêutico,,
+3.3.95.37.00,Locação de Mão-de-Obra,,
+3.3.95.37.01,Limpeza e Conservação,,
+3.3.95.39.00,Outros Serviços de Terceiros - Pessoa Jurídica,,
+3.3.95.39.01,Assinaturas de Periódicos e Anuidades,,
+3.3.95.39.10,Locação de Softwares (NÃO UTILIZAR),,
+3.3.95.39.12,Locação de Máquinas e Equipamentos,,
+3.3.95.39.16,Manutenção e Conservação de Bens Imóveis,,
+3.3.95.39.17,Manutenção e Conservação de Máquinas e Equipamentos,,
+3.3.95.39.43,Serviços de Energia Elétrica,,
+3.3.95.39.44,Serviços de Água e Esgoto,,
+3.3.95.39.50,"Serviço Médico-Hospital, Odontológico e Laboratoriais",,
+3.3.95.39.58,Serviços de Telecomunicações,,
+3.3.95.47.00,Obrigações Tributárias e Contributivas,,
+3.3.95.47.01,PIS/PASEP,,
+3.3.96.30.00,Material de Consumo,,
+3.3.96.30.02,Combustíveis e Lubrificantes de Aviação,,
+3.3.96.30.07,Gêneros de Alimentação,,
+3.3.96.30.09,Material Farmacológico,,
+3.3.96.30.10,Material Odontológico,,
+3.3.96.30.16,Material de Expediente,,
+3.3.96.30.18,Materiais e Medicamentos para Uso Veterinário,,
+3.3.96.30.20,"Material de Cama, Mesa e Banho",,
+3.3.96.30.21,Material de Copa e Cozinha,,
+3.3.96.30.22,Material de Limpeza e Produção de Higienização,,
+3.3.96.30.24,Material para Manutenção de Bens Imóveis (Materiais de Construção),,
+3.3.96.30.24,Material para Manutenção de Bens Imóveis (Material de Consumo),,
+3.3.96.30.27,Material de Manobra e Patrulhamento,,
+3.3.96.30.33,Material para Produção Industrial,,
+3.3.96.30.35,Material Laboratorial,,
+3.3.96.30.39,Material para Manutenção de Veículos,,
+3.3.96.30.43,"OPME (Órteses, Próteses e Materiais Especiais)",,
+3.3.96.30.43,Material para Reabilitação Profissional,,
+3.3.96.30.47,Aquisição de Softwares de Base - Classificáveis como Estoque.,,
+3.3.96.30.54,Material para Manutenção e Conservação de Estradas e Vias,,
+3.3.96.32.00,"Material, Bem Ou Serviço para Distribuição Gratuita",,
+3.3.96.32.05,Medicamentos e Material Farmacêutico,,
+3.3.96.33.00,Passagens e Despesas com Locomoção,,
+3.3.96.33.03,Adiantamento para Passagens e Despesas com Locomoção,,
+3.3.96.33.10,Passagem e despesas com Locomoção para Tratamento Fora de Domicílio - TFD,,
+3.3.96.37.00,Locação de Mão-de-Obra,,
+3.3.96.37.02,Guarda e Vigilância,,
+3.3.96.39.00,Outros Serviços de Terceiros - Pessoa Jurídica,,
+3.3.96.39.10,Locação de Softwares (NÃO UTILIZAR),,
+3.3.96.91.00,Sentenças Judiciais,,
+3.3.96.91.04,Sentenças Judiciais - FUNSAÚDE,,
+3.3.96.91.06,Precatórios - Sentenças Judiciais Não Alimentares - Exercícios Anteriores a 05/05/2000,,
+3.3.96.91.07,Precatórios - Sentenças Judiciais Não Alimentares - Exercícios Anteriores a partir de 05/05/2000,,
+3.3.96.91.08,Precatórios - Outras Sentenças Judiciais Alimentares - Do Exercício,,
+3.3.96.91.11,Precatórios a partir de 05/05/2000 - Vencidos e não pagos,,
+3.3.96.91.12,Precatórios a partir de 05/05/2000 - Não Vencidos,,
+3.3.96.91.13,Precatórios antes de 05/05/2000,,
+4.4.20.42.00,Auxílios,,
+4.4.20.42.05,Auxílio a Entidades Federais - Despesa de Capital.,Registra o valor das despesas destinadas a atender despesas de investimentos e inversões financeiras de entidades federais.,Auxílios a Entidades Federais
+4.4.20.42.05,Auxílios a Entidades Federais,Registra o valor das despesas destinadas a atender despesas de investimentos e inversões financeiras de entidades federais.,Auxílios a Entidades Federais
+4.4.40.41.00,Contribuições,,
+4.4.40.41.01,Contribuições a Municípios - Despesa de Capital,,
+4.4.40.41.01,Contribuições a Municípios,,
+4.4.40.41.19,Contribuições às Prefeituras - Transporte Escolar,,
+4.4.40.41.20,Contribuições aos Fundos Municipais de Saúde,,
+4.4.40.42.00,Auxílios,,
+4.4.40.42.01,Auxílios a Municípios,,
+4.4.40.42.01,Auxílio a Municípios,,
+4.4.40.42.03,Auxílio aos Fundos Municipais de Saúde,,
+4.4.40.42.04,Auxílios aos Fundos Municipais de Assistência Social,,
+4.4.41.42.00,Auxílios,,
+4.4.41.42.01,Contribuições a Municípios - Despesa de Capital,,
+4.4.41.42.01,Auxílio a Municípios,,
+4.4.41.42.03,Auxílios aos Fundos Municipais de Saúde,,
+4.4.41.42.03,Auxílio aos Fundos Municipais de Saúde,,
+4.4.41.42.04,Auxílios aos Fundos Municipais de Assistência Social,,
+4.4.45.42.00,Auxílios,,
+4.4.45.42.03,Auxílios aos Fundos Municipais de Saúde,,
+4.4.45.42.03,Auxílio aos Fundos Municipais de Saúde,,
+4.4.45.42.04,Auxílios aos Fundos Municipais de Assistência Social,,
+4.4.50.39.00,Outros Serviços de Terceiros - Pessoa Jurídica,,
+4.4.50.39.10,Locação de Softwares (NÃO UTILIZAR),,
+4.4.50.42.00,Auxílios,,
+4.4.50.42.02,Auxílios a Entidades Privadas,,
+4.4.50.42.02,Auxílios a Entidades Privadas,,
+4.4.50.42.85,Repasses financeiros aos Serviços Sociais Autônomos,,
+4.4.50.85.07,Contrato de Gestão - Paraná Projetos,,
+4.4.70.42.00,Auxílios,,
+4.4.70.42.02,Auxílios a Entidades Privadas,,
+4.4.90.30.00,Material de Consumo,,
+4.4.90.30.09,Material Farmacológico - Despesa de Capital,,
+4.4.90.30.17,Material de Processamento de Dados - Despesa de Capital,,
+4.4.90.30.24,Material para Manutenção de Bens Imóveis - Despesa de Capital,,
+4.4.90.30.26,Material Elétrico e Eletrônico - Despesa de Capital,,
+4.4.90.30.33,Material para Produção Industrial - Despesa de Capital,,
+4.4.90.30.36,Material Hospitalar - Despesa de Capital,,
+4.4.90.30.44,Material de Sinalização Visual e Afins - Despesa de Capital,,
+4.4.90.30.47,Aquisição de Softwares de Base - Classificáveis como Capital,,
+4.4.90.30.54,Material para Manutenção e Conservação de Estradas e Vias - Despesa de Capital,,
+4.4.90.30.91,Fundo Rotativo - Despesa de Capital,,
+4.4.90.35.00,Serviços de Consultoria,,
+4.4.90.35.01,Pessoa Física,,
+4.4.90.35.02,Pessoa Jurídica - Despesa de Capital,,
+4.4.90.36.00,Outros Serviços de Terceiros - Pessoa Física,,
+4.4.90.36.28,Serviço de Seleção e Treinamento,,
+4.4.90.39.00,Outros Serviços de Terceiros - Pessoa Jurídica,,
+4.4.90.39.01,Assinaturas de Periódicos e Anuidades - DESPESA DE CAPITAL,,
+4.4.90.39.05,Serviços Técnicos Profissionais - DESPESA DE CAPITAL,,
+4.4.90.39.10,Locação de Softwares (NÃO UTILIZAR),,
+4.4.90.39.12,Locação de Máquinas e Equipamentos - DESPESA DE CAPITAL,,
+4.4.90.39.16,Manutenção e Conservação de Bens Imóveis - DESPESA DE CAPITAL,,
+4.4.90.39.21,Manutenção e Conservação de Estradas e Vias - DESPESA DE CAPITAL,,
+4.4.90.39.48,Serviços de Seleção e Treinamento - DESPESA DE CAPITAL,,
+4.4.90.39.66,Serviços Judiciários,,
+4.4.90.40.00,Serviços de Tecnologia da Informação e Comunicação - Pessoa Jurídica,,
+4.4.90.40.01,Desenvolvimento (Capitalizável) de Software - DESPESA DE CAPITAL,,
+4.4.90.40.06,Aquisição de Softwares de Aplicação - DESPESA DE CAPITAL (Desenvolvimento Capitalizável),,
+4.4.90.40.06,SOFTWARES,,
+4.4.90.40.08,Serviços Técnicos Profissionais de TIC - DESPESA DE CAPITAL,,
+4.4.90.41.00,Contribuições,,
+4.4.90.41.12,Contribuições ao Fundo de Desenvolvimento Econômico - FDE - Despesa de Capital,"Registra o valor das contribuições ao Fundo de Desenvolvimento Econômico – FDE, para despesas correntes e de capital, de acordo com a legislação em vigor.",Contribuições ao Fundo de Desenvolvimento Econômico – FDE
+4.4.90.41.12,Contribuições ao Fundo de Desenvolvimento Econômico - FDE,"Registra o valor das contribuições ao Fundo de Desenvolvimento Econômico – FDE, para despesas correntes e de capital, de acordo com a legislação em vigor.",Contribuições ao Fundo de Desenvolvimento Econômico – FDE
+4.4.90.41.26,Contribuições ao Fundo Estadual de Desenvolvimento Urbano - FDU,,
+4.4.90.41.26,Contribuições ao Fundo Estadual de Desenvolvimento Urbano - FDU - Despesa de Capital,,
+4.4.90.51.00,Obras e Instalações,,
+4.4.90.51.01,Construção de Edifícios Públicos,,
+4.4.90.51.04,Obras Rodoviárias de Domínio Público,"Registra o valor das despesas com estudos e projetos; início, prosseguimento e conclusão de obras; pagamento de pessoal temporário não pertencente ao quadro da entidade e necessário à realização das mesmas; pagamento de obras contratadas, quando se tratar de obras rodoviárias de domínio público.",Obras Rodoviárias de Domínio Público
+4.4.90.51.05,Obras Ferroviárias de Domínio Público,"Registra o valor das despesas com estudos e projetos; início, prosseguimento e conclusão de obras; pagamento de pessoal temporário não pertencente ao quadro da entidade e necessário à realização das mesmas; pagamento de obras contratadas, quando se tratar de obras ferroviárias de domínio público.",Obras Ferroviárias de Domínio Público
+4.4.90.51.06,Obras Portuárias de Domínio Público,"Registra o valor das despesas com estudos e projetos; início, prosseguimento e conclusão de obras; pagamento de pessoal temporário não pertencente ao quadro da entidade e necessário à realização das mesmas; pagamento de obras contratadas, quando se tratar de obras portuários de domínio público.",Obras Portuárias de Domínio Público
+4.4.90.51.07,Obras Aquaviárias de Domínio Público,"Registra o valor das despesas com estudos e projetos; início, prosseguimento e conclusão de obras; pagamento de pessoal temporário não pertencente ao quadro da entidade e necessário à realização das mesmas; pagamento de obras contratadas, quando se tratar de obras aquaviárias de domínio público, tais como eclusas, barragens, etc.",Obras Aquaviárias de Domínio Público
+4.4.90.51.08,Outras Obras de Domínio Público,"Registra o valor das despesas com estudos e projetos; início, prosseguimento e conclusão de obras; pagamento de pessoal temporário não pertencente ao quadro da entidade e necessário à realização das mesmas; pagamento de obras contratadas, quando se tratar de obras de domínio público não especificadas nos itens anteriores.",Outras Obras de Domínio Público
+4.4.90.51.09,Benfeitorias e Instalações,"Registra o valor das despesas com equipamentos e instalações incorporáveis aos imóveis, tais como: elevadores, aparelhagem de ar-condicionado central, incinerador, compactador de lixo, etc.",Benfeitorias e Instalações
+4.4.90.51.10,Outras Edificações,"Registra o valor das despesas com estudos e projetos: início, prosseguimento e conclusão de obras; pagamento de pessoal temporário não pertencente ao quadro da entidade e necessário à realização das mesmas; pagamento de obras contratadas, quando não se tratar de construção de Edifícios Públicos.",Outras Edificações
+4.4.90.51.11,Outras Obras de Infraestrutura,"Registra o valor das despesas com estudos e projetos; início, prosseguimento e conclusão de obras; pagamento de pessoal temporário não pertencente ao quadro da entidade e necessário à realização das mesmas; pagamento de obras contratadas, quando se tratar de obras de infraestrutura.",Outras Obras de Infraestrutura
+4.4.90.51.12,Obras para Atendimento de Calamidade Pública,"Registra o valor das despesas com estudos e projetos; início, prosseguimento e conclusão de obras; pagamento de pessoal temporário não pertencente ao quadro da entidade e necessário à realização das mesmas; pagamento de obras contratadas, quando se tratar de obras para atendimento de calamidade pública.",Obras para Atendimento de Calamidade Pública
+4.4.90.51.13,Obras da Parceria Público Privada - PPP,Registra o valor das despesas com obras da parceria público privada – PPP.,Obras da Parceria Público Privada – PPP
+4.4.90.52.00,Equipamentos e Material Permanente,,
+4.4.90.52.01,OUTROS ATIVOS BIOLÓGICOS,,
+4.4.90.52.02,Aeronaves,,
+4.4.90.52.02,Árvores de florestas plantadas,,
+4.4.90.52.04,Aparelhos de Medição e Orientação,,
+4.4.90.52.06,Aparelhos e Equipamentos de Comunicação,,
+4.4.90.52.08,"Aparelhos, Equipamentos e Utensílios Médico-Odontológico, Laboratorial e Hospitalar",,
+4.4.90.52.10,Aparelhos e Equipamentos para Esportes e Diversões,,
+4.4.90.52.12,Aparelhos e Utensílios Domésticos,,
+4.4.90.52.14,Armamentos,,
+4.4.90.52.18,Coleções e Materiais Bibliográficos,,
+4.4.90.52.19,Discotecas e Filmotecas,,
+4.4.90.52.20,Embarcações,,
+4.4.90.52.22,Equipamentos de Manobra e Patrulhamento,,
+4.4.90.52.24,"Equipamento de Proteção, Segurança e Socorro",,
+4.4.90.52.26,Instrumentos Musicais e Artísticos,,
+4.4.90.52.28,Máquinas e Equipamentos de Natureza Industrial,,
+4.4.90.52.30,Máquinas e Equipamentos Energéticos,,
+4.4.90.52.32,Máquinas e Equipamentos Gráficos,,
+4.4.90.52.33,"Equipamentos para Áudio, Vídeo e Foto",,
+4.4.90.52.34,"Máquinas, Utensílios e Equipamentos Diversos",,
+4.4.90.52.35,Equipamentos de Processamento de Dados,,
+4.4.90.52.36,"Máquinas, Instalações e Utensílios de Escritório",,
+4.4.90.52.38,"Máquinas, Ferramentas e Utensílios de Oficina",,
+4.4.90.52.39,Equipamentos e Utensílios Hidráulicos e Elétricos,,
+4.4.90.52.40,Máquinas e Equipamentos Agropecuários,,
+4.4.90.52.40,Máquinas e Equipamentos Rodoviários,,
+4.4.90.52.42,Mobiliário em Geral,,
+4.4.90.52.44,Obras de Arte e Peças para Museu,,
+4.4.90.52.46,Semoventes e Equipamentos de Montaria,,
+4.4.90.52.48,Veículos Diversos,,
+4.4.90.52.50,Veículos Ferroviários,,
+4.4.90.52.51,Peças não Incorporáveis a Imóveis,,
+4.4.90.52.52,Veículos de Tração Mecânica,,
+4.4.90.52.53,Carros de Combate,,
+4.4.90.52.54,"Equipamentos, Peças e Acessórios Aeronáuticos",,
+4.4.90.52.56,"Equipamentos, Peças e Acessórios de Proteção ao Voo",,
+4.4.90.52.57,Acessórios para Automóveis,,
+4.4.90.52.58,Equipamentos de Mergulho e Salvamento,,
+4.4.90.52.60,"Equipamentos, Peças e Acessórios Marítimos",,
+4.4.90.52.83,Equipamentos e Sistema de Proteção e Vigilância Ambiental,,
+4.4.90.52.89,"Equipamentos, Sobressalentes de Máquinas, Motor de Navios de Esquadra",,
+4.4.90.52.99,Outros Materiais Permanentes,,
+4.4.90.61.00,Aquisição de Imóveis,,
+4.4.90.61.01,IMÓVEIS DE USO RECREATIVO,,
+4.4.90.61.01,IMÓVEIS RESIDENCIAIS,,
+4.4.90.61.01,LABORATÓRIOS/OBSERVATÓRIOS,,
+4.4.90.61.01,LOJAS,,
+4.4.90.61.01,LOTES,,
+4.4.90.61.01,LOTES INDUSTRIAIS,,
+4.4.90.61.01,MUSEUS/PALÁCIOS,,
+4.4.90.61.01,CEMITÉRIOS,,
+4.4.90.61.01,OUTROS BENS IMÓVEIS DE USO ESPECIAL,,
+4.4.90.61.01,OUTROS IMÓVEIS,,
+4.4.90.61.01,PORTOS/ESTALEIROS,,
+4.4.90.61.01,POSTOS DE FISCALIZAÇÃO,,
+4.4.90.61.01,PRESÍDIOS/DELEGACIAS,,
+4.4.90.61.01,REPRESAS/AÇUDES,,
+4.4.90.61.01,SALAS,,
+4.4.90.61.01,TERRENOS,,
+4.4.90.61.01,TERRENOS/GLEBAS,,
+4.4.90.61.01,BENS IMÓVEIS A CLASSIFICAR,,
+4.4.90.61.01,ARMAZÉNS/GALPÕES,,
+4.4.90.61.01,ARMAZÉNS,,
+4.4.90.61.01,AQUARTELAMENTOS,,
+4.4.90.61.01,APARTAMENTOS,,
+4.4.90.61.01,AEROPORTOS/ESTAÇÕES/AERÓDROMOS,,
+4.4.90.61.01,CASAS,,
+4.4.90.61.01,IMÓVEIS DE USO EDUCACIONAL,,
+4.4.90.61.01,OUTROS BENS DOMINICAIS,,
+4.4.90.61.01,COMPLEXOS/FÁBRICAS/USINAS,,
+4.4.90.61.01,EDIFÍCIOS,,
+4.4.90.61.01,ESTACIONAMENTOS E GARAGENS,,
+4.4.90.61.01,FARÓIS,,
+4.4.90.61.01,FAZENDAS,,
+4.4.90.61.01,"FAZENDAS, PARQUES E RESERVAS",,
+4.4.90.61.01,GALPÕES,,
+4.4.90.61.01,GARAGENS E ESTACIONAMENTOS,,
+4.4.90.61.01,GLEBAS,,
+4.4.90.61.01,GLEBAS RURAIS,,
+4.4.90.61.01,GLEBAS URBANAS,,
+4.4.90.61.01,GLEBAS URBANIZADAS,,
+4.4.90.61.01,HOSPITAIS E UNIDADES DE SAÚDE,,
+4.4.90.61.01,HOTÉIS,,
+4.4.90.61.01,IMÓVEIS COMERCIAIS,,
+4.4.90.65.00,Constituição ou Aumento de Capital de Empresas,,
+4.4.90.65.21,Constituição ou Aumento de Capital Social - Fundos de Investimento e Empresas Privadas,,
+4.4.90.91.00,Sentenças Judiciais,,
+4.4.90.91.05,Sentenças Judiciais Não Alimentares - Do Exercício,,
+4.4.90.91.06,Precatórios - Sentenças Judiciais Não Alimentares - Exercícios Anteriores a 05/05/2000,,
+4.4.90.91.07,Precatórios - Sentenças Judiciais Não Alimentares - Exercícios Anteriores a partir de 05/05/2000,,
+4.4.90.91.08,Precatórios - Outras Sentenças Judiciais Alimentares - Do Exercício,,
+4.4.90.91.10,0 Outras Sentenças Judiciais Alimentares ¿ Exercícios Anteriores a partir de 05/05/2000 (Despesa de Capital),,
+4.4.90.91.11,Precatórios a partir de 05/05/2000 - Vencidos e não pagos,,
+4.4.90.91.12,Precatórios a partir de 05/05/2000 - Não Vencidos,,
+4.4.90.91.13,Precatórios antes de 05/05/2000,,
+4.4.90.92.00,Despesas de Exercícios Anteriores,,
+4.4.90.92.01,OUTROS ATIVOS BIOLÓGICOS,,
+4.4.90.92.01,ARMAZÉNS/GALPÕES,,
+4.4.90.92.01,AQUARTELAMENTOS,,
+4.4.90.92.01,APARTAMENTOS,,
+4.4.90.92.01,AEROPORTOS/ESTAÇÕES/AERÓDROMOS,,
+4.4.90.92.01,ARMAZÉNS,,
+4.4.90.92.01,TERRENOS/GLEBAS,,
+4.4.90.92.01,TERRENOS,,
+4.4.90.92.01,SALAS,,
+4.4.90.92.01,REPRESAS/AÇUDES,,
+4.4.90.92.01,PRESÍDIOS/DELEGACIAS,,
+4.4.90.92.01,POSTOS DE FISCALIZAÇÃO,,
+4.4.90.92.01,PORTOS/ESTALEIROS,,
+4.4.90.92.01,OUTROS IMÓVEIS,,
+4.4.90.92.01,OUTROS BENS IMÓVEIS DE USO ESPECIAL,,
+4.4.90.92.01,OUTROS BENS DOMINICAIS,,
+4.4.90.92.01,MUSEUS/PALÁCIOS,,
+4.4.90.92.01,LOTES INDUSTRIAIS,,
+4.4.90.92.01,LOTES,,
+4.4.90.92.01,LOJAS,,
+4.4.90.92.01,LABORATÓRIOS/OBSERVATÓRIOS,,
+4.4.90.92.01,IMÓVEIS RESIDENCIAIS,,
+4.4.90.92.01,IMÓVEIS DE USO RECREATIVO,,
+4.4.90.92.01,IMÓVEIS DE USO EDUCACIONAL,,
+4.4.90.92.01,IMÓVEIS COMERCIAIS,,
+4.4.90.92.01,HOTÉIS,,
+4.4.90.92.01,HOSPITAIS E UNIDADES DE SAÚDE,,
+4.4.90.92.01,GLEBAS URBANIZADAS,,
+4.4.90.92.01,GLEBAS URBANAS,,
+4.4.90.92.01,GLEBAS RURAIS,,
+4.4.90.92.01,GLEBAS,,
+4.4.90.92.01,GARAGENS E ESTACIONAMENTOS,,
+4.4.90.92.01,GALPÕES,,
+4.4.90.92.01,"FAZENDAS, PARQUES E RESERVAS",,
+4.4.90.92.01,FAZENDAS,,
+4.4.90.92.01,FARÓIS,,
+4.4.90.92.01,ESTACIONAMENTOS E GARAGENS,,
+4.4.90.92.01,EDIFÍCIOS,,
+4.4.90.92.01,COMPLEXOS/FÁBRICAS/USINAS,,
+4.4.90.92.01,CEMITÉRIOS,,
+4.4.90.92.01,CASAS,,
+4.4.90.92.02,Árvores de florestas plantadas,,
+4.4.90.92.06,"DEA - Energia Elétrica, Água e Esgoto, Telefonia e Telex",,
+4.4.90.92.07,DEA - Estoque,,
+4.4.90.92.08,DEA - Consumo Imediato,,
+4.4.90.92.09,DEA - Passagens e Despesas Com Locomoção,,
+4.4.90.92.10,Locação de Softwares (NÃO UTILIZAR),,
+4.4.90.92.10,92.10 Divulgação e Propaganda,,
+4.4.90.92.11,DEA - Serviços de Consultoria,,
+4.4.90.92.14,DEA - Processamento de Dados,,
+4.4.90.92.16,DEA - Locação de Mão-De-Obra,,
+4.4.90.92.18,DEA - Construção de Edifícios Públicos,,
+4.4.90.92.19,DEA - Obras de Domínio Público,,
+4.4.90.92.20,DEA - Outras Obras e Instalações,,
+4.4.90.92.21,DEA - Estoque,,
+4.4.90.92.22,DEA - Consumo Imediato,,
+4.4.90.92.34,DEA - Diárias - Pessoal Civil,,
+4.4.90.92.37,DEA - Obrigações Tributárias e Contributivas,,
+4.4.90.92.37,DEA - IPTU e Outros Tributos Municipais,,
+4.4.90.92.61,DEA - Indenizações,,
+4.4.90.93.00,Indenizações e Restituições Fiscal e da Segur. Social,,
+4.4.90.93.08,Indenizações - Despesa de Capital,,
+4.4.90.93.09,Restituições de Transferências Recebidas - Despesa de Capital,,
+4.4.90.93.10,Restituições de Despesas Administrativas - Despesa de Capital,,
+4.4.90.93.23,Restituição a Terceiros,,
+4.4.91.39.00,Outros Serviços de Terceiros - Pessoa Jurídica,,
+4.4.91.39.05,Serviços Técnicos Profissionais - DESPESA DE CAPITAL,,
+4.4.91.39.10,Locação de Softwares (NÃO UTILIZAR),,
+4.4.91.81.00,Distribuição Constitucional ou Legal de Receitas,,
+4.4.91.81.01,Transferência a Municípios - Parcela do ICMS,,
+4.4.91.81.02,Transferência a Municípios - Parcela do IPVA,,
+4.4.91.81.03,Transferência a Municípios - Parcela do IPI,,
+4.4.91.81.04,Transferência a Municípios - Parcela do Royalties,,
+4.4.91.81.05,Outras Receitas,,
+4.4.91.81.06,Transferência a Municípios - Parcela da Cota Estadual do Salário Educação,,
+4.4.91.81.07,Transferência a Municípios - Parcela da CIDE,,
+4.4.91.81.08,Transferência a Órgão e Entidades Públicos,,
+4.4.91.93.00,Indenizações e Restituições,,
+4.4.91.93.08,Indenizações - Despesa de Capital (INTRA),,
+4.4.91.93.28,Indenização e Compensação do Impacto Ambiental,,
+4.4.95.51.00,Obras e Instalações,,
+4.4.95.51.01,Construção de Edifícios Públicos,,
+4.4.95.52.00,Equipamentos e Material Permanente,,
+4.4.95.52.08,"Aparelhos, Equipamentos e Utensílios Médico-Odontológico, Laboratorial e Hospitalar",,
+4.4.95.52.42,Mobiliário em Geral,,
+4.4.95.52.52,Veículos de Tração Mecânica,,
+4.4.96.52.00,Equipamentos e Material Permanente,,
+4.4.96.52.04,Aparelhos de Medição e Orientação,,
+4.5.90.27.00,"Encargos pela Honra de Avais, Garantias, Seguros e Similares",,
+4.5.90.27.01,Participações e Fomento em Fundos de Natureza Econômica,"Registra o valor das despesas orçamentárias relativas ao pagamento de honra de avais, garantias, seguros e similares em fundos de natureza econômica.",Participações e Fomento em Fundos de Natureza Econômica
+4.5.90.52.00,Equipamentos e Material Permanente,,
+4.5.90.52.02,Aeronaves,,
+4.5.90.52.04,Aparelhos de Medição e Orientação,,
+4.5.90.52.06,Aparelhos e Equipamentos de Comunicação,,
+4.5.90.52.08,"Aparelhos, Equipamentos e Utensílios Médico-Odontológico, Laboratorial e Hospitalar",,
+4.5.90.52.10,Aparelhos e Equipamentos para Esportes e Diversões,,
+4.5.90.52.12,Aparelhos e Utensílios Domésticos,,
+4.5.90.52.14,Armamentos,,
+4.5.90.52.18,Coleções e Materiais Bibliográficos,,
+4.5.90.52.19,Discotecas e Filmotecas,,
+4.5.90.52.20,Embarcações,,
+4.5.90.52.22,Equipamentos de Manobra e Patrulhamento,,
+4.5.90.52.24,"Equipamento de Proteção, Segurança e Socorro",,
+4.5.90.52.26,Instrumentos Musicais e Artísticos,,
+4.5.90.52.28,Máquinas e Equipamentos de Natureza Industrial,,
+4.5.90.52.30,Máquinas e Equipamentos Energéticos,,
+4.5.90.52.32,Máquinas e Equipamentos Gráficos,,
+4.5.90.52.33,"Equipamentos para Áudio, Vídeo e Foto",,
+4.5.90.52.34,"Máquinas, Utensílios e Equipamentos Diversos",,
+4.5.90.52.35,Equipamentos de Processamento de Dados,,
+4.5.90.52.36,"Máquinas, Instalações e Utensílios de Escritório",,
+4.5.90.52.38,"Máquinas, Ferramentas e Utensílios de Oficina",,
+4.5.90.52.39,Equipamentos e Utensílios Hidráulicos e Elétricos,,
+4.5.90.52.40,Máquinas e Equipamentos Rodoviários,,
+4.5.90.52.40,Máquinas e Equipamentos Agropecuários,,
+4.5.90.52.42,Mobiliário em Geral,,
+4.5.90.52.44,Obras de Arte e Peças para Museu,,
+4.5.90.52.46,Semoventes e Equipamentos de Montaria,,
+4.5.90.52.48,Veículos Diversos,,
+4.5.90.52.50,Veículos Ferroviários,,
+4.5.90.52.51,Peças não Incorporáveis a Imóveis,,
+4.5.90.52.52,Veículos de Tração Mecânica,,
+4.5.90.52.53,Carros de Combate,,
+4.5.90.52.54,"Equipamentos, Peças e Acessórios Aeronáuticos",,
+4.5.90.52.56,"Equipamentos, Peças e Acessórios de Proteção ao Voo",,
+4.5.90.52.57,Acessórios para Automóveis,,
+4.5.90.52.58,Equipamentos de Mergulho e Salvamento,,
+4.5.90.52.60,"Equipamentos, Peças e Acessórios Marítimos",,
+4.5.90.52.83,Equipamentos e Sistema de Proteção e Vigilância Ambiental,,
+4.5.90.52.89,"Equipamentos, Sobressalentes de Máquinas, Motor de Navios de Esquadra",,
+4.5.90.61.00,Aquisição de Imóveis,,
+4.5.90.61.01,ARMAZÉNS,,
+4.5.90.61.01,PRESÍDIOS/DELEGACIAS,,
+4.5.90.61.01,POSTOS DE FISCALIZAÇÃO,,
+4.5.90.61.01,PORTOS/ESTALEIROS,,
+4.5.90.61.01,OUTROS IMÓVEIS,,
+4.5.90.61.01,OUTROS BENS IMÓVEIS DE USO ESPECIAL,,
+4.5.90.61.01,OUTROS BENS DOMINICAIS,,
+4.5.90.61.01,MUSEUS/PALÁCIOS,,
+4.5.90.61.01,LOTES INDUSTRIAIS,,
+4.5.90.61.01,LOTES,,
+4.5.90.61.01,LOJAS,,
+4.5.90.61.01,LABORATÓRIOS/OBSERVATÓRIOS,,
+4.5.90.61.01,IMÓVEIS RESIDENCIAIS,,
+4.5.90.61.01,IMÓVEIS DE USO RECREATIVO,,
+4.5.90.61.01,IMÓVEIS DE USO EDUCACIONAL,,
+4.5.90.61.01,GLEBAS URBANIZADAS,,
+4.5.90.61.01,GLEBAS URBANAS,,
+4.5.90.61.01,IMÓVEIS COMERCIAIS,,
+4.5.90.61.01,HOTÉIS,,
+4.5.90.61.01,HOSPITAIS E UNIDADES DE SAÚDE,,
+4.5.90.61.01,GLEBAS RURAIS,,
+4.5.90.61.01,GLEBAS,,
+4.5.90.61.01,GARAGENS E ESTACIONAMENTOS,,
+4.5.90.61.01,GALPÕES,,
+4.5.90.61.01,"FAZENDAS, PARQUES E RESERVAS",,
+4.5.90.61.01,FAZENDAS,,
+4.5.90.61.01,FARÓIS,,
+4.5.90.61.01,ESTACIONAMENTOS E GARAGENS,,
+4.5.90.61.01,EDIFÍCIOS,,
+4.5.90.61.01,COMPLEXOS/FÁBRICAS/USINAS,,
+4.5.90.61.01,CEMITÉRIOS,,
+4.5.90.61.01,CASAS,,
+4.5.90.61.01,BENS IMÓVEIS A CLASSIFICAR,,
+4.5.90.61.01,ARMAZÉNS/GALPÕES,,
+4.5.90.61.01,AQUARTELAMENTOS,,
+4.5.90.61.01,APARTAMENTOS,,
+4.5.90.61.01,AEROPORTOS/ESTAÇÕES/AERÓDROMOS,,
+4.5.90.61.01,TERRENOS,,
+4.5.90.61.01,SALAS,,
+4.5.90.61.01,REPRESAS/AÇUDES,,
+4.5.90.61.01,TERRENOS/GLEBAS,,
+4.5.90.64.00,Aquisição de Títulos Representativos de Capital já integralizado,,
+4.5.90.64.01,Aquisição de Títulos Representativos de Capital já integralizado - Sociedades Controladas em Conjunto,"Registra o valor das despesas com aquisição de ações ou quotas de qualquer tipo de sociedade, desde que tais títulos não representem constituição ou aumento de capital; aquisição de ações em circulação.",Aquisição de Títulos Representativos de Capital já integralizado
+4.5.90.64.01,Aquisição de Títulos Representativos de Capital já integralizado - Outras Sociedades Avaliadas pelo MEP,"Registra o valor das despesas com aquisição de ações ou quotas de qualquer tipo de sociedade, desde que tais títulos não representem constituição ou aumento de capital; aquisição de ações em circulação.",Aquisição de Títulos Representativos de Capital já integralizado
+4.5.90.64.01,Aquisição de Títulos Representativos de Capital já integralizado - Sociedades Coligadas,"Registra o valor das despesas com aquisição de ações ou quotas de qualquer tipo de sociedade, desde que tais títulos não representem constituição ou aumento de capital; aquisição de ações em circulação.",Aquisição de Títulos Representativos de Capital já integralizado
+4.5.90.64.01,Aquisição de Títulos Representativos de Capital já integralizado - Sociedades Controladas,"Registra o valor das despesas com aquisição de ações ou quotas de qualquer tipo de sociedade, desde que tais títulos não representem constituição ou aumento de capital; aquisição de ações em circulação.",Aquisição de Títulos Representativos de Capital já integralizado
+4.5.90.65.00,Constituição ou Aumento de Capital de Empresas,,
+4.5.90.65.01,Constituição ou Aumento do Capital Social - COHAPAR,Registra o valor das despesas com a constituição ou aumento do capital social da COHAPAR.,Constituição ou Aumento do Capital Social – COHAPAR
+4.5.90.65.02,Constituição ou Aumento do Capital Social - COHAPAR/DÍVIDA,"Registra o valor das despesas com a constituição ou aumento do capital social da COHAPAR, para pagamento da Dívida junto ao Banco do Brasil.",Constituição ou Aumento do Capital Social – COHAPAR/DÍVIDA
+4.5.90.65.03,Constituição ou Aumento do Capital Social - COPEL,,
+4.5.90.65.04,Constituição ou Aumento do Capital Social - SANEPAR,Registra o valor das despesas com a constituição ou aumento do capital social da SANEPAR.,Constituição ou Aumento do Capital Social – SANEPAR
+4.5.90.65.05,Constituição ou Aumento do Capital Social - Centro de Convenções de Curitiba,,
+4.5.90.65.06,Constituição ou Aumento do Capital Social - SANEPAR/PARANASAN,,
+4.5.90.65.07,Constituição ou Aumento do Capital Social - FERROESTE,Registra o valor das despesas com a constituição ou aumento do capital social – FERROESTE.,Constituição ou Aumento do Capital Social – FERROESTE
+4.5.90.65.08,Constituição ou Aumento do Capital Social - COHAPAR/PAC,"Registra o valor das despesas com a constituição ou aumento do capital social da COHAPAR, relativas ao Programa de Aceleração do Crescimento – PAC.",Constituição ou Aumento do Capital Social – COHAPAR/PAC
+4.5.90.65.09,Constituição ou Aumento do Capital Social - SANEPAR/PAC,"Registra o valor das despesas com a constituição ou aumento do capital social da SANEPAR, relativas ao Programa de Aceleração do Crescimento – PAC.",Constituição ou Aumento do Capital Social – SANEPAR/PAC
+4.5.90.65.10,Constituição ou Aumento do Capital Social - CLASPAR,,
+4.5.90.65.11,MEP - Constituição ou Aumento do Capital Social - CEASA/PR,Registra o valor das despesas com a constituição ou aumento do capital social da CEASA/PR.,Constituição ou Aumento do Capital Social – CEASA/PR
+4.5.90.65.12,Constituição ou Aumento do Capital Social - CODAPAR,,
+4.5.90.65.13,Constituição ou Aumento do Capital Social - Agência de Fomento do Paraná,,
+4.5.90.65.14,Constituição ou Aumento do Capital Social - Ambiental Paraná Florestas S/A,,
+4.5.90.65.15,Constituição ou Aumento do Capital Social - APPA,Registra o valor das despesas com a constituição ou aumento do capital social da Administração dos Portos de Paranaguá e Antonina – APPA.,Constituição ou Aumento do Capital Social – APPA
+4.5.90.65.16,Constituição ou Aumento do Capital Social - BRDE,Registra o valor das despesas com a constituição ou aumento do capital social do Banco Regional de Desenvolvimento do Extremo Sul – BRDE.,Constituição ou Aumento do Capital Social – BRDE
+4.5.90.65.17,MEP - Constituição ou Aumento do Capital Social - PRSEC,,
+4.5.90.65.18,MEP - Constituição ou Aumento do Capital Social - CELEPAR/Convênio federal,"Registra o valor das despesas com a constituição ou aumento o capital social da Companhia de Tecnologia da Informação e Comunicação do Paraná – CELEPAR, relativas à Convênio Federal para “Implantação de Espaços Públicos de Inclusão Digital para Idosos no Estado do Paraná”.",Constituição ou Aumento do Capital Social – CELEPAR/Convênio federal
+4.5.90.65.19,MEP - Constituição ou Aumento do Capital Social - TECPAR,Registra o valor das despesas com a constituição ou aumento de capital social do Instituto de Tecnologia do Paraná – TECPAR.,Constituição ou Aumento do Capital Social – TECPAR
+4.5.90.65.20,MEP - Constituição ou Aumento de Capital Social - CELEPAR,Registra o valor das despesas com a constituição ou aumento de capital social da Companhia de Tecnologia da Informação e Comunicação do Paraná – CELEPAR.,Constituição ou Aumento do Capital Social – CELEPAR
+4.5.90.65.21,Constituição ou Aumento de Capital Social - Fundos de Investimentos e Empresas Privadas - Lei 19.479 /2018 ,,
+4.5.90.66.00,Concessão de Empréstimos e Financiamentos,,
+4.5.90.66.02,Concessão de Empréstimos a Municípios,,
+4.5.90.66.03,Concessão de Financiamentos a Municípios,"Registra o valor das concessões de qualquer financiamento que se encontre devidamente regulamentada e autorizada pelo Chefe do Poder Executivo, inclusive bolsas de estudo reembolsáveis.",Concessão de Financiamentos a Municípios
+4.5.90.66.04,Demais concessões e empréstimos,"Registra o valor das concessões de quaisquer empréstimos às empresas formais ou informais de diversos portes e enquadramentos tributários, que se encontre autorizada e regulamentada por meio de Lei e Decreto do Chefe do Poder Executivo.",Demais concessões e empréstimos
+4.5.90.66.05,Demais Concessões de Financiamentos,"Registra o valor das concessões de qualquer financiamento às empresas formais ou informais de diversos portes e enquadramentos tributários, que se encontre autorizada e regulamentada por meio de Lei e Decreto do Chefe do Poder Executivo.",Demais Concessões de Financiamentos
+4.5.90.91.00,Sentenças Judiciais,,
+4.5.90.91.06,Precatórios - Sentenças Judiciais Não Alimentares - Exercícios Anteriores a 05/05/2000,,
+4.5.90.91.06,Sentenças Judiciais não Alimentares - Ex Ant. a 05/05/2000 - DESP DE CAPITAL,,
+4.5.90.91.07,Sentenças Judiciais não Alimentares - Ex Ant. a partir de 05/05/2000 - DESP DE CAPITA,,
+4.5.90.91.07,Precatórios - Sentenças Judiciais Não Alimentares - Exercícios Anteriores a partir de 05/05/2000,,
+4.5.90.91.08,Precatórios - Outras Sentenças Judiciais Alimentares - Do Exercício,,
+4.5.90.91.11,Precatórios a partir de 05/05/2000 - Vencidos e não pagos,,
+4.5.90.91.12,Precatórios a partir de 05/05/2000 - Não Vencidos,,
+4.5.90.91.13,Precatórios antes de 05/05/2000,,
+4.5.90.92.00,Despesas de Exercícios Anteriores,,
+4.5.90.92.01,HOTÉIS,,
+4.5.90.92.01,GLEBAS URBANIZADAS,,
+4.5.90.92.01,GLEBAS URBANAS,,
+4.5.90.92.01,GLEBAS RURAIS,,
+4.5.90.92.01,GLEBAS,,
+4.5.90.92.01,GARAGENS E ESTACIONAMENTOS,,
+4.5.90.92.01,GALPÕES,,
+4.5.90.92.01,"FAZENDAS, PARQUES E RESERVAS",,
+4.5.90.92.01,FAZENDAS,,
+4.5.90.92.01,FARÓIS,,
+4.5.90.92.01,ESTACIONAMENTOS E GARAGENS,,
+4.5.90.92.01,EDIFÍCIOS,,
+4.5.90.92.01,COMPLEXOS/FÁBRICAS/USINAS,,
+4.5.90.92.01,AQUARTELAMENTOS,,
+4.5.90.92.01,APARTAMENTOS,,
+4.5.90.92.01,AEROPORTOS/ESTAÇÕES/AERÓDROMOS,,
+4.5.90.92.01,CEMITÉRIOS,,
+4.5.90.92.01,CASAS,,
+4.5.90.92.01,ARMAZÉNS/GALPÕES,,
+4.5.90.92.01,ARMAZÉNS,,
+4.5.90.92.01,LABORATÓRIOS/OBSERVATÓRIOS,,
+4.5.90.92.01,IMÓVEIS RESIDENCIAIS,,
+4.5.90.92.01,IMÓVEIS DE USO RECREATIVO,,
+4.5.90.92.01,IMÓVEIS DE USO EDUCACIONAL,,
+4.5.90.92.01,IMÓVEIS COMERCIAIS,,
+4.5.90.92.01,HOSPITAIS E UNIDADES DE SAÚDE,,
+4.5.90.92.01,TERRENOS/GLEBAS,,
+4.5.90.92.01,TERRENOS,,
+4.5.90.92.01,SALAS,,
+4.5.90.92.01,REPRESAS/AÇUDES,,
+4.5.90.92.01,PRESÍDIOS/DELEGACIAS,,
+4.5.90.92.01,POSTOS DE FISCALIZAÇÃO,,
+4.5.90.92.01,PORTOS/ESTALEIROS,,
+4.5.90.92.01,OUTROS IMÓVEIS,,
+4.5.90.92.01,OUTROS BENS IMÓVEIS DE USO ESPECIAL,,
+4.5.90.92.01,OUTROS BENS DOMINICAIS,,
+4.5.90.92.01,MUSEUS/PALÁCIOS,,
+4.5.90.92.01,LOTES INDUSTRIAIS,,
+4.5.90.92.01,LOTES,,
+4.5.90.92.01,LOJAS,,
+4.5.90.92.22,DEA - Consumo Imediato,,
+4.5.90.92.37,DEA - Obrigações Tributárias e Contributivas,,
+4.5.90.92.37,DEA - IPTU e Outros Tributos Municipais,,
+4.5.90.93.00,Indenizações e Restituições,,
+4.5.90.93.08,Indenizações - Despesa de Capital,,
+4.5.91.61.00,Aquisição de Imóveis,,
+4.5.91.61.01,GALPÕES,,
+4.5.91.61.01,TERRENOS/GLEBAS,,
+4.5.91.61.01,TERRENOS,,
+4.5.91.61.01,SALAS,,
+4.5.91.61.01,REPRESAS/AÇUDES,,
+4.5.91.61.01,PRESÍDIOS/DELEGACIAS,,
+4.5.91.61.01,POSTOS DE FISCALIZAÇÃO,,
+4.5.91.61.01,PORTOS/ESTALEIROS,,
+4.5.91.61.01,OUTROS IMÓVEIS,,
+4.5.91.61.01,OUTROS BENS IMÓVEIS DE USO ESPECIAL,,
+4.5.91.61.01,OUTROS BENS DOMINICAIS,,
+4.5.91.61.01,MUSEUS/PALÁCIOS,,
+4.5.91.61.01,LOTES INDUSTRIAIS,,
+4.5.91.61.01,LOTES,,
+4.5.91.61.01,LOJAS,,
+4.5.91.61.01,LABORATÓRIOS/OBSERVATÓRIOS,,
+4.5.91.61.01,IMÓVEIS RESIDENCIAIS,,
+4.5.91.61.01,IMÓVEIS DE USO RECREATIVO,,
+4.5.91.61.01,IMÓVEIS DE USO EDUCACIONAL,,
+4.5.91.61.01,IMÓVEIS COMERCIAIS,,
+4.5.91.61.01,HOTÉIS,,
+4.5.91.61.01,HOSPITAIS E UNIDADES DE SAÚDE,,
+4.5.91.61.01,GLEBAS URBANIZADAS,,
+4.5.91.61.01,GLEBAS URBANAS,,
+4.5.91.61.01,GLEBAS RURAIS,,
+4.5.91.61.01,GLEBAS,,
+4.5.91.61.01,GARAGENS E ESTACIONAMENTOS,,
+4.5.91.61.01,"FAZENDAS, PARQUES E RESERVAS",,
+4.5.91.61.01,FAZENDAS,,
+4.5.91.61.01,FARÓIS,,
+4.5.91.61.01,ESTACIONAMENTOS E GARAGENS,,
+4.5.91.61.01,EDIFÍCIOS,,
+4.5.91.61.01,COMPLEXOS/FÁBRICAS/USINAS,,
+4.5.91.61.01,CEMITÉRIOS,,
+4.5.91.61.01,CASAS,,
+4.5.91.61.01,ARMAZÉNS/GALPÕES,,
+4.5.91.61.01,ARMAZÉNS,,
+4.5.91.61.01,AQUARTELAMENTOS,,
+4.5.91.61.01,APARTAMENTOS,,
+4.5.91.61.01,AEROPORTOS/ESTAÇÕES/AERÓDROMOS,,
+4.5.91.81.00,Distribuição Constitucional ou Legal de Receitas,,
+4.5.91.81.09,Transferência ao RPPS (royalties),"Registra o valor das despesas com a transferência ao Fundo de Previdência da parcela das receitas adicionais do repasse dos royalties da usina de Itaipu, de acordo com a Lei Estadual nº 18.469, de 30 de abril de 2015.",Transferência ao RPPS
+4.5.91.84.00,"Despesas decorrentes da Participação em Fundos, Organismos, ou Entidades Assemelhadas, Nacionais e Internacionais",,
+4.5.91.84.01,Despesas Decorrentes da Participação em Fundos Estaduais,Registra o valor das despesas orçamentárias relativas à participação em fundos estaduais.,Despesas Decorrentes da Participação em Fundos Estaduais
+4.5.91.84.02,Transferência ao FEAP,"Registra o valor das despesas com a transferência ao Fundo de Equipamento Agropecuário - FEAP, visando atender ao Projeto Avança Paraná, de acordo com o Decreto Estadual nº 7.305, de 13 de abril de 2021.",Transferência ao FEAP
+4.6.90.71.00,Principal da Dívida Contratual Resgatado,,
+4.6.90.71.04,Principal Resgatado de Contratos de Empréstimos Internos Com Instituições Financeiras,Registra o valor das despesas com a amortização efetiva do principal da dívida pública referente a empréstimos contratados junto a instituições financeiras sediadas no território nacional.,Principal Resgatado de Contratos de Empréstimos Internos com Instituições Financeiras
+4.6.90.71.04,BEP - LEI 9496/97,Registra o valor das despesas com a amortização efetiva do principal da dívida pública referente a empréstimos contratados junto a instituições financeiras sediadas no território nacional.,Principal Resgatado de Contratos de Empréstimos Internos com Instituições Financeiras
+4.6.90.71.04,ENCARGOS LEI 9496,Registra o valor das despesas com a amortização efetiva do principal da dívida pública referente a empréstimos contratados junto a instituições financeiras sediadas no território nacional.,Principal Resgatado de Contratos de Empréstimos Internos com Instituições Financeiras
+4.6.90.71.04,JUROS 9496,Registra o valor das despesas com a amortização efetiva do principal da dívida pública referente a empréstimos contratados junto a instituições financeiras sediadas no território nacional.,Principal Resgatado de Contratos de Empréstimos Internos com Instituições Financeiras
+4.6.90.71.05,Principal Resgatado de Contratos de Financiamentos Internos do Ativo Permanente com Instituições Financeiras,Registra o valor das despesas com a amortização efetiva do principal da dívida pública referente a financiamentos de bens do ativo permanente contratados junto a instituições financeiras sediadas no território nacional.,Principal Resgatado de Contratos de Financiamentos Internos do Ativo Permanente com Instituições Financeiras
+4.6.90.71.06,PARCELAMENTO INSS EXECUT. LEI 12810/13,Registra o valor das despesas com a amortização efetiva do principal da dívida pública referente a outros empréstimos contratados junto a instituições nacionais de caráter não financeiro.,Principal Resgatado de Outros Contratos de Empréstimos Internos
+4.6.90.71.06,Principal Resgatado de Outros Contratos de Empréstimos Internos,Registra o valor das despesas com a amortização efetiva do principal da dívida pública referente a outros empréstimos contratados junto a instituições nacionais de caráter não financeiro.,Principal Resgatado de Outros Contratos de Empréstimos Internos
+4.6.90.71.07,Principal Resgatado de Outros Contratos de Financiamentos Internos,Registra o valor das despesas com a amortização efetiva do principal da dívida pública referente a outros financiamentos do ativo permanente contratados junto a instituições nacionais de caráter não financeiro.,Principal Resgatado de Outros Contratos de Financiamentos Internos
+4.6.90.71.08,Principal Resgatado de Contratos de Empréstimos Externos com Instituições Financeiras,Registra o valor das despesas com a amortização efetiva do principal da dívida pública referente a empréstimos contratados junto a instituições financeiras sediadas fora do território nacional.,Principal Resgatado de Contratos de Empréstimos Externos com Instituições Financeiras
+4.6.90.77.00,Principal Corrigido da Dívida Contratual Refinanciado,,
+4.6.90.77.01,Principal Corrigido da Dívida Contratual Refinanciado,"Registra o valor das despesas orçamentárias com o refinanciamento do principal da dívida pública contratual, interna e externa, inclusive correção monetária ou cambial.",Principal Corrigido da Dívida Contratual Refinanciado
+9.9.99.97.00,Aporte para Cobertura do Déficit Atuarial do RPPS,,
+9.9.99.97.99,Reserva de Contingência,,
+9.9.99.99.00,RESERVA DE CONTINGENCIA,,
+9.9.99.99.99,Reserva de Contingência,,

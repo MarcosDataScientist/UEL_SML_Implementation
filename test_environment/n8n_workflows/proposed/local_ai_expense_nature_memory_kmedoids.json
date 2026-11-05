@@ -1,0 +1,359 @@
+{
+  "id": "bshV18HLj8xmeIeE",
+  "name": "Local AI Natureza Despesa - Session Mini-Memory & K-Medoids (CPU-Only)",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "natureza-despesa-memoria",
+        "responseMode": "lastNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -720,
+        60
+      ],
+      "id": "b1f2c3d4-0001-4000-8000-000000000001",
+      "name": "Webhook",
+      "webhookId": "homelab-slm-natureza-despesa-memoria"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.4,
+      "position": [
+        -720,
+        -120
+      ],
+      "id": "b1f2c3d4-0010-4000-8000-000000000010",
+      "name": "When chat message received",
+      "webhookId": "homelab-slm-natureza-despesa-chat"
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "DELETE FROM slm_session_memory WHERE updated_at < NOW() - INTERVAL '15 minutes';\nSELECT\n  '{{ ($json.body ? ($json.body.sessionId || \"default-session\") : ($json.sessionId || \"default-session\")).replace(/''/g, \"''''\") }}' AS \"sessionId\",\n  '{{ ($json.body ? ($json.body.message || $json.body.chatInput || \"\") : ($json.chatInput || $json.message || \"\")).replace(/''/g, \"''''\") }}' AS \"rawMessage\",\n  s.last_term AS \"db_last_term\",\n  COALESCE(s.turn_count, 0) AS \"db_turn_count\",\n  s.clusters_json AS \"db_clusters\"\nFROM (SELECT 1) d\nLEFT JOIN slm_session_memory s\n  ON s.session_id = '{{ ($json.body ? ($json.body.sessionId || \"default-session\") : ($json.sessionId || \"default-session\")).replace(/''/g, \"''''\") }}';",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [
+        -460,
+        0
+      ],
+      "alwaysOutputData": true,
+      "id": "b1f2c3d4-0011-4000-8000-000000000011",
+      "name": "Load Session Memory (Postgres)",
+      "credentials": {
+        "postgres": {
+          "id": "homelab_postgres",
+          "name": "Postgres Home Lab"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "/**\n * n8n Code Node (JavaScript): Session Mini-Memory Router & Cluster Expansion Handler\n * Author: Marcos Vinicius Beregula Ferreira (UEL - LABGEP / NIGEP)\n *\n * Architecture Role (Pre-SLM Node):\n *   Replaces n8n's native LangChain 'Simple Memory' (Window Buffer Memory) to prevent:\n *     1. Context window overflow on CPU-bound SLMs (4,096 token limit).\n *     2. Cross-turn prompt contamination during tool calling.\n *     3. Redundant SLM/database calls when the user simply selects a K-Medoids cluster.\n *\n * Placement in n8n Workflow:\n *   [Webhook] ---> [Session Mini-Memory Router (THIS NODE)] ---> [IF: route_to_slm?]\n *                                                                   |-- true  --> [SLM Agent / Postgres]\n *                                                                   |-- false --> [Respond to Webhook]\n */\n\nconst SESSION_TTL_MS = 15 * 60 * 1000; // 15 minutes session expiration\nconst MAX_REFINEMENT_TURNS = 3;        // Auto-reset after 3 turns to avoid context contamination\n\n// Initialize or retrieve global static memory store inside n8n V8 engine\n// Note: n8n does not persist $getWorkflowStaticData('global') in 'manual' Editor Chat mode,\n// so we mirror the session map in globalThis.__SLM_SESSIONS__ to support BOTH manual Chat UI and production Webhooks!\nconst staticData = $getWorkflowStaticData('global');\nif (!globalThis.__SLM_SESSIONS__) {\n  globalThis.__SLM_SESSIONS__ = staticData.sessions || {};\n}\nstaticData.sessions = globalThis.__SLM_SESSIONS__;\n\nconst now = Date.now();\n\n// Garbage collection: purge expired sessions to keep RAM footprint near zero\nfor (const [sid, sess] of Object.entries(staticData.sessions)) {\n  if (!sess || (now - (sess.updatedAt || 0)) > SESSION_TTL_MS) {\n    delete staticData.sessions[sid];\n  }\n}\n\n// Extract incoming payload (from Load Session Memory Postgres node, Webhook, or Chat Trigger)\nconst inputItem = $input.first() ? $input.first().json : {};\nconst body = inputItem.body || inputItem;\nconst sessionId = String(inputItem.sessionId || body.sessionId || 'default-session').trim();\nconst rawMessage = String(inputItem.rawMessage || body.message || body.chatInput || inputItem.message || inputItem.chatInput || '').trim();\nconst normalizedMsg = rawMessage.toLowerCase();\n\n// Retrieve session state from PostgreSQL slm_session_memory (if present) or fallback to staticData\nlet dbClusters = inputItem.db_clusters || null;\nif (typeof dbClusters === 'string') {\n  try { dbClusters = JSON.parse(dbClusters); } catch (_) { dbClusters = null; }\n}\n\nlet session = (inputItem.db_last_term !== undefined || inputItem.db_clusters !== undefined)\n  ? {\n      sessionId,\n      lastTerm: inputItem.db_last_term || null,\n      turnCount: Number(inputItem.db_turn_count || 0),\n      clusters: Array.isArray(dbClusters) ? dbClusters : null,\n      updatedAt: now\n    }\n  : (staticData.sessions[sessionId] || {\n      sessionId,\n      lastTerm: null,\n      turnCount: 0,\n      clusters: null,\n      updatedAt: now\n    });\n\n// Helper: Format budget items into a deterministic Markdown list without calling the SLM\nfunction formatDeterministicTable(items, headerTitle) {\n  const blocks = items.map((item, idx) => {\n    const codigo = item.codigo || '-';\n    const descricao = item.descricao || '-';\n    const titulo = item.titulo && String(item.titulo).trim() ? String(item.titulo).trim() : '-';\n    const detalhe = item.detalhe && String(item.detalhe).trim() ? String(item.detalhe).trim() : '-';\n    return [\n      `**${idx + 1}. Código: \\`${codigo}\\`**  `,\n      `• **Descrição:** ${descricao}  `,\n      `• **Título:** ${titulo}  `,\n      `• **Detalhe:** ${detalhe}`\n    ].join('\\n');\n  });\n\n  return (\n    `${headerTitle} (**${items.length} registros encontrados**):\\n\\n` +\n    blocks.join('\\n\\n---\\n\\n') +\n    `\\n\\n---\\nAlgum corresponde ao que você precisa? Digite outra palavra-chave para nova busca.`\n  );\n}\n\n// -----------------------------------------------------------------------------\n// CASE 1: Explicit Context Reset Command\n// -----------------------------------------------------------------------------\nconst resetPattern = /^(reiniciar|limpar|reset|nova busca|recomeçar|recomecar|cancelar|outro assunto)$/i;\nif (resetPattern.test(normalizedMsg)) {\n  delete staticData.sessions[sessionId];\n  return [{\n    json: {\n      route_to_slm: false,\n      acao_memoria: 'contexto_reiniciado',\n      sessionId,\n      save_last_term: '',\n      save_turn_count: 0,\n      save_clusters_json: 'null',\n      output: 'Contexto da conversa reiniciado com sucesso. Digite a palavra-chave ou código da natureza de despesa que deseja pesquisar.'\n    }\n  }];\n}\n\n// -----------------------------------------------------------------------------\n// CASE 2: User Selects a K-Medoids Cluster Option (e.g., \"1\", \"opção 2\", \"grupo 3\")\n// -----------------------------------------------------------------------------\nif (Array.isArray(session.clusters) && session.clusters.length > 0) {\n  const choiceMatch = normalizedMsg.match(\n    /^(?:op[cç][aã]o|grupo|item|topico|tópico|numero|número|quero o|quero a|ver o|ver a|abrir)?\\s*([1-9])\\b/i\n  );\n\n  if (choiceMatch) {\n    const chosenGroupNum = parseInt(choiceMatch[1], 10);\n    const chosenCluster = session.clusters.find(c => c.grupo === chosenGroupNum);\n\n    if (chosenCluster && Array.isArray(chosenCluster.membros)) {\n      const header = `Exibindo itens do **Grupo ${chosenCluster.grupo}** (${chosenCluster.descricaoGrupo})`;\n      const responseText = formatDeterministicTable(chosenCluster.membros, header);\n\n      // Keep clusters in session so the user can also inspect other options (e.g., \"2\" then \"3\")!\n      session.turnCount += 1;\n      session.updatedAt = now;\n      staticData.sessions[sessionId] = session;\n\n      return [{\n        json: {\n          route_to_slm: false,\n          acao_memoria: 'expansao_cluster_direta',\n          sessionId,\n          grupoEscolhido: chosenGroupNum,\n          totalItensGrupo: chosenCluster.membros.length,\n          save_last_term: session.lastTerm || '',\n          save_turn_count: session.turnCount,\n          save_clusters_json: JSON.stringify(session.clusters),\n          output: responseText\n        }\n      }];\n    }\n  }\n}\n\n// -----------------------------------------------------------------------------\n// CASE 3: Incremental Refinement vs. Auto-Reset on Turn Limit / New Topic\n// -----------------------------------------------------------------------------\nconst refinementPrefixPattern = /^(mas\\s+|só\\s+|so\\s+|apenas\\s+|somente\\s+|especificamente\\s+|para\\s+|de\\s+|do\\s+|da\\s+|tipo\\s+|exceto\\s+)/i;\nconst isShortRefinement = (\n  session.lastTerm &&\n  session.turnCount < MAX_REFINEMENT_TURNS &&\n  (refinementPrefixPattern.test(normalizedMsg) || normalizedMsg.split(/\\s+/).length <= 2) &&\n  !/^(oi|olá|ola|bom dia|boa tarde|boa noite|ajuda|socorro)\\b/i.test(normalizedMsg) &&\n  !/^\\d/.test(normalizedMsg)\n);\n\nlet messageForSlm = rawMessage;\nlet memoryAction = 'nova_busca_limpa';\n\nif (isShortRefinement && !normalizedMsg.includes(session.lastTerm.toLowerCase())) {\n  // Lightweight context injection: combines previous search term with short modifier (~5 tokens total)\n  const cleanModifier = rawMessage.replace(/^(?:(?:mas|só|so|apenas|somente|especificamente|para|de|do|da|tipo)\\s+)+/i, '').trim();\n  messageForSlm = `${session.lastTerm} ${cleanModifier}`.trim();\n  session.turnCount += 1;\n  memoryAction = 'refinamento_incremental';\n} else {\n  // Auto-reset session state to prevent cross-turn contamination in the SLM\n  session = {\n    sessionId,\n    lastTerm: null,\n    turnCount: 1,\n    clusters: null,\n    updatedAt: now\n  };\n  if (session.turnCount >= MAX_REFINEMENT_TURNS) {\n    memoryAction = 'auto_reset_limite_turnos';\n  }\n}\n\nsession.updatedAt = now;\nstaticData.sessions[sessionId] = session;\n\nreturn [{\n  json: {\n    route_to_slm: true,\n    acao_memoria: memoryAction,\n    sessionId,\n    original_message: rawMessage,\n    message: messageForSlm,\n    turn_count: session.turnCount,\n    save_last_term: session.lastTerm || '',\n    save_turn_count: session.turnCount,\n    save_clusters_json: 'null'\n  }\n}];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -220,
+        0
+      ],
+      "id": "b1f2c3d4-0002-4000-8000-000000000002",
+      "name": "Session Mini-Memory Router"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "cond-route-to-slm",
+              "leftValue": "={{ $json.route_to_slm }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        20,
+        0
+      ],
+      "id": "b1f2c3d4-0003-4000-8000-000000000003",
+      "name": "IF: Route to SLM?"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://ollama:11434/api/generate",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ model: \"qwen2.5-budget:1.5b\", stream: false, options: { temperature: 0.0, num_ctx: 2048 }, prompt: $json.message }) }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        280,
+        -120
+      ],
+      "id": "b1f2c3d4-0004-4000-8000-000000000004",
+      "name": "Ollama Single-Turn Extractor (No Simple Memory)"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Parse single-turn output from fine-tuned qwen2.5-budget:1.5b (Zero Memory Contamination)\nconst routerData = $('Session Mini-Memory Router').first().json;\nconst rawResponse = String($input.first().json.response || '').trim();\n\nif (/^(oi|ol[áa]|bom dia|boa tarde|boa noite|ajuda)\\b/i.test(routerData.original_message || '')) {\n  return [{\n    json: {\n      execute_sql: false,\n      sessionId: routerData.sessionId,\n      acao_memoria: \"saudacao\",\n      save_last_term: routerData.save_last_term || \"\",\n      save_turn_count: routerData.save_turn_count || 0,\n      save_clusters_json: \"null\",\n      output: \"Escreva palavras-chave para a natureza de despesa ou código parcial/integral.\\nExemplos: Gasolina, Material gráfico, Serviço de limpeza predial, Software de Gestão, Reforma de Telhado, 3.3.90.30...\"\n    }\n  }];\n}\n\nlet parsed = null;\ntry {\n  const jsonMatch = rawResponse.match(/\\{[\\s\\S]*\\}/);\n  if (jsonMatch) {\n    parsed = JSON.parse(jsonMatch[0]);\n  }\n} catch (e) {\n  parsed = null;\n}\n\nif (!parsed && rawResponse.length > 20 && !rawResponse.startsWith('{')) {\n  return [{\n    json: {\n      execute_sql: false,\n      sessionId: routerData.sessionId,\n      acao_memoria: \"resposta_normativa_ou_recusa\",\n      save_last_term: routerData.save_last_term || \"\",\n      save_turn_count: routerData.save_turn_count || 0,\n      save_clusters_json: \"null\",\n      output: rawResponse\n    }\n  }];\n}\n\nconst msgWords = String(routerData.message || '')\n  .toLowerCase()\n  .replace(/\\b(de|da|do|das|dos|para|com|em|por|quero|preciso|comprar|contratar|adquirir)\\b/gi, ' ')\n  .trim()\n  .split(/\\s+/)\n  .filter(w => w.length >= 3);\n\nconst termo1 = String((parsed && (parsed.termo1 || parsed.termo_busca)) || msgWords[0] || routerData.message || '').trim();\nlet termo2 = String((parsed && parsed.termo2) || (msgWords.length > 1 ? msgWords[msgWords.length - 1] : termo1)).trim();\nif (termo2.toLowerCase() === 'seil' || termo2.toLowerCase() === 'seti' || !termo2) {\n  termo2 = msgWords.length > 1 ? msgWords[msgWords.length - 1] : termo1;\n}\n\nconst termoBusca = termo1.toLowerCase() === termo2.toLowerCase() ? termo1 : `${termo1} ${termo2}`;\n\nreturn [{\n  json: {\n    execute_sql: true,\n    sessionId: routerData.sessionId,\n    termo_busca: termoBusca,\n    termo1: termo1,\n    termo2: termo2,\n    acao_memoria: routerData.acao_memoria\n  }\n}];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        520,
+        -120
+      ],
+      "id": "b1f2c3d4-0005-4000-8000-000000000005",
+      "name": "Parse SLM JSON & Intent"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "cond-exec-sql",
+              "leftValue": "={{ $json.execute_sql }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        760,
+        -120
+      ],
+      "id": "b1f2c3d4-0006-4000-8000-000000000006",
+      "name": "IF: Execute SQL?"
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT\n  nd.naturezadespesaformatada AS codigo,\n  nd.descricaosubelemento AS descricao,\n  sd.descricaosubelementodetalhe AS detalhe,\n  sd.titulosubelementodetalhe AS titulo,\n  '{{ $json.sessionId }}' AS \"sessionId\",\n  '{{ $json.termo_busca }}' AS \"termo_busca\",\n  CASE\n    WHEN REPLACE(REPLACE(nd.naturezadespesaformatada, '.', ''), '-', '')\n         = REPLACE(REPLACE('{{ $json.termo1 }}', '.', ''), '-', '') THEN 0\n    WHEN REPLACE(REPLACE(nd.naturezadespesaformatada, '.', ''), '-', '')\n         ILIKE REPLACE(REPLACE('{{ $json.termo1 }}', '.', ''), '-', '') || '%' THEN 1\n    WHEN unaccent(nd.descricaosubelemento) ILIKE '%' || unaccent('{{ $json.termo1 }}') || '%' THEN 2\n    WHEN unaccent(COALESCE(sd.descricaosubelementodetalhe, '')) ILIKE '%' || unaccent('{{ $json.termo1 }}') || '%' THEN 3\n    WHEN unaccent(COALESCE(sd.titulosubelementodetalhe, '')) ILIKE '%' || unaccent('{{ $json.termo1 }}') || '%' THEN 4\n    ELSE 5\n  END AS prioridade\nFROM naturezadespesa nd\nLEFT JOIN subelementodetalhe sd\n  ON REPLACE(REPLACE(sd.naturezadespesa, '.', ''), '-', '')\n     = REPLACE(REPLACE(nd.naturezadespesaformatada, '.', ''), '-', '')\nWHERE\n  (\n    unaccent(nd.descricaosubelemento || ' ' || COALESCE(sd.descricaosubelementodetalhe, '') || ' ' || COALESCE(sd.titulosubelementodetalhe, ''))\n      ILIKE '%' || LEFT(unaccent('{{ $json.termo1 }}'), GREATEST(LENGTH('{{ $json.termo1 }}') - 1, 4)) || '%'\n    OR REPLACE(REPLACE(nd.naturezadespesaformatada, '.', ''), '-', '')\n      ILIKE '%' || REPLACE(REPLACE('{{ $json.termo1 }}', '.', ''), '-', '') || '%'\n  )\n  AND (\n    unaccent(nd.descricaosubelemento || ' ' || COALESCE(sd.descricaosubelementodetalhe, '') || ' ' || COALESCE(sd.titulosubelementodetalhe, ''))\n      ILIKE '%' || LEFT(unaccent('{{ $json.termo2 }}'), GREATEST(LENGTH('{{ $json.termo2 }}') - 1, 4)) || '%'\n    OR REPLACE(REPLACE(nd.naturezadespesaformatada, '.', ''), '-', '')\n      ILIKE '%' || REPLACE(REPLACE('{{ $json.termo2 }}', '.', ''), '-', '') || '%'\n  )\nORDER BY prioridade, codigo, detalhe\nLIMIT 60;",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [
+        1000,
+        -200
+      ],
+      "alwaysOutputData": true,
+      "id": "b1f2c3d4-0007-4000-8000-000000000007",
+      "name": "Postgres Search (LIMIT 60)",
+      "credentials": {
+        "postgres": {
+          "id": "homelab_postgres",
+          "name": "Postgres Home Lab"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "/**\n * n8n Code Node (JavaScript): Dynamic K-Medoids Clustering + Session Mini-Memory Saver\n * Author: Marcos Vinicius Beregula Ferreira (UEL - LABGEP / NIGEP)\n *\n * Usage:\n *   Place this node immediately after the PostgreSQL / Vector Search node in n8n.\n *   - If query returns <= 7 items: formats deterministic table directly and updates session lastTerm.\n *   - If query returns > 7 items: executes in-memory K-Medoids clustering (k=4),\n *     stores the full member lists per cluster in $getWorkflowStaticData('global').sessions[sessionId]\n *     (outside the SLM context window), and outputs the k representative medoid options.\n *   - Latency overhead: < 15ms on CPU. Zero external npm dependencies.\n */\n\n// Helper to tokenize and build lexical word set\nfunction extractTokens(item) {\n  const text = `${item.codigo || ''} ${item.descricao || ''} ${item.titulo || ''} ${item.detalhe || ''}`.toLowerCase();\n  const words = text.match(/[a-zà-ÿ0-9]{3,}/g) || [];\n  return new Set(words);\n}\n\n// Jaccard distance between two token sets (1.0 = disjoint, 0.0 = identical)\nfunction jaccardDistance(setA, setB) {\n  if (setA.size === 0 && setB.size === 0) return 0.0;\n  let intersection = 0;\n  for (const item of setA) {\n    if (setB.has(item)) intersection++;\n  }\n  const union = setA.size + setB.size - intersection;\n  return union === 0 ? 0.0 : 1.0 - (intersection / union);\n}\n\n// Cosine distance for vector embeddings (when pgvector embedding column is present)\nfunction cosineDistance(vecA, vecB) {\n  let dot = 0.0, normA = 0.0, normB = 0.0;\n  for (let i = 0; i < vecA.length; i++) {\n    dot += vecA[i] * vecB[i];\n    normA += vecA[i] * vecA[i];\n    normB += vecB[i] * vecB[i];\n  }\n  const denominator = Math.sqrt(normA) * Math.sqrt(normB);\n  return denominator === 0 ? 1.0 : 1.0 - (dot / denominator);\n}\n\n// Build a clean, non-redundant label for a medoid item (avoids repeating titulo when identical to descricao)\nfunction buildMedoidLabel(item) {\n  const codigo = String(item.codigo || '-').trim();\n  const desc = String(item.descricao || '-').trim();\n  const tit = String(item.titulo || '').trim();\n  const normDesc = desc.toLowerCase().replace(/[\\s\\-–—]+/g, ' ');\n  const normTit = tit.toLowerCase().replace(/[\\s\\-–—]+/g, ' ');\n  const extraTit = (tit && tit !== '-' && normTit !== normDesc && !normDesc.includes(normTit))\n    ? ` (${tit})`\n    : '';\n  return `\\`${codigo}\\` — ${desc}${extraTit}`;\n}\n\n// Partitioning Around Medoids (PAM) Algorithm returning medoids AND full cluster member arrays\nfunction runKMedoids(items, k = 4, maxIter = 25) {\n  const n = items.length;\n  if (n <= k) {\n    return items.map((item, idx) => ({\n      grupo: idx + 1,\n      medoid: item,\n      totalItensNoGrupo: 1,\n      descricaoGrupo: buildMedoidLabel(item),\n      membros: [item]\n    }));\n  }\n\n  const hasEmbeddings = Array.isArray(items[0].embedding) && items[0].embedding.length > 0;\n  const tokenSets = hasEmbeddings ? null : items.map(extractTokens);\n\n  // Precompute pairwise distance matrix\n  const distMatrix = Array.from({ length: n }, (_, i) =>\n    Array.from({ length: n }, (_, j) => {\n      if (i === j) return 0.0;\n      if (hasEmbeddings) return cosineDistance(items[i].embedding, items[j].embedding);\n      return jaccardDistance(tokenSets[i], tokenSets[j]);\n    })\n  );\n\n  // Initialize medoids evenly spaced across dataset\n  const step = Math.floor(n / k);\n  let medoids = Array.from({ length: k }, (_, i) => Math.min(i * step, n - 1));\n\n  let clusters = {};\n  for (let iter = 0; iter < maxIter; iter++) {\n    clusters = {};\n    for (const m of medoids) clusters[m] = [];\n\n    // Assignment phase: assign each item to closest medoid (each medoid anchors its own cluster)\n    for (let i = 0; i < n; i++) {\n      if (clusters[i] !== undefined) {\n        clusters[i].push(i);\n        continue;\n      }\n      let bestM = medoids[0];\n      let bestDist = distMatrix[i][bestM];\n      for (let mIdx = 1; mIdx < medoids.length; mIdx++) {\n        const m = medoids[mIdx];\n        if (distMatrix[i][m] < bestDist) {\n          bestDist = distMatrix[i][m];\n          bestM = m;\n        }\n      }\n      clusters[bestM].push(i);\n    }\n\n    // Update phase: select new medoid minimizing sum of distances within cluster\n    let changed = false;\n    const newMedoids = [];\n    for (const m of medoids) {\n      const members = clusters[m];\n      if (!members || members.length === 0) {\n        newMedoids.push(m);\n        continue;\n      }\n      let bestCand = m;\n      let minTotalDist = Infinity;\n      for (const cand of members) {\n        let sumDist = 0;\n        for (const other of members) sumDist += distMatrix[cand][other];\n        if (sumDist < minTotalDist) {\n          minTotalDist = sumDist;\n          bestCand = cand;\n        }\n      }\n      if (bestCand !== m) changed = true;\n      newMedoids.push(bestCand);\n    }\n    medoids = newMedoids;\n    if (!changed) break;\n  }\n\n  // Format output clusters with real medoid and full member array for session state memory\n  const uniqueMedoids = [...new Set(medoids)];\n  return uniqueMedoids.map((m, idx) => {\n    const memberIndices = clusters[m] && clusters[m].length > 0 ? clusters[m] : [m];\n    const memberItems = memberIndices.map(i => items[i]);\n    return {\n      grupo: idx + 1,\n      medoid: items[m],\n      totalItensNoGrupo: memberItems.length,\n      descricaoGrupo: buildMedoidLabel(items[m]),\n      membros: memberItems\n    };\n  });\n}\n\n// Helper to format small result sets directly with clean Markdown line breaks\nfunction formatDirectResults(items) {\n  if (items.length === 0) {\n    return 'Não encontrei esta despesa no banco de dados. Tente descrever de outra forma, como o tipo do material ou serviço.';\n  }\n  const blocks = items.map((item, idx) => {\n    const codigo = item.codigo || '-';\n    const descricao = item.descricao || '-';\n    const titulo = item.titulo && String(item.titulo).trim() ? String(item.titulo).trim() : '-';\n    const detalhe = item.detalhe && String(item.detalhe).trim() ? String(item.detalhe).trim() : '-';\n    return [\n      `**${idx + 1}. Código: \\`${codigo}\\`**  `,\n      `• **Descrição:** ${descricao}  `,\n      `• **Título:** ${titulo}  `,\n      `• **Detalhe:** ${detalhe}`\n    ].join('\\n');\n  });\n  return (\n    `Encontrei **${items.length} registro(s)**:\\n\\n` +\n    blocks.join('\\n\\n---\\n\\n') +\n    `\\n\\n---\\nAlgum corresponde ao que você precisa? Posso refinar a busca.`\n  );\n}\n\n// ----------------------------------------------------\n// n8n Entrypoint Execution + Session Memory Persistence\n// ----------------------------------------------------\nconst rawItems = $input.all().map(item => item.json).filter(item => item && item.codigo);\nconst totalResults = rawItems.length;\n\n// Retrieve session metadata from static data (mirrored in globalThis.__SLM_SESSIONS__ so manual Editor Chat works too)\nconst staticData = $getWorkflowStaticData('global');\nif (!globalThis.__SLM_SESSIONS__) {\n  globalThis.__SLM_SESSIONS__ = staticData.sessions || {};\n}\nstaticData.sessions = globalThis.__SLM_SESSIONS__;\n\nconst firstInput = $input.first() ? $input.first().json : {};\nlet upstreamSessionId = '';\nlet upstreamTerm = '';\nlet upstreamTurnCount = 1;\ntry {\n  if (typeof $ === 'function') {\n    const routerNode = $('Session Mini-Memory Router');\n    if (routerNode && routerNode.first() && routerNode.first().json) {\n      upstreamSessionId = routerNode.first().json.sessionId || '';\n      upstreamTurnCount = Number(routerNode.first().json.turn_count || 1);\n    }\n  }\n} catch (_) {\n  // Ignore if upstream node is named differently or in standalone test\n}\n\nconst sessionId = String(firstInput.sessionId || upstreamSessionId || 'default-session').trim();\nconst searchedTerm = String(firstInput.termo_busca || firstInput.lastTerm || upstreamTerm || '').trim();\n\nconst currentSession = staticData.sessions[sessionId] || {\n  sessionId,\n  lastTerm: searchedTerm || null,\n  turnCount: upstreamTurnCount,\n  clusters: null,\n  updatedAt: Date.now()\n};\n\nif (searchedTerm) {\n  currentSession.lastTerm = searchedTerm;\n}\ncurrentSession.turnCount = upstreamTurnCount;\ncurrentSession.updatedAt = Date.now();\n\nif (totalResults <= 7) {\n  // Pass-through: Few items, clear cluster state and return deterministic formatted table\n  currentSession.clusters = null;\n  staticData.sessions[sessionId] = currentSession;\n\n  return [{\n    json: {\n      acao: 'exibicao_direta',\n      sessionId,\n      totalEncontrado: totalResults,\n      itens: rawItems,\n      save_last_term: currentSession.lastTerm || '',\n      save_turn_count: currentSession.turnCount,\n      save_clusters_json: 'null',\n      output: formatDirectResults(rawItems)\n    }\n  }];\n} else {\n  // High count: cluster via K-Medoids (k=4 based on 1st local Silhouette peak) and save to Mini-Memory\n  const k = 4;\n  const clusterResults = runKMedoids(rawItems, k);\n\n  // Save full cluster members inside n8n Session Mini-Memory (outside the SLM context window!)\n  currentSession.clusters = clusterResults;\n  staticData.sessions[sessionId] = currentSession;\n\n  const formattedDisambiguationPrompt =\n    `Sua busca retornou **${totalResults} resultados**. Para facilitar a localização sem sobrecarregar a tela, agrupei os itens nos **${k} temas mais representativos**:\\n\\n` +\n    clusterResults.map(c => `${c.grupo}. **Opção ${c.grupo}** *(${c.totalItensNoGrupo} itens)*: ${c.descricaoGrupo}`).join('\\n\\n') +\n    `\\n\\n---\\nDigite o **número da opção (1 a ${k})** para listar os itens daquele grupo, ou envie um termo mais específico para refinar.`;\n\n  return [{\n    json: {\n      acao: 'desambiguacao_kmedoids_salva_em_memoria',\n      sessionId,\n      totalEncontrado: totalResults,\n      kClusters: k,\n      gruposSugeridos: clusterResults.map(c => ({\n        grupo: c.grupo,\n        totalItensNoGrupo: c.totalItensNoGrupo,\n        descricaoGrupo: c.descricaoGrupo,\n        medoid: c.medoid\n      })),\n      save_last_term: currentSession.lastTerm || '',\n      save_turn_count: currentSession.turnCount,\n      save_clusters_json: JSON.stringify(clusterResults),\n      output: formattedDisambiguationPrompt\n    }\n  }];\n}\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1240,
+        -200
+      ],
+      "id": "b1f2c3d4-0008-4000-8000-000000000008",
+      "name": "K-Medoids & Session Memory Saver"
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "INSERT INTO slm_session_memory (session_id, last_term, turn_count, clusters_json, updated_at)\nVALUES (\n  '{{ String($json.sessionId || \"default-session\").replace(/''/g, \"''''\") }}',\n  NULLIF('{{ String($json.save_last_term || \"\").replace(/''/g, \"''''\") }}', ''),\n  {{ Number($json.save_turn_count || 0) }},\n  '{{ String($json.save_clusters_json || \"null\").replace(/''/g, \"''''\") }}'::jsonb,\n  NOW()\n)\nON CONFLICT (session_id) DO UPDATE SET\n  last_term = EXCLUDED.last_term,\n  turn_count = EXCLUDED.turn_count,\n  clusters_json = EXCLUDED.clusters_json,\n  updated_at = NOW()\nRETURNING\n  session_id AS \"sessionId\",\n  '{{ String($json.acao_memoria || $json.acao || \"concluido\").replace(/''/g, \"''''\") }}' AS \"acao\",\n  '{{ String($json.output || \"\").replace(/''/g, \"''''\") }}' AS \"output\";",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [
+        1480,
+        0
+      ],
+      "alwaysOutputData": true,
+      "id": "b1f2c3d4-0012-4000-8000-000000000012",
+      "name": "Persist Session Memory (Postgres)",
+      "credentials": {
+        "postgres": {
+          "id": "homelab_postgres",
+          "name": "Postgres Home Lab"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Load Session Memory (Postgres)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "Load Session Memory (Postgres)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Load Session Memory (Postgres)": {
+      "main": [
+        [
+          {
+            "node": "Session Mini-Memory Router",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Session Mini-Memory Router": {
+      "main": [
+        [
+          {
+            "node": "IF: Route to SLM?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF: Route to SLM?": {
+      "main": [
+        [
+          {
+            "node": "Ollama Single-Turn Extractor (No Simple Memory)",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Persist Session Memory (Postgres)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ollama Single-Turn Extractor (No Simple Memory)": {
+      "main": [
+        [
+          {
+            "node": "Parse SLM JSON & Intent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse SLM JSON & Intent": {
+      "main": [
+        [
+          {
+            "node": "IF: Execute SQL?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF: Execute SQL?": {
+      "main": [
+        [
+          {
+            "node": "Postgres Search (LIMIT 60)",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Persist Session Memory (Postgres)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres Search (LIMIT 60)": {
+      "main": [
+        [
+          {
+            "node": "K-Medoids & Session Memory Saver",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "K-Medoids & Session Memory Saver": {
+      "main": [
+        [
+          {
+            "node": "Persist Session Memory (Postgres)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": true
+  }
+}

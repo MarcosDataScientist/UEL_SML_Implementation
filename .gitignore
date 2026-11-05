@@ -1,12 +1,17 @@
 # ==========================================
-# LaTeX / Documentação Interna
+# LaTeX / Internal Source & Build Artifacts
 # ==========================================
 docs/latex/
+*.tex
+*.bib
 *.aux
 *.bbl
 *.blg
+*.brf
 *.fdb_latexmk
 *.fls
+*.idx
+*.loe
 *.log
 *.out
 *.synctex.gz
@@ -21,7 +26,15 @@ docs/latex/
 # Contexto Local / Anotações
 # ==========================================
 context/
-pex_projetoscadastrados_*.pdf
+
+# ==========================================
+# Binários e Modelos Grandes
+# ==========================================
+*.gguf
+*.bin
+*.pt
+*.safetensors
+*.pth
 
 # ==========================================
 # Variáveis de Ambiente e Credenciais

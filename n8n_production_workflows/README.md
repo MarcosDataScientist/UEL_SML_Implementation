@@ -2,7 +2,7 @@
 
 This directory contains the production workflows and artificial intelligence agents **exported directly from the active n8n production instance** (SEFA-PR / NIGEP).
 
-They represent the reference implementation used by public servants to automate budgetary queries and served as the functional specification for our migration to local **Small Language Models (SLMs)** running on CPU in [`testbench/`](../testbench/).
+They represent the reference implementation used by public servants to automate budgetary queries and served as the functional specification for our migration to local **Small Language Models (SLMs)** running on CPU in [`test_environment/`](../test_environment/).
 
 ---
 
@@ -29,4 +29,4 @@ Originally, these production workflows relied on third-party commercial APIs (Gr
 2. **Predictable Zero-Cost Operations** without recurring token billing;
 3. **Strict CPU-Only Execution (Zero GPU)** on commodity on-premise hardware;
 
-We created the adapted local workflows in [`testbench/n8n_workflows/`](../testbench/n8n_workflows/), where all external cloud nodes were replaced with local **Ollama** nodes running compact, quantized SLMs (`llama3.2:1b`, `llama3.2:3b`, `qwen2.5:1.5b`, etc.).
+We created the adapted local workflows in [`test_environment/n8n_workflows/`](../test_environment/n8n_workflows/), where all external cloud nodes were replaced with local **Ollama** nodes running compact, quantized SLMs (`llama3.2:1b`, `llama3.2:3b`, `qwen2.5:1.5b`, etc.).

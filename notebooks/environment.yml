@@ -1,0 +1,16 @@
+name: uel-slm-notebooks
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.11
+  - numpy>=1.26
+  - pandas>=2.1
+  - matplotlib>=3.8
+  - seaborn>=0.13
+  - scikit-learn>=1.4
+  - ipykernel>=6.29
+  - jupyterlab>=4.1
+  - pip
+  - pip:
+      - sentence-transformers>=2.6

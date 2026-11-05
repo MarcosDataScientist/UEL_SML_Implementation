@@ -153,7 +153,7 @@
       {
         "json": {
           "headers": {
-            "host": "72.60.249.186:5678",
+            "host": "localhost:5678",
             "content-type": "application/json",
             "accept": "application/json",
             "content-length": "64"
@@ -164,7 +164,7 @@
             "message": "UEL",
             "sessionId": "4c5c9d54903998a9e4a6ca3bf0fd82bc"
           },
-          "webhookUrl": "http://72.60.249.186:5678/webhook/acao-orcamentaria",
+          "webhookUrl": "http://localhost:5678/webhook/acao-orcamentaria",
           "executionMode": "production"
         }
       }
