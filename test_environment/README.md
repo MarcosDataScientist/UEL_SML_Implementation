@@ -13,7 +13,7 @@ This environment is tailored to execute safely within the physical limits of our
 | Resource | Host Specification | Docker Allocation (Limits) | Role in Benchmark |
 | :--- | :--- | :--- | :--- |
 | **Processor** | Intel® Xeon® E5-2640 v2 (8C/16T @ 2.00 GHz) | Up to 6.0 Cores for Ollama | AVX-accelerated SIMD C++ inference (`llama.cpp`) |
-| **Memory (RAM)** | 8 GB DDR3 (2 × 4 GB) + 8 GB NVMe Swap | Ollama: 4 GB \| n8n: 1 GB \| PG: 512 MB | Preserves ~2.5 GB headroom for OS, Portainer & cAdvisor |
+| **Memory (RAM)** | 8 GB DDR3 (2 × 4 GB) + 8 GB NVMe Swap | Ollama: 4 GB \| n8n: 1 GB \| PG: 512 MB \| pgvector: 512 MB | Preserves ~2 GB headroom for OS, Portainer & cAdvisor |
 | **Graphics** | NVIDIA GeForce 210 (Legacy Display Only) | *Disabled* (Pure CPU) | Replicates commodity government office hardware |
 | **Network** | Docker bridge `lab-network` | Shared Home Lab network | Real-time metric scraping by cAdvisor and Prometheus |
 
@@ -43,20 +43,24 @@ This environment is tailored to execute safely within the physical limits of our
                                └────────────────────────────────────────────────────────┘
 ```
 
+A separate `pgvector` sidecar (host port `5434`) serves the optional semantic-search workflow. It has its own database and volume, so the budget tables in `orcamento_db` are untouched.
+
 ---
 
 ## 📁 Directory Structure
 
 ```
 test_environment/
-├── docker-compose.yml              # Container orchestration for Ollama, n8n, and Postgres
+├── docker-compose.yml              # Container orchestration for Ollama, n8n, Postgres, and pgvector
 ├── .env.example                    # Environment variable template
 ├── .env                            # Active environment configuration
 ├── Makefile                        # Lifecycle automation targets (make up, make pull-models, etc.)
 ├── sql/
-│   └── init.sql                    # Database schema, pg_trgm + unaccent extensions, and seed data
+│   ├── init.sql                    # Database schema, pg_trgm + unaccent extensions, and seed data
+│   └── data/naturezadespesa.csv    # 1,560-row reference table (lexical and semantic paths)
 ├── scripts/
-│   └── setup_models.sh             # Script to pull and verify candidate SLM models in Ollama
+│   ├── setup_models.sh             # Script to pull and verify candidate SLM models in Ollama
+│   └── semantic_search.sh          # Setup, import, ingest, smoke, and status for semantic search
 ├── model_selection_benchmark/      # Candidate SLM screening & workflow benchmark suite
 │   ├── README.md                   # Candidate screening report & n8n workflow benchmark guide
 │   ├── test_cases.json             # Budget domain test cases (protocol, queries, search stems)
@@ -72,6 +76,11 @@ test_environment/
 │       ├── local_ai_expense_nature_memory_kmedoids.json # Multi-turn workflow with K-Medoids & Mini-Memory
 │       ├── n8n_kmedoids_node.js                # In-memory K-Medoids (k=4) clustering engine (JS code)
 │       └── n8n_session_memory_router.js        # Pre-SLM Session Mini-Memory router (JS code)
+├── semantic_search/
+│   ├── README.md                   # Chat semantic-search workflow and operations
+│   ├── chat_semantic_search.json   # n8n workflow export
+│   ├── credentials/pgvector.json   # Fixed-id pgvector credential
+│   └── ingest/                     # Containerized 1,560-row index builder
 └── README.md                       # This documentation
 ```
 
@@ -84,7 +93,7 @@ test_environment/
 cd test_environment
 make up
 ```
-*Ensures `lab-network` exists and boots the three services with automated health checks.*
+*Ensures `lab-network` exists and boots Ollama, PostgreSQL, n8n, and the pgvector sidecar with automated health checks.*
 
 ### 2. Pull Candidate SLM Models
 ```bash
@@ -124,6 +133,29 @@ make test-direct MODEL=llama3.2:3b
 make test-n8n
 ```
 
+### 5. Semantic Search Workflow (Optional)
+
+The semantic-search workflow needs one extra setup step. It reuses the running
+n8n and Ollama containers and adds a pgvector index:
+
+```bash
+make semantic-setup
+```
+
+This pulls `qwen3:4b` and `qwen3-embedding:0.6b`, imports the
+`Chat Semantic Search` workflow, builds the 1,560-row index from
+`sql/data/naturezadespesa.csv`, and runs a smoke query. Later runs skip the
+model pull and leave an active workflow untouched.
+
+```bash
+make semantic-status
+make semantic-smoke
+```
+
+The chat webhook is `http://localhost:5678/webhook/semanticsearchflow01/chat`.
+See [`semantic_search/README.md`](semantic_search/README.md) for the workflow
+behavior, ports, and troubleshooting.
+
 ---
 
 ## 📊 Recorded Benchmark Metrics
@@ -156,3 +188,9 @@ Reports are documented in:
 | `make logs` | Follows logs from all services |
 | `make psql` | Launches an interactive PostgreSQL shell |
 | `make db-seed` | Reloads the database schema and seed data from `sql/init.sql` |
+| `make semantic-setup` | Pulls the semantic models, imports the workflow, builds the pgvector index, and smoke-tests it |
+| `make semantic-status` | Checks the semantic containers, models, index, and workflow state |
+| `make semantic-models` | Pulls `qwen3:4b` and `qwen3-embedding:0.6b` |
+| `make semantic-ingest` | Rebuilds the 1,560-row semantic index |
+| `make semantic-import` | Re-imports and publishes the semantic workflow and credential |
+| `make semantic-smoke` | Tests the semantic chat webhook |

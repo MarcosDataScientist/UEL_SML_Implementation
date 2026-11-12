@@ -1,0 +1,5 @@
+# The ingestion image only needs its own two files.
+*
+!ingest/
+!ingest/requirements.txt
+!ingest/ingest_naturezas.py

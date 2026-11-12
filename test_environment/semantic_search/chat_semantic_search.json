@@ -1,0 +1,736 @@
+{
+  "name": "Chat Semantic Search",
+  "nodes": [
+    {
+      "parameters": {
+        "public": true,
+        "mode": "hostedChat",
+        "options": {
+          "responseMode": "lastNode"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.5,
+      "position": [
+        -560,
+        0
+      ],
+      "id": "d2b1c3a4-0001-4b01-9001-000000000001",
+      "name": "When chat message received",
+      "webhookId": "semanticsearchflow01"
+    },
+    {
+      "parameters": {
+        "jsCode": "const chatInput = String($json.chatInput ?? '').trim();\nconst codeLabel = /^\\s*c[óo]digo\\s*[:=\\-]?\\s*/i;\nconst codeShape = /^[\\d\\s.\\-\\/]+$/;\nconst withoutLabel = chatInput.replace(codeLabel, '').trim();\nconst codigoDigits = withoutLabel.replace(/\\D/g, '');\nconst isCodeInput = codigoDigits.length >= 3 && codeShape.test(withoutLabel);\n\nreturn [{\n  json: {\n    chat_input: chatInput,\n    is_code_input: isCodeInput,\n    codigo_digits: codigoDigits,\n  },\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -304,
+        0
+      ],
+      "id": "d2b1c3a4-0013-4b13-9013-000000000013",
+      "name": "Detect Code Input"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "d2b1c3a4-0005-4b05-9005-000000000052",
+              "name": "similarity_floor",
+              "value": 0.55,
+              "type": "number"
+            },
+            {
+              "id": "d2b1c3a4-0005-4b05-9005-000000000053",
+              "name": "top_k",
+              "value": 20,
+              "type": "number"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        -48,
+        0
+      ],
+      "id": "d2b1c3a4-0005-4b05-9005-000000000005",
+      "name": "Search Config (floor, Top-K)"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "d2b1c3a4-0010-4b10-9010-000000000010",
+              "leftValue": "={{ $json.is_code_input }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        208,
+        0
+      ],
+      "id": "d2b1c3a4-0010-4b10-9010-000000000010",
+      "name": "Is Code Input?"
+    },
+    {
+      "parameters": {
+        "jsCode": "const digits = String($json.codigo_digits ?? '').trim();\nconst topK = Number($json.top_k);\n\nif (!digits || !/^\\d+$/.test(digits)) {\n  throw new Error('Código sem dígitos para a busca por código.');\n}\nif (!Number.isInteger(topK) || topK < 1) {\n  throw new Error('Search configuration is invalid: top_k must be a positive integer.');\n}\n\nreturn [{ json: { codigo_digits: digits, top_k: topK } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        464,
+        192
+      ],
+      "id": "d2b1c3a4-0011-4b11-9011-000000000011",
+      "name": "Build Code Query"
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT\n  id,\n  codigo,\n  descricao,\n  titulo,\n  detalhe,\n  embedding\nFROM natureza_linhas\nWHERE codigo_digits LIKE $1 || '%'\nORDER BY id\nLIMIT $2",
+        "options": {
+          "queryReplacement": "={{ [$json.codigo_digits, $json.top_k] }}"
+        }
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.7,
+      "position": [
+        720,
+        192
+      ],
+      "id": "d2b1c3a4-0012-4b12-9012-000000000012",
+      "name": "Search Candidatos (Code SQL)",
+      "alwaysOutputData": true,
+      "credentials": {
+        "postgres": {
+          "id": "pgvectorNatureza1",
+          "name": "pgvector natureza (mock)"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Build the extract/route request body. Keeping it here means the HTTP node's\n// expression stays a single JSON.stringify() without nested brace literals,\n// which n8n's `{{ ... }}` parser would read as its own closing brackets.\nconst chatInput = String($json.chat_input ?? '').trim();\nconst SYSTEM_PROMPT = `Você classifica mensagens de servidores públicos que procuram a natureza de despesa correta.\n\nResponda somente com JSON no formato {\"intencao\": \"<intencao>\", \"termo_busca\": \"<termo>\"}.\n\nIntenções possíveis:\n- \"saudacao\": APENAS cumprimentos e cortesias, como \"oi\", \"olá\", \"bom dia\", \"boa tarde\", \"boa noite\", \"tudo bem?\", \"obrigado\".\n- \"ajuda\": APENAS perguntas sobre como usar o assistente ou sobre o que é natureza de despesa, como \"como faço para buscar?\", \"como funciona?\", \"o que é natureza de despesa?\", \"me ajuda a usar isso\", \"onde digito o código?\".\n- \"busca\": TODO o resto. Qualquer descrição de gasto, material, serviço ou código, inclusive palavras isoladas, termos desconhecidos e texto sem sentido.\n\nRegras da intenção:\n- Se a mensagem não for claramente um cumprimento, NÃO use \"saudacao\".\n- Se a mensagem não for claramente uma pergunta sobre o funcionamento ou sobre o conceito, NÃO use \"ajuda\".\n- Na dúvida entre \"busca\" e as outras intenções, use \"busca\".\n\nPara \"busca\", extraia o termo central que descreve o gasto e descarte verbos de intenção e palavras funcionais (\"quero\", \"preciso\", \"comprar\", \"adquirir\", \"de\", \"para\").\nPreserve um termo curto e claro como o usuário digitou (por exemplo, \"gasolina\" continua \"gasolina\"; \"zqxjvkw\" continua \"zqxjvkw\").\nCorrija erros de ortografia evidentes e use minúsculas com acentos corretos (por exemplo, \"cerviso de limpesa\" vira \"serviço de limpeza\").\nUse no máximo 3 palavras e mantenha o sentido da mensagem.\nNunca invente um termo que não esteja relacionado à mensagem.\n\nExemplos:\n- \"oi\" -> {\"intencao\": \"saudacao\", \"termo_busca\": \"\"}\n- \"bom dia\" -> {\"intencao\": \"saudacao\", \"termo_busca\": \"\"}\n- \"como faço para buscar?\" -> {\"intencao\": \"ajuda\", \"termo_busca\": \"\"}\n- \"o que é natureza de despesa?\" -> {\"intencao\": \"ajuda\", \"termo_busca\": \"\"}\n- \"gasolina\" -> {\"intencao\": \"busca\", \"termo_busca\": \"gasolina\"}\n- \"quero comprar gasolina\" -> {\"intencao\": \"busca\", \"termo_busca\": \"gasolina\"}\n- \"zqxjvkw\" -> {\"intencao\": \"busca\", \"termo_busca\": \"zqxjvkw\"}\n- \"teste\" -> {\"intencao\": \"busca\", \"termo_busca\": \"teste\"}\n\nPara \"saudacao\" e \"ajuda\", use termo_busca vazio.`;\n\nreturn [{\n  json: {\n    chat_input: chatInput,\n    request_body: {\n      model: 'qwen3:4b',\n      messages: [\n        { role: 'system', content: SYSTEM_PROMPT },\n        { role: 'user', content: chatInput },\n      ],\n      stream: false,\n      think: false,\n      format: {\n        type: 'object',\n        properties: {\n          intencao: { type: 'string', enum: ['busca', 'saudacao', 'ajuda'] },\n          termo_busca: { type: 'string' },\n        },\n        required: ['intencao', 'termo_busca'],\n        additionalProperties: false,\n      },\n      options: { temperature: 0, num_ctx: 4096 },\n      keep_alive: '30m',\n    },\n  },\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        464,
+        -192
+      ],
+      "id": "d2b1c3a4-0002-4b02-9002-000000000002",
+      "name": "Build Chat Request"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://ollama:11434/api/chat",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify($json.request_body) }}",
+        "options": {
+          "timeout": 180000
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        720,
+        -192
+      ],
+      "id": "d2b1c3a4-0003-4b03-9003-000000000003",
+      "name": "Extract Termo (LLM)"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Turn the extract/route model's reply into an intenção and a single termo_busca.\nconst userText = String($('Build Chat Request').first().json.chat_input ?? '').trim();\nconst content = $json?.message?.content ?? $json?.output ?? '';\nconst raw = typeof content === 'string' ? content : JSON.stringify(content ?? '');\n\nlet parsed = null;\nconst first = raw.indexOf('{');\nconst last = raw.lastIndexOf('}');\nif (first !== -1 && last > first) {\n  try {\n    parsed = JSON.parse(raw.slice(first, last + 1));\n  } catch (error) {\n    // fall through to the plain-text branch\n  }\n}\n\nlet term = parsed ? String(parsed?.termo_busca ?? '') : '';\nif (!parsed) {\n  term = raw.split(/\\r?\\n/).map((line) => line.trim()).filter(Boolean)[0] || '';\n}\nterm = term.replace(/^termo[_\\s-]?busca\\s*[:=]\\s*/i, '');\nterm = term.replace(/^[\"'`\\u201c\\u201d]+|[\"'`\\u201c\\u201d]+$/g, '').trim();\n\n// Anything the model does not explicitly route as greeting/help is a search.\nconst normalized = String(parsed?.intencao ?? '')\n  .normalize('NFD').replace(/[\\u0300-\\u036f]/g, '').toLowerCase().trim();\nconst intencao = normalized === 'saudacao' || normalized === 'ajuda' ? normalized : 'busca';\nif (intencao !== 'busca') {\n  term = '';\n} else if (!term) {\n  term = userText;\n}\n\nreturn [{ json: { intencao, termo_busca: term, chat_input: userText } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        976,
+        -192
+      ],
+      "id": "d2b1c3a4-0004-4b04-9004-000000000004",
+      "name": "Parse Termo"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "d2b1c3a4-0014-4b14-9014-000000000014",
+              "leftValue": "={{ $json.intencao }}",
+              "rightValue": "busca",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        1232,
+        -192
+      ],
+      "id": "d2b1c3a4-0014-4b14-9014-000000000014",
+      "name": "Is Search?"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Greeting and help are answered without retrieval: fixed Portuguese text only.\nconst ORIENTATION = 'Escreva palavras chave para a natureza de despesa ou código parcial ou integral\\nExemplos: Gasolina, Material gráfico, Serviço de limpeza predial Pessoa Física, Serviços de terceiros Pessoa Jurídica, Software de Gestão, Reforma de Telhado, Papel, 3.3.90.30, 339030, 339 ...';\nconst HELP = 'Digite uma palavra-chave ou o código da natureza de despesa e eu faço a busca para você.';\n\nconst intencao = String($json.intencao ?? '').trim();\nconst reply = intencao === 'ajuda' ? HELP + '\\n\\n' + ORIENTATION : ORIENTATION;\n\nreturn [{ json: { output: reply, text: reply } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1488,
+        -384
+      ],
+      "id": "d2b1c3a4-0015-4b15-9015-000000000015",
+      "name": "Format Orientation"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://ollama:11434/api/embed",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ model: 'qwen3-embedding:0.6b', input: 'Instruct: Retrieve expense nature descriptions matching the query\\nQuery: ' + $json.termo_busca, keep_alive: '30m', options: { num_gpu: 0 } }) }}",
+        "options": {
+          "timeout": 120000
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1488,
+        -192
+      ],
+      "id": "d2b1c3a4-0006-4b06-9006-000000000006",
+      "name": "Embed Termo"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Join the query embedding with the tunable search configuration.\nconst config = $('Search Config (floor, Top-K)').first().json;\nconst embeddings = $json.embeddings;\n\nif (!Array.isArray(embeddings) || !Array.isArray(embeddings[0]) || embeddings[0].length === 0) {\n  throw new Error('Ollama returned no embedding for the search term.');\n}\n\nconst floor = Number(config.similarity_floor);\nconst topK = Number(config.top_k);\nif (!Number.isFinite(floor) || !Number.isInteger(topK) || topK < 1) {\n  throw new Error('Search configuration is invalid: similarity_floor must be a number and top_k a positive integer.');\n}\n\nreturn [{\n  json: {\n    termo_busca: String($('Parse Termo').first().json?.termo_busca ?? ''),\n    similarity_floor: floor,\n    top_k: topK,\n    vector_literal: JSON.stringify(embeddings[0].map(Number)),\n  },\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1744,
+        -192
+      ],
+      "id": "d2b1c3a4-0007-4b07-9007-000000000007",
+      "name": "Build Vector Literal"
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT\n  id,\n  codigo,\n  descricao,\n  titulo,\n  detalhe,\n  embedding\nFROM natureza_linhas\nWHERE 1 - (embedding <=> $1::vector) >= $2\nORDER BY embedding <=> $1::vector, id\nLIMIT $3",
+        "options": {
+          "queryReplacement": "={{ [$json.vector_literal, $json.similarity_floor, $json.top_k] }}"
+        }
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.7,
+      "position": [
+        2000,
+        -192
+      ],
+      "id": "d2b1c3a4-0008-4b08-9008-000000000008",
+      "name": "Search Candidatos (Semantic SQL)",
+      "alwaysOutputData": true,
+      "credentials": {
+        "postgres": {
+          "id": "pgvectorNatureza1",
+          "name": "pgvector natureza (mock)"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Render the reply deterministically: result rows never reach a model.\nconst reply = String($json.reply ?? '');\n\nreturn [{ json: { output: reply, text: reply } }];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2768,
+        128
+      ],
+      "id": "d2b1c3a4-0009-4b09-9009-000000000009",
+      "name": "Format Results"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Decide the reply shape from the Candidatos: none, one to seven, or too many.\n// Clustering is deterministic and only short Descrição/Título names ever reach\n// the naming model (ADR-0003).\n\nconst rows = $input.all()\n  .map((item) => item.json)\n  .filter((row) => row && row.codigo);\n\nconst PASSO3_SEPARATOR = '-'.repeat(48);\nconst NOT_FOUND = 'Não encontrei esta despesa no banco de dados. Tente descrever de outra forma, como o tipo do material ou serviço.';\nconst CLOSING = 'Algum corresponde ao que você precisa? Posso refinar a busca.';\nconst MAX_BLOCKS = 7;\nconst MAX_ASSUNTOS = 5;\n// Below this silhouette a grouping has no genuine structure, so every\n// Candidato is shown instead of forcing arbitrary Assuntos.\nconst MIN_SILHOUETTE = 0.1;\nconst KMEANS_SEED = 0x5eed;\nconst MAX_ITERATIONS = 100;\n\nconst cappedNotice = (limit) => `Os resultados foram limitados aos ${limit} mais relevantes. Refine o termo de busca para ver outras opções.`;\n\nconst renderBlock = (row) => [\n  PASSO3_SEPARATOR,\n  `Código: ${row.codigo ?? '-'}`,\n  `Descrição: ${row.descricao ?? '-'}`,\n  `Título: ${row.titulo || '-'}`,\n  `Detalhe: ${row.detalhe || '-'}`,\n  PASSO3_SEPARATOR,\n].join('\\n');\n\n// The stored offer needs the session and the search term; both retrieval paths\n// reach this node, so resolve the term from whichever branch actually ran.\nconst readTermoBusca = () => {\n  if ($('Build Vector Literal').isExecuted) {\n    return String($('Build Vector Literal').first().json?.termo_busca ?? '').trim();\n  }\n  if ($('Build Code Query').isExecuted) {\n    return String($('Build Code Query').first().json?.codigo_digits ?? '').trim();\n  }\n  return '';\n};\nconst termoBusca = readTermoBusca();\nconst sessionId = String($('When chat message received').first().json?.sessionId ?? '').trim();\nconst topK = Number($('Search Config (floor, Top-K)').first().json?.top_k);\n// Retrieval is capped when it returns exactly Top-K rows; the reply says so.\nconst capped = Number.isInteger(topK) && topK > 0 && rows.length >= topK;\n\nconst emit = (reply) => [{ json: { needs_assuntos: false, capped, top_k: topK, reply, output: reply, text: reply, session_id: sessionId, termo_busca: termoBusca } }];\nconst renderAll = (candidates) => {\n  const blocks = candidates.map(renderBlock).join('\\n\\n');\n  const notice = capped ? cappedNotice(topK) + '\\n\\n' : '';\n  return blocks + '\\n\\n' + notice + CLOSING;\n};\n\nif (rows.length === 0) return emit(NOT_FOUND);\nif (rows.length <= MAX_BLOCKS) return emit(renderAll(rows));\n\nconst parseEmbedding = (value) => {\n  const parsed = Array.isArray(value) ? value : JSON.parse(String(value ?? '[]'));\n  if (!Array.isArray(parsed) || parsed.length === 0) {\n    throw new Error('Candidato sem embedding válido para o agrupamento.');\n  }\n  return parsed.map(Number);\n};\n\nconst normalize = (vector) => {\n  let norm = 0;\n  for (const value of vector) norm += value * value;\n  norm = Math.sqrt(norm);\n  if (!Number.isFinite(norm) || norm === 0) {\n    throw new Error('Candidato com embedding inválido para o agrupamento.');\n  }\n  return vector.map((value) => value / norm);\n};\n\nconst distance = (a, b) => {\n  let dot = 0;\n  for (let index = 0; index < a.length; index += 1) dot += a[index] * b[index];\n  return 1 - dot;\n};\n\n// mulberry32: a fixed seed makes Assunto grouping reproducible across runs.\nconst makeRandom = (seed) => {\n  let state = seed >>> 0;\n  return () => {\n    state = (state + 0x6d2b79f5) >>> 0;\n    let value = state;\n    value = Math.imul(value ^ (value >>> 15), value | 1);\n    value ^= value + Math.imul(value ^ (value >>> 7), value | 61);\n    return ((value ^ (value >>> 14)) >>> 0) / 4294967296;\n  };\n};\n\nconst initCenters = (vectors, k, random) => {\n  const centers = [vectors[Math.floor(random() * vectors.length)]];\n  while (centers.length < k) {\n    const weights = vectors.map((vector) => {\n      const nearest = Math.min(...centers.map((center) => distance(vector, center)));\n      return nearest * nearest;\n    });\n    const total = weights.reduce((sum, weight) => sum + weight, 0);\n    if (!Number.isFinite(total) || total === 0) return centers;\n    let target = random() * total;\n    let index = 0;\n    while (index < weights.length - 1 && target > weights[index]) {\n      target -= weights[index];\n      index += 1;\n    }\n    centers.push(vectors[index]);\n  }\n  return centers;\n};\n\nconst assign = (vectors, centers) => vectors.map((vector) => {\n  let chosen = 0;\n  let best = Infinity;\n  centers.forEach((center, index) => {\n    const candidate = distance(vector, center);\n    if (candidate < best) {\n      best = candidate;\n      chosen = index;\n    }\n  });\n  return chosen;\n});\n\nconst kmeans = (vectors, k, random) => {\n  const centers = initCenters(vectors, k, random);\n  if (centers.length < k) return null;\n  let labels = null;\n  for (let iteration = 0; iteration < MAX_ITERATIONS; iteration += 1) {\n    const next = assign(vectors, centers);\n    if (labels && next.every((label, index) => label === labels[index])) break;\n    labels = next;\n    const sums = Array.from({ length: k }, () => new Array(vectors[0].length).fill(0));\n    const counts = new Array(k).fill(0);\n    labels.forEach((label, index) => {\n      counts[label] += 1;\n      const vector = vectors[index];\n      for (let dimension = 0; dimension < vector.length; dimension += 1) {\n        sums[label][dimension] += vector[dimension];\n      }\n    });\n    for (let cluster = 0; cluster < k; cluster += 1) {\n      if (!counts[cluster]) return null;\n      centers[cluster] = normalize(sums[cluster]);\n    }\n  }\n  return labels;\n};\n\nconst pairwiseDistances = (vectors) => vectors.map((a) => vectors.map((b) => distance(a, b)));\n\nconst silhouette = (distances, labels) => {\n  let total = 0;\n  for (let index = 0; index < labels.length; index += 1) {\n    const own = labels[index];\n    let ownSum = 0;\n    let ownCount = 0;\n    const others = new Map();\n    for (let other = 0; other < labels.length; other += 1) {\n      if (other === index) continue;\n      if (labels[other] === own) {\n        ownSum += distances[index][other];\n        ownCount += 1;\n      } else {\n        const entry = others.get(labels[other]) || [0, 0];\n        entry[0] += distances[index][other];\n        entry[1] += 1;\n        others.set(labels[other], entry);\n      }\n    }\n    if (!ownCount || others.size === 0) return -Infinity;\n    let nearest = Infinity;\n    for (const [sum, count] of others.values()) {\n      nearest = Math.min(nearest, sum / count);\n    }\n    const a = ownSum / ownCount;\n    const denominator = Math.max(a, nearest);\n    total += denominator === 0 ? 0 : (nearest - a) / denominator;\n  }\n  return total / labels.length;\n};\n\nconst chooseClustering = (vectors) => {\n  const maxK = Math.min(MAX_ASSUNTOS, Math.floor(vectors.length / 2));\n  if (maxK < 2) return null;\n  const distances = pairwiseDistances(vectors);\n  let best = null;\n  for (let k = 2; k <= maxK; k += 1) {\n    const labels = kmeans(vectors, k, makeRandom(KMEANS_SEED + k));\n    if (!labels) continue;\n    const sizes = new Array(k).fill(0);\n    labels.forEach((label) => { sizes[label] += 1; });\n    if (sizes.some((size) => size < 2)) continue;\n    const score = silhouette(distances, labels);\n    if (!Number.isFinite(score)) continue;\n    if (!best || score > best.score + 1e-12) best = { score, labels };\n  }\n  if (!best || best.score < MIN_SILHOUETTE) return null;\n  return { ...best, distances };\n};\n\nconst clusterRows = (vectors, clustering) => {\n  const groups = Array.from({ length: Math.max(...clustering.labels) + 1 }, () => []);\n  clustering.labels.forEach((label, index) => groups[label].push(index));\n  return groups.map((indices) => {\n    const local = indices.map((row) => indices.map((column) => clustering.distances[row][column]));\n    const sums = local.map((row) => row.reduce((sum, value) => sum + value, 0));\n    let medoidPos = 0;\n    for (let position = 1; position < sums.length; position += 1) {\n      if (sums[position] < sums[medoidPos]) medoidPos = position;\n    }\n    const ordered = indices\n      .map((row, position) => ({ row, distance: local[medoidPos][position] }))\n      .sort((a, b) => a.distance - b.distance || a.row - b.row)\n      .slice(0, 3)\n      .map((entry) => rows[entry.row]);\n    return {\n      linha_ids: indices.map((row) => rows[row].id),\n      medoid: rows[indices[medoidPos]],\n      representatives: ordered,\n    };\n  });\n};\n\nlet vectors;\ntry {\n  vectors = rows.map((row) => normalize(parseEmbedding(row.embedding)));\n} catch {\n  return emit(renderAll(rows));\n}\n\nconst clustering = chooseClustering(vectors);\nif (!clustering) {\n  return emit(renderAll(rows));\n}\n\nconst groups = clusterRows(vectors, clustering);\nconst describe = (row) => [row.descricao, row.titulo]\n  .map((value) => String(value ?? '').trim())\n  .filter(Boolean)\n  .join(' | ');\n\nconst prompt = groups.map((group, index) => [\n  `Assunto ${index + 1}:`,\n  ...group.representatives.map((row) => `- ${describe(row) || '(sem descrição)'}`),\n].join('\\n')).join('\\n\\n');\n\nconst SYSTEM_PROMPT = `Você nomeia assuntos de naturezas de despesa públicas brasileiras.\n\nReceberá vários assuntos, cada um com algumas descrições de linhas. Dê a cada assunto um rótulo curto, em português, com 2 a 4 palavras, em forma de substantivo (por exemplo: \"Combustíveis\", \"Material de limpeza\", \"Serviços gráficos\"). Os rótulos devem ser distintos entre si e não podem repetir o número do assunto.\n\nResponda somente com JSON no formato {\"assuntos\": [{\"indice\": 1, \"rotulo\": \"...\"}]}, com um item para cada assunto recebido, na mesma ordem.`;\n\nconst namingModel = String($('When chat message received').first().json?.naming_model ?? '').trim() || 'qwen3:4b';\n\nconst naming_request = {\n  model: namingModel,\n  messages: [\n    { role: 'system', content: SYSTEM_PROMPT },\n    { role: 'user', content: prompt },\n  ],\n  stream: false,\n  think: false,\n  format: {\n    type: 'object',\n    properties: {\n      assuntos: {\n        type: 'array',\n        minItems: groups.length,\n        maxItems: groups.length,\n        items: {\n          type: 'object',\n          properties: {\n            indice: { type: 'integer' },\n            rotulo: { type: 'string' },\n          },\n          required: ['indice', 'rotulo'],\n          additionalProperties: false,\n        },\n      },\n    },\n    required: ['assuntos'],\n    additionalProperties: false,\n  },\n  options: { temperature: 0, num_ctx: 4096 },\n  keep_alive: '30m',\n};\n\nreturn [{\n  json: {\n    needs_assuntos: true,\n    session_id: sessionId,\n    termo_busca: termoBusca,\n    capped,\n    top_k: topK,\n    assuntos: groups.map((group) => ({\n      linha_ids: group.linha_ids,\n      fallback_label: group.medoid.descricao,\n    })),\n    naming_request,\n    reply: '',\n    output: '',\n    text: '',\n  },\n}];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2256,
+        0
+      ],
+      "id": "d2b1c3a4-0016-4b16-9016-000000000016",
+      "name": "Build Assuntos"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "d2b1c3a4-0017-4b17-9017-000000000017",
+              "leftValue": "={{ $json.needs_assuntos }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        2512,
+        0
+      ],
+      "id": "d2b1c3a4-0017-4b17-9017-000000000017",
+      "name": "Has Many Candidatos?"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://ollama:11434/api/chat",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify($json.naming_request) }}",
+        "options": {
+          "timeout": 180000
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2768,
+        -128
+      ],
+      "id": "d2b1c3a4-0018-4b18-9018-000000000018",
+      "name": "Name Assuntos (LLM)",
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Turn the naming call into lettered choices. A failed or malformed call falls\n// back to each Assunto's medoid Descrição; the reply is always deterministic.\n\nconst groups = $('Build Assuntos').first().json.assuntos ?? [];\nconst content = $json?.message?.content ?? '';\nconst raw = typeof content === 'string' ? content : JSON.stringify(content ?? '');\n\nlet parsed = null;\nconst first = raw.indexOf('{');\nconst last = raw.lastIndexOf('}');\nif (first !== -1 && last > first) {\n  try {\n    parsed = JSON.parse(raw.slice(first, last + 1));\n  } catch {\n    parsed = null;\n  }\n}\n\nconst named = new Map();\nif (parsed && Array.isArray(parsed.assuntos)) {\n  for (const item of parsed.assuntos) {\n    const index = Number(item?.indice);\n    const label = String(item?.rotulo ?? '').trim();\n    if (Number.isInteger(index) && index >= 1 && index <= groups.length && label) {\n      named.set(index, label);\n    }\n  }\n}\n\nconst normalizeLabel = (label) => String(label ?? '')\n  .normalize('NFD')\n  .replace(/[\\u0300-\\u036f]/g, '')\n  .toLowerCase();\n\nconst sanitizeLabel = (label) => {\n  let text = String(label ?? '').replace(/\\s+/g, ' ').trim();\n  text = text.replace(/^[\"'`\\u201c\\u201d]+|[\"'`\\u201c\\u201d]+$/g, '');\n  text = text.replace(/^\\d+\\s*[.)\\-–—:]\\s*/, '');\n  text = text.replace(/^[A-Za-z]\\s*[.)\\-–—:]\\s*/, '');\n  text = text.replace(/[.;:,]+$/, '').trim();\n  if (text.length > 60) {\n    text = text.slice(0, 60).replace(/\\s+\\S*$/, '').trim();\n  }\n  return text;\n};\n\nconst used = new Set();\nconst assuntos = groups.map((group, index) => {\n  const modelLabel = sanitizeLabel(named.get(index + 1));\n  const base = modelLabel || sanitizeLabel(group.fallback_label) || 'Assunto';\n  let label = base;\n  let suffix = 0;\n  while (used.has(normalizeLabel(label))) {\n    suffix += 1;\n    label = `${base} · ${suffix}`;\n  }\n  used.add(normalizeLabel(label));\n  return {\n    letter: String.fromCharCode(65 + index),\n    label,\n    count: Array.isArray(group.linha_ids) ? group.linha_ids.length : 0,\n    linha_ids: group.linha_ids,\n  };\n});\n\n// Persist only labels and Linha ids: the rows themselves are never stored, and\n// expansion re-queries them from the authoritative table (ADR-0003). The clock\n// is last activity, refreshed by every Seleção.\nconst groupData = $('Build Assuntos').first().json;\nconst sessionId = String(groupData?.session_id ?? '').trim();\nif (sessionId && assuntos.length > 0) {\n  const store = $getWorkflowStaticData('global');\n  if (!store.desambiguacoes || typeof store.desambiguacoes !== 'object' || Array.isArray(store.desambiguacoes)) {\n    store.desambiguacoes = {};\n  }\n  store.desambiguacoes[sessionId] = {\n    last_activity_at: Date.now(),\n    termo_busca: String(groupData?.termo_busca ?? ''),\n    assuntos: assuntos.map((assunto) => ({\n      label: assunto.label,\n      linha_ids: assunto.linha_ids,\n    })),\n  };\n}\n\nconst choices = assuntos\n  .map((assunto) => `${assunto.letter} — ${assunto.label} (${assunto.count})`)\n  .join('\\n');\nconst paragraphs = [\n  `Encontrei muitos resultados para essa busca. Separei os candidatos em assuntos:\\n\\n${choices}`,\n];\nif (groupData?.capped) {\n  paragraphs.push(`Os resultados foram limitados aos ${Number(groupData?.top_k)} mais relevantes. Refine o termo de busca para ver outras opções.`);\n}\nparagraphs.push('Responda com a letra (A, B, C), o ordinal (primeiro, segundo, terceiro) ou o nome do assunto. Para uma busca diferente, digite um novo termo.');\nconst reply = paragraphs.join('\\n\\n');\n\nreturn [{ json: { output: reply, text: reply, assuntos } }];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3024,
+        -128
+      ],
+      "id": "d2b1c3a4-0019-4b19-9019-000000000019",
+      "name": "Parse Assuntos"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Load the pending Desambiguação for this chat session and decide whether the\n// message is a Seleção. A Seleção expands one Assunto and consumes it; the\n// Desambiguação survives until every Assunto is consumed, a new Termo de busca\n// arrives, or the session goes idle past its time limit.\n\nconst IDLE_TTL_MS = 10 * 60 * 1000;\n\nconst chatInput = String($json.chatInput ?? '').trim();\nconst sessionId = String($json.sessionId ?? '').trim();\nconst configuredTtl = Number($json.offer_ttl_ms);\nconst ttl = Number.isFinite(configuredTtl) && configuredTtl > 0 ? configuredTtl : IDLE_TTL_MS;\nconst now = Date.now();\n\nconst store = $getWorkflowStaticData('global');\nif (!store.desambiguacoes || typeof store.desambiguacoes !== 'object' || Array.isArray(store.desambiguacoes)) {\n  store.desambiguacoes = {};\n}\nconst desambiguacoes = store.desambiguacoes;\n\n// Expired Desambiguações are never used, and pruning keeps the static data\n// small. The clock is last activity, so an engaged session never expires.\nfor (const key of Object.keys(desambiguacoes)) {\n  const lastActivity = Number(desambiguacoes[key]?.last_activity_at);\n  if (!Number.isFinite(lastActivity) || now - lastActivity >= IDLE_TTL_MS) delete desambiguacoes[key];\n}\n\nconst desambiguacao = sessionId ? desambiguacoes[sessionId] : undefined;\nconst assuntos = Array.isArray(desambiguacao?.assuntos) ? desambiguacao.assuntos : [];\nconst lastActivityAt = Number(desambiguacao?.last_activity_at);\nconst isDesambiguacaoValid = Number.isFinite(lastActivityAt)\n  && now - lastActivityAt < ttl\n  && assuntos.length > 0\n  && assuntos.every((assunto) => {\n    const ids = Array.isArray(assunto?.linha_ids) ? assunto.linha_ids : [];\n    return Boolean(String(assunto?.label ?? '').trim())\n      && ids.length > 0\n      && ids.every((id) => Number.isInteger(Number(id)) && Number(id) > 0);\n  });\n\nconst canonical = (text) => String(text ?? '')\n  .normalize('NFD').replace(/[\\u0300-\\u036f]/g, '')\n  .toLowerCase().replace(/[^a-z0-9]+/g, ' ')\n  .trim();\n\nconst ORDINAIS = {\n  primeiro: 0, primeira: 0,\n  segundo: 1, segunda: 1,\n  terceiro: 2, terceira: 2,\n  quarto: 3, quarta: 3,\n  quinto: 4, quinta: 4,\n};\n\nconst resolveChoice = (value) => {\n  if (!value) return -1;\n  if (/^[a-z]$/.test(value)) return value.charCodeAt(0) - 97;\n  if (/^[1-5]$/.test(value)) return Number(value) - 1;\n  if (Object.prototype.hasOwnProperty.call(ORDINAIS, value)) return ORDINAIS[value];\n  return assuntos.findIndex((assunto) => canonical(assunto?.label) === value);\n};\n\n// A Seleção is a bare option token, an ordinal, \"opção x\", or an Assunto label.\n// Anything else falls through to a fresh search, never to a model-based guess.\nconst message = canonical(chatInput);\nconst withOption = message.match(/^opcao\\s+(.+)$/);\nconst choice = message ? resolveChoice(withOption ? withOption[1] : message) : -1;\n\nif (isDesambiguacaoValid && choice >= 0 && choice < assuntos.length) {\n  const chosen = assuntos[choice];\n  // Consume this Assunto only; the rest stay on offer. Letters are positional,\n  // so an Assunto is never removed from the array — re-selecting an expanded\n  // one re-renders it and leaves the consumed set unchanged.\n  if (!Number.isFinite(Number(chosen.expanded_at))) chosen.expanded_at = now;\n  desambiguacao.last_activity_at = now;\n\n  const remaining = assuntos\n    .map((assunto, index) => ({ assunto, index }))\n    .filter(({ assunto }) => !Number.isFinite(Number(assunto.expanded_at)))\n    .map(({ assunto, index }) => ({\n      letter: String.fromCharCode(65 + index),\n      label: String(assunto.label ?? ''),\n      count: Array.isArray(assunto.linha_ids) ? assunto.linha_ids.length : 0,\n    }));\n\n  // The Desambiguação ends on its own once every Assunto has been expanded.\n  if (remaining.length === 0) delete desambiguacoes[sessionId];\n\n  return [{\n    json: {\n      is_selecao: true,\n      session_id: sessionId,\n      chatInput,\n      selected_ids: chosen.linha_ids.map(Number),\n      remaining,\n    },\n  }];\n}\n\n// Any message that is not a Seleção is a new Termo de busca and discards the\n// pending Desambiguação.\nif (sessionId) delete desambiguacoes[sessionId];\nreturn [{\n  json: {\n    is_selecao: false,\n    session_id: sessionId,\n    chatInput,\n  },\n}];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -560,
+        -448
+      ],
+      "id": "d2b1c3a4-0020-4b20-9020-000000000020",
+      "name": "Load Desambiguação"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "d2b1c3a4-0021-4b21-9021-000000000021",
+              "leftValue": "={{ $json.is_selecao }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        -304,
+        -448
+      ],
+      "id": "d2b1c3a4-0021-4b21-9021-000000000021",
+      "name": "Is Seleção?"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Keep only the Linha ids of the chosen Assunto; they are re-queried below.\nconst raw = Array.isArray($json.selected_ids) ? $json.selected_ids : [];\nconst ids = raw\n  .map((value) => Number(value))\n  .filter((value) => Number.isInteger(value) && value > 0);\n\nif (ids.length === 0) {\n  throw new Error('Seleção sem Linhas para expandir.');\n}\n\nreturn [{ json: { linha_ids: ids.join(',') } }];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -48,
+        -448
+      ],
+      "id": "d2b1c3a4-0022-4b22-9022-000000000022",
+      "name": "Build Expansion Query"
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT\n  id,\n  codigo,\n  descricao,\n  titulo,\n  detalhe\nFROM natureza_linhas\nWHERE id = ANY(string_to_array($1, ',')::int[])\nORDER BY array_position(string_to_array($1, ',')::int[], id)",
+        "options": {
+          "queryReplacement": "={{ [$json.linha_ids] }}"
+        }
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.7,
+      "position": [
+        208,
+        -448
+      ],
+      "id": "d2b1c3a4-0023-4b23-9023-000000000023",
+      "name": "Search Linhas (Expansion SQL)",
+      "alwaysOutputData": true,
+      "credentials": {
+        "postgres": {
+          "id": "pgvectorNatureza1",
+          "name": "pgvector natureza (mock)"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Render the expanded Assunto's Linhas exactly like the PASSO 3 blocks. The\n// rows come from the table, re-queried by id, never from the stored offer.\nconst rows = $input.all()\n  .map((item) => item.json)\n  .filter((row) => row && row.codigo);\n\nconst SEPARATOR = '-'.repeat(48);\nconst CLOSING = 'Algum corresponde ao que você precisa? Posso refinar a busca.';\nconst NOT_FOUND = 'Não encontrei esta despesa no banco de dados. Tente descrever de outra forma, como o tipo do material ou serviço.';\nconst REMAINING_LEAD = 'Ainda posso abrir outros assuntos:';\nconst REMAINING_HINT = 'Responda com a letra ou o nome do assunto.';\n\n// Assuntos restantes live in the Desambiguação, not in this branch's SQL rows.\nconst remaining = Array.isArray($('Load Desambiguação').first().json?.remaining)\n  ? $('Load Desambiguação').first().json.remaining\n  : [];\nconst remainingBlock = remaining.length === 0 ? '' : [\n  REMAINING_LEAD,\n  ...remaining.map((assunto) => `${assunto.letter} — ${assunto.label} (${assunto.count})`),\n].join('\\n') + '\\n\\n' + REMAINING_HINT;\n\nconst renderBlock = (row) => [\n  SEPARATOR,\n  `Código: ${row.codigo ?? '-'}`,\n  `Descrição: ${row.descricao ?? '-'}`,\n  `Título: ${row.titulo || '-'}`,\n  `Detalhe: ${row.detalhe || '-'}`,\n  SEPARATOR,\n].join('\\n');\n\nif (rows.length === 0) {\n  return [{ json: { output: NOT_FOUND, text: NOT_FOUND } }];\n}\n\nconst reply = [rows.map(renderBlock).join('\\n\\n'), CLOSING, remainingBlock]\n  .filter(Boolean)\n  .join('\\n\\n');\nreturn [{ json: { output: reply, text: reply } }];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        464,
+        -448
+      ],
+      "id": "d2b1c3a4-0024-4b24-9024-000000000024",
+      "name": "Format Expansion"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "Load Desambiguação",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Detect Code Input": {
+      "main": [
+        [
+          {
+            "node": "Search Config (floor, Top-K)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Search Config (floor, Top-K)": {
+      "main": [
+        [
+          {
+            "node": "Is Code Input?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Is Code Input?": {
+      "main": [
+        [
+          {
+            "node": "Build Code Query",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Build Chat Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build Code Query": {
+      "main": [
+        [
+          {
+            "node": "Search Candidatos (Code SQL)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Search Candidatos (Code SQL)": {
+      "main": [
+        [
+          {
+            "node": "Build Assuntos",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build Chat Request": {
+      "main": [
+        [
+          {
+            "node": "Extract Termo (LLM)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract Termo (LLM)": {
+      "main": [
+        [
+          {
+            "node": "Parse Termo",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse Termo": {
+      "main": [
+        [
+          {
+            "node": "Is Search?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embed Termo": {
+      "main": [
+        [
+          {
+            "node": "Build Vector Literal",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build Vector Literal": {
+      "main": [
+        [
+          {
+            "node": "Search Candidatos (Semantic SQL)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Search Candidatos (Semantic SQL)": {
+      "main": [
+        [
+          {
+            "node": "Build Assuntos",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Is Search?": {
+      "main": [
+        [
+          {
+            "node": "Embed Termo",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Format Orientation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build Assuntos": {
+      "main": [
+        [
+          {
+            "node": "Has Many Candidatos?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Has Many Candidatos?": {
+      "main": [
+        [
+          {
+            "node": "Name Assuntos (LLM)",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Format Results",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Name Assuntos (LLM)": {
+      "main": [
+        [
+          {
+            "node": "Parse Assuntos",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Load Desambiguação": {
+      "main": [
+        [
+          {
+            "node": "Is Seleção?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Is Seleção?": {
+      "main": [
+        [
+          {
+            "node": "Build Expansion Query",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Detect Code Input",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build Expansion Query": {
+      "main": [
+        [
+          {
+            "node": "Search Linhas (Expansion SQL)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Search Linhas (Expansion SQL)": {
+      "main": [
+        [
+          {
+            "node": "Format Expansion",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "meta": {},
+  "tags": [],
+  "id": "semanticSearchFlow01"
+}
