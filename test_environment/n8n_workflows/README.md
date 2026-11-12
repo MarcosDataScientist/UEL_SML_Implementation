@@ -65,3 +65,11 @@ The table below outlines how each production agent maps to our local, containeri
    - For proposed multi-turn tests: `n8n_workflows/proposed/local_ai_expense_nature_memory_kmedoids.json`
 5. Activate the workflow and test using `make test-n8n` or `make test-memory-live`.
 
+---
+
+## Semantic search alternative
+
+The embedding-based [`Chat Semantic Search`](../semantic_search/README.md)
+workflow lives in its own directory because it needs a pgvector sidecar. It
+does not replace the lexical K-Medoids workflow above; both can be imported and
+active at the same time.

@@ -1,0 +1,4 @@
+# Only the direct dependencies needed by src/ingest_naturezas.py.
+# Pinned from a real install; see deploy/VERSIONS.md.
+requests==2.34.2
+psycopg2-binary==2.9.13
