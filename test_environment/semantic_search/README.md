@@ -34,8 +34,8 @@ database (`orcamento_db`) is never read or written by this workflow.
 
 - The stack from the parent directory must already run: `make up`.
 - Docker Engine or Docker Desktop with Compose v2.
-- 8 GB of RAM recommended. `qwen3:4b` plus the embedding model use about
-  3.5 GB; the rest of the stack uses about 1.5 GB.
+- 8 GB of RAM minimum, 12 GB recommended. `qwen3:4b` plus the embedding
+  model peak at about 4.6 GB; the rest of the stack uses about 1 GB.
 - About 4 GB of free disk for the two models, plus the images and volumes.
 - Internet access on the first run. Later runs work offline.
 
@@ -168,9 +168,11 @@ To change the database credentials, edit `.env`, update
 run `make semantic-setup`. The workflow nodes are bound to the credential id, so
 a mismatch fails at query time.
 
-The parent Compose file now sets `OLLAMA_MAX_LOADED_MODELS=2`. With the previous
-value of `1`, each embedding call evicted `qwen3:4b`, which made every chat turn
-reload the 4B model. Both models fit in the existing 4 GB Ollama limit.
+The parent Compose file sets `OLLAMA_MAX_LOADED_MODELS=2` and raises the Ollama
+memory limit to 6 GB. With `1`, each embedding call evicted `qwen3:4b`, which
+made every chat turn reload the 4B model. With the old 4 GB limit, the two
+resident models peak at about 4.6 GB and the embedding worker is OOM-killed on
+the first free-text query.
 
 ## Commands
 
