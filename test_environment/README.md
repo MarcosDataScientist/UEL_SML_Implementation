@@ -13,7 +13,7 @@ This environment is tailored to execute safely within the physical limits of our
 | Resource | Host Specification | Docker Allocation (Limits) | Role in Benchmark |
 | :--- | :--- | :--- | :--- |
 | **Processor** | Intel® Xeon® E5-2640 v2 (8C/16T @ 2.00 GHz) | Up to 6.0 Cores for Ollama | AVX-accelerated SIMD C++ inference (`llama.cpp`) |
-| **Memory (RAM)** | 8 GB DDR3 (2 × 4 GB) + 8 GB NVMe Swap | Ollama: 4 GB \| n8n: 1 GB \| PG: 512 MB \| pgvector: 512 MB | Preserves ~2 GB headroom for OS, Portainer & cAdvisor |
+| **Memory (RAM)** | 8 GB DDR3 (2 × 4 GB) + 8 GB NVMe Swap | Ollama: 6 GB \| n8n: 1 GB \| PG: 512 MB \| pgvector: 512 MB | Semantic models peak near 4.6 GB; the 8 GB host swaps during the first query |
 | **Graphics** | NVIDIA GeForce 210 (Legacy Display Only) | *Disabled* (Pure CPU) | Replicates commodity government office hardware |
 | **Network** | Docker bridge `lab-network` | Shared Home Lab network | Real-time metric scraping by cAdvisor and Prometheus |
 

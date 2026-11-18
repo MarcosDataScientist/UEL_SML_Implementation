@@ -18,7 +18,9 @@ services:
     deploy:
       resources:
         limits:
-          memory: 4096M
+          # qwen3:4b plus the embedding model peak around 4.6 GB. A 4 GB
+          # limit OOM-kills llama-server on the first free-text query.
+          memory: 6144M
           cpus: '6.0'
         reservations:
           memory: 1024M
