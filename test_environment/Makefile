@@ -1,4 +1,5 @@
-.PHONY: help setup-network up down restart status logs logs-ollama logs-n8n register-finetuned pull-models test-dry-run test-direct test-n8n test-memory test-memory-live psql db-seed semantic-setup semantic-status semantic-models semantic-ingest semantic-import semantic-smoke funcao-setup funcao-status funcao-models funcao-ingest funcao-import funcao-smoke
+.PHONY: help setup-network up down restart status logs logs-ollama logs-n8n register-finetuned pull-models test-dry-run test-direct test-n8n test-memory test-memory-live psql db-seed semantic-setup semantic-status semantic-models semantic-ingest semantic-import semantic-smoke funcao-setup funcao-status funcao-models funcao-ingest funcao-import funcao-smoke \
+        funcao-lexical-import funcao-lexical-smoke
 
 MODEL ?= qwen2.5-budget:1.5b
 MODELS ?= qwen2.5-budget:1.5b,qwen2.5:1.5b,llama3.2:1b
@@ -33,12 +34,14 @@ help:
 	@echo "make semantic-ingest - Rebuilds the 1,560-row semantic pgvector index"
 	@echo "make semantic-import - Re-imports the semantic workflow and credential"
 	@echo "make semantic-smoke  - Tests the semantic chat webhook"
-	@echo "make funcao-setup   - Imports the Função workflow, pulls models, builds the index, smoke-tests"
-	@echo "make funcao-status  - Função/Subfunção health, models, index, and workflow state"
-	@echo "make funcao-models  - Pulls qwen3:4b and qwen3-embedding:0.6b"
-	@echo "make funcao-ingest  - Rebuilds the 29/83-row Função/Subfunção pgvector store"
-	@echo "make funcao-import  - Re-imports the Função workflow and credential"
-	@echo "make funcao-smoke   - Tests the Função chat webhook"
+	@echo "make funcao-setup          - Imports both Função workflows, pulls models, builds the index, smoke-tests both"
+	@echo "make funcao-status         - Função/Subfunção health, models, extensions, index, and both workflows"
+	@echo "make funcao-models         - Pulls qwen3:4b and qwen3-embedding:0.6b"
+	@echo "make funcao-import         - Re-imports the Função workflows and credential"
+	@echo "make funcao-lexical-import - Re-imports only the lexical Função workflow"
+	@echo "make funcao-ingest         - Rebuilds the 29/83-row Função/Subfunção pgvector store"
+	@echo "make funcao-smoke          - Tests the semantic Função chat webhook"
+	@echo "make funcao-lexical-smoke  - Tests the lexical Função chat webhook"
 	@echo "======================================================================"
 
 setup-network:
@@ -150,11 +153,17 @@ funcao-status:
 funcao-models:
 	./scripts/funcao_search.sh models
 
-funcao-ingest:
-	./scripts/funcao_search.sh ingest
-
 funcao-import:
 	./scripts/funcao_search.sh import
 
+funcao-lexical-import:
+	./scripts/funcao_search.sh import-lexical
+
+funcao-ingest:
+	./scripts/funcao_search.sh ingest
+
 funcao-smoke:
 	./scripts/funcao_search.sh smoke
+
+funcao-lexical-smoke:
+	./scripts/funcao_search.sh smoke-lexical
