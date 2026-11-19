@@ -13,7 +13,7 @@ This environment is tailored to execute safely within the physical limits of our
 | Resource | Host Specification | Docker Allocation (Limits) | Role in Benchmark |
 | :--- | :--- | :--- | :--- |
 | **Processor** | Intel® Xeon® E5-2640 v2 (8C/16T @ 2.00 GHz) | Up to 6.0 Cores for Ollama | AVX-accelerated SIMD C++ inference (`llama.cpp`) |
-| **Memory (RAM)** | 8 GB DDR3 (2 × 4 GB) + 8 GB NVMe Swap | Ollama: 4 GB \| n8n: 1 GB \| PG: 512 MB \| pgvector: 512 MB | Preserves ~2 GB headroom for OS, Portainer & cAdvisor |
+| **Memory (RAM)** | 8 GB DDR3 (2 × 4 GB) + 8 GB NVMe Swap | Ollama: 6 GB \| n8n: 1 GB \| PG: 512 MB \| pgvector: 512 MB | Semantic models peak near 4.6 GB; the 8 GB host swaps during the first query |
 | **Graphics** | NVIDIA GeForce 210 (Legacy Display Only) | *Disabled* (Pure CPU) | Replicates commodity government office hardware |
 | **Network** | Docker bridge `lab-network` | Shared Home Lab network | Real-time metric scraping by cAdvisor and Prometheus |
 
@@ -43,7 +43,7 @@ This environment is tailored to execute safely within the physical limits of our
                                └────────────────────────────────────────────────────────┘
 ```
 
-A separate `pgvector` sidecar (host port `5434`) serves the optional semantic-search workflow. It has its own database and volume, so the budget tables in `orcamento_db` are untouched.
+A separate `pgvector` sidecar (host port `5434`) serves the optional semantic-search and Função/Subfunção workflows in separate databases (`natureza_vectors` and `funcao_vectors`). It has its own volume, so the budget tables in `orcamento_db` are untouched.
 
 ---
 
@@ -57,10 +57,14 @@ test_environment/
 ├── Makefile                        # Lifecycle automation targets (make up, make pull-models, etc.)
 ├── sql/
 │   ├── init.sql                    # Database schema, pg_trgm + unaccent extensions, and seed data
-│   └── data/naturezadespesa.csv    # 1,560-row reference table (lexical and semantic paths)
+│   └── data/
+│       ├── naturezadespesa.csv     # 1,560-row reference table (lexical and semantic paths)
+│       ├── funcoes.csv             # 29-row Função reference table
+│       └── subfuncoes.csv          # 83-row Subfunção reference table
 ├── scripts/
 │   ├── setup_models.sh             # Script to pull and verify candidate SLM models in Ollama
-│   └── semantic_search.sh          # Setup, import, ingest, smoke, and status for semantic search
+│   ├── semantic_search.sh          # Setup, import, ingest, smoke, and status for semantic search
+│   └── funcao_search.sh            # Setup, import, ingest, smoke, and status for Função/Subfunção
 ├── model_selection_benchmark/      # Candidate SLM screening & workflow benchmark suite
 │   ├── README.md                   # Candidate screening report & n8n workflow benchmark guide
 │   ├── test_cases.json             # Budget domain test cases (protocol, queries, search stems)
@@ -81,6 +85,11 @@ test_environment/
 │   ├── chat_semantic_search.json   # n8n workflow export
 │   ├── credentials/pgvector.json   # Fixed-id pgvector credential
 │   └── ingest/                     # Containerized 1,560-row index builder
+├── funcao_search/
+│   ├── README.md                   # Chat Função/Subfunção workflow and operations
+│   ├── funcao_search.json          # n8n workflow export
+│   ├── credentials/pgvector-funcao.json # Fixed-id Função credential
+│   └── ingest/                     # Containerized 29/83-row index builder
 └── README.md                       # This documentation
 ```
 
@@ -156,6 +165,29 @@ The chat webhook is `http://localhost:5678/webhook/semanticsearchflow01/chat`.
 See [`semantic_search/README.md`](semantic_search/README.md) for the workflow
 behavior, ports, and troubleshooting.
 
+### 6. Função e Subfunção Search Workflow (Optional)
+
+The Função/Subfunção workflow reuses the same pgvector sidecar and the same two
+models, in its own `funcao_vectors` database:
+
+```bash
+make funcao-setup
+```
+
+This imports the `Chat Função e Subfunção` workflow, builds the 29-row função
+and 83-row subfunção store from `sql/data/funcoes.csv` and
+`sql/data/subfuncoes.csv`, and runs a smoke query. It skips the model pull when
+both models are already present.
+
+```bash
+make funcao-status
+make funcao-smoke
+```
+
+The chat webhook is `http://localhost:5678/webhook/funcaosearchflow01/chat`.
+See [`funcao_search/README.md`](funcao_search/README.md) for the workflow
+behavior, ports, and troubleshooting.
+
 ---
 
 ## 📊 Recorded Benchmark Metrics
@@ -194,3 +226,9 @@ Reports are documented in:
 | `make semantic-ingest` | Rebuilds the 1,560-row semantic index |
 | `make semantic-import` | Re-imports and publishes the semantic workflow and credential |
 | `make semantic-smoke` | Tests the semantic chat webhook |
+| `make funcao-setup` | Imports the Função/Subfunção workflow, builds the 29/83-row index, and smoke-tests it |
+| `make funcao-status` | Checks the Função/Subfunção containers, models, index, and workflow state |
+| `make funcao-models` | Pulls `qwen3:4b` and `qwen3-embedding:0.6b` |
+| `make funcao-ingest` | Rebuilds the 29/83-row Função/Subfunção index |
+| `make funcao-import` | Re-imports and publishes the Função/Subfunção workflow and credential |
+| `make funcao-smoke` | Tests the Função/Subfunção chat webhook |

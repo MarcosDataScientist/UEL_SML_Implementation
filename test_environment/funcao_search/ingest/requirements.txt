@@ -1,0 +1,4 @@
+# Only the direct dependencies needed by funcao_search/ingest/ingest_funcoes.py.
+# Pinned from a real install.
+requests==2.34.2
+psycopg2-binary==2.9.13

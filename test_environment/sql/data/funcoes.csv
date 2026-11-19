@@ -1,0 +1,30 @@
+idfuncao,codigofuncao,descricaofuncao
+1,01,Legislativa
+2,02,Judiciária
+3,03,Essencial à Justiça
+4,04,Administração
+5,06,Segurança Pública
+6,08,Assistência Social
+7,09,Previdência Social
+8,10,Saúde
+9,11,Trabalho
+10,12,Educação
+11,13,Cultura
+12,14,Direitos da Cidadania
+14,15,Urbanismo
+15,16,Habitação
+16,17,Saneamento
+17,18,Gestão Ambiental
+18,19,Ciência e Tecnologia
+20,20,Agricultura
+21,22,Indústria
+22,23,Comércio e Serviços
+24,24,Comunicações
+25,26,Transporte
+26,27,Desporto e Lazer
+27,28,Encargos Especiais
+29,99,Reserva de Contingência
+31,05,Defesa Nacional
+32,07,Relações Exteriores
+33,21,Organização Agrária
+34,25,Energia

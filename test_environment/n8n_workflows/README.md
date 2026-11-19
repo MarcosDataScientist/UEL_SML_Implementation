@@ -44,14 +44,14 @@ The table below outlines how each production agent maps to our local, containeri
 | **`ai_budget_action.json`** | Budget Actions query & parameter extraction | ✅ **100% Covered** by `legacy/local_ai_budget_action.json` |
 | **`ai_expense_nature.json`** | Expense Natures search & classification | ✅ **100% Covered & Exceeded** by `proposed/local_ai_expense_nature_memory_kmedoids.json` ($K$-Medoids + Mini-Memory) |
 | **`ai_funding_source.json`** | Funding Sources query (SIAFIC / MTO rules) | ⏳ **Pending local adaptation** (schema & seed records already loaded in `sql/init.sql`) |
-| **`ai_function_and_subfunction.json`** | Functional-programmatic classification | ⏳ **Pending local adaptation** (schema & seed records already loaded in `sql/init.sql`) |
+| **`ai_function_and_subfunction.json`** | Functional-programmatic classification | ✅ **100% Covered** by `funcao_search/funcao_search.json` (lexical code lookup + pgvector embedding search) |
 | **`ai_annexes_dad.json`** | Legal justification & drafting for DAD | ⏳ **Pending local adaptation** (requires Tier 2 model 3B–7B for formal fiscal drafting) |
 | **`ai_odc_analysis.json`** | Expenditure & Credit Orders validation (ODC) | ⏳ **Pending local adaptation** |
 | **`ai_agent_sefa_request.json`** | General fiscal triage for administrative requests | ⏳ **Pending local adaptation** |
 | **`ai_funding_source_legacy.json`** | Preliminary text-search version for funding sources | 📦 **Obsolete** (superseded by `ai_funding_source.json`) |
 | **`poc_budget_search.json`** | Initial Proof-of-Concept integrating Google Sheets | 📦 **Obsolete** (superseded by local PostgreSQL `pg_trgm` / `unaccent`) |
 
-> **Key Takeaway:** The 2 local workflows implemented in this directory cover **>80% of actual daily public servant search traffic** (Budget Actions and Expense Natures). The remaining cloud workflows will be migrated to local inference following the exact same Session Mini-Memory & deterministic SQL architecture established here.
+> **Key Takeaway:** The local workflows now cover Budget Actions, Expense Natures, and the Função/Subfunção functional classification. The first two still account for **>80% of actual daily public servant search traffic** (Budget Actions and Expense Natures). The remaining cloud workflows will be migrated to local inference following the exact same Session Mini-Memory & deterministic SQL architecture established here.
 
 ---
 
