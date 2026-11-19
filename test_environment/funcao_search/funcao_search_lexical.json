@@ -1,0 +1,435 @@
+{
+  "name": "Chat Função e Subfunção (lexical)",
+  "nodes": [
+    {
+      "parameters": {
+        "public": true,
+        "mode": "hostedChat",
+        "options": {
+          "responseMode": "lastNode"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.5,
+      "position": [
+        -560,
+        0
+      ],
+      "id": "a1f2e3d4-0001-4a01-9f01-000000000001",
+      "name": "When chat message received",
+      "webhookId": "funcaosearchlexical01"
+    },
+    {
+      "parameters": {
+        "jsCode": "const chatInput = String($json.chatInput ?? '').trim();\nconst codeLabel = /^\\s*c[óo]digo\\s*[:=\\-]?\\s*/i;\nconst codeShape = /^[\\d\\s.\\-\\/]+$/;\nconst withoutLabel = chatInput.replace(codeLabel, '').trim();\nconst codigoDigits = withoutLabel.replace(/\\D/g, '');\n// One digit is enough: a partial função code is a legitimate search.\nconst isCodeInput = codigoDigits.length >= 1 && codeShape.test(withoutLabel);\n\nreturn [{\n  json: {\n    chat_input: chatInput,\n    is_code_input: isCodeInput,\n    codigo_digits: codigoDigits,\n  },\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -304,
+        0
+      ],
+      "id": "a1f2e3d4-0002-4a02-9f02-000000000002",
+      "name": "Detect Code Input"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "a1f2e3d4-0003-4a03-9f03-000000000003-51",
+              "name": "similarity_floor",
+              "value": 0.55,
+              "type": "number"
+            },
+            {
+              "id": "a1f2e3d4-0003-4a03-9f03-000000000003-52",
+              "name": "max_rows",
+              "value": 50,
+              "type": "number"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        -48,
+        0
+      ],
+      "id": "a1f2e3d4-0003-4a03-9f03-000000000003",
+      "name": "Search Config (floor, max_rows)"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "a1f2e3d4-0004-4a04-9f04-000000000004",
+              "leftValue": "={{ $json.is_code_input }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        208,
+        0
+      ],
+      "id": "a1f2e3d4-0004-4a04-9f04-000000000004",
+      "name": "Is Code Input?"
+    },
+    {
+      "parameters": {
+        "jsCode": "const digits = String($json.codigo_digits ?? '').trim();\nconst maxRows = Number($json.max_rows);\n\nif (!digits || !/^\\d+$/.test(digits)) {\n  throw new Error('Código sem dígitos para a busca por código.');\n}\nif (!Number.isInteger(maxRows) || maxRows < 1) {\n  throw new Error('Search configuration is invalid: max_rows must be a positive integer.');\n}\n\n// Leading zeros never matter: production stores them, users drop them. A code\n// made only of zeros must not turn the LIKE into a match-everything pattern.\nconst needle = digits.replace(/^0+/, '') || '0';\n\nreturn [{ json: { codigo_needle: needle, termo_codigo: digits, max_rows: maxRows } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        464,
+        192
+      ],
+      "id": "a1f2e3d4-0005-4a05-9f05-000000000005",
+      "name": "Build Code Query"
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "WITH hits AS (\n  SELECT\n    s.idsubfuncao,\n    s.codigosubfuncao,\n    s.descricaosubfuncao,\n    f.codigofuncao,\n    f.descricaofuncao,\n    CASE\n      WHEN ltrim(s.codigo_digits, '0') = $1 THEN 0\n      WHEN ltrim(f.codigo_digits, '0') = $1 THEN 1\n      ELSE 2\n    END AS match_case\n  FROM subfuncao s\n  JOIN funcao f ON f.idfuncao = s.funcao_idfuncao\n  WHERE ltrim(s.codigo_digits, '0') LIKE '%' || $1 || '%'\n     OR ltrim(f.codigo_digits, '0') LIKE '%' || $1 || '%'\n)\nSELECT\n  h.codigosubfuncao,\n  h.descricaosubfuncao,\n  h.codigofuncao,\n  h.descricaofuncao,\n  count(h.idsubfuncao) OVER () AS total,\n  $3::text AS termo\nFROM (SELECT 1) AS one\nLEFT JOIN hits h ON true\nORDER BY h.match_case, h.codigosubfuncao, h.descricaosubfuncao\nLIMIT $2",
+        "options": {
+          "queryReplacement": "={{ [$json.codigo_needle, $json.max_rows, $json.termo_codigo] }}"
+        }
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.7,
+      "position": [
+        720,
+        192
+      ],
+      "id": "a1f2e3d4-0006-4a06-9f06-000000000006",
+      "name": "Search by Code (SQL)",
+      "credentials": {
+        "postgres": {
+          "id": "pgvectorFuncao1",
+          "name": "pgvector função (mock)"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Build the extraction request body here so the HTTP node's expression stays a\n// single JSON.stringify() without nested brace literals.\nconst chatInput = String($json.chat_input ?? '').trim();\nconst SYSTEM_PROMPT = `Você extrai o termo de busca de mensagens sobre funções e subfunções orçamentárias.\n\nResponda somente com JSON no formato {\"intencao\": \"saudacao|ajuda|busca\", \"termo\": \"...\"}.\n\nIntenções:\n- \"saudacao\": cumprimentos e cortesias (\"oi\", \"bom dia\", \"obrigado\").\n- \"ajuda\": perguntas sobre como usar o assistente ou o que é função e subfunção.\n- \"busca\": todo o resto, inclusive palavras isoladas, termos desconhecidos e códigos.\n\nRegras do termo: minúsculas, singular, preserve os acentos; remova verbos, artigos e\npedidos (\"quero\", \"preciso\", \"de\", \"para\"); se a mensagem for um código, copie só os\ndígitos. Para \"saudacao\" e \"ajuda\", deixe o termo vazio.\n\nExemplos:\n- \"oi\" -> {\"intencao\": \"saudacao\", \"termo\": \"\"}\n- \"como buscar?\" -> {\"intencao\": \"ajuda\", \"termo\": \"\"}\n- \"policiamento ostensivo\" -> {\"intencao\": \"busca\", \"termo\": \"policiamento\"}\n- \"quero ver saúde\" -> {\"intencao\": \"busca\", \"termo\": \"saúde\"}\n- \"061\" -> {\"intencao\": \"busca\", \"termo\": \"061\"}`;\n\nreturn [{\n  json: {\n    chat_input: chatInput,\n    request_body: {\n      model: 'qwen3:4b',\n      messages: [\n        { role: 'system', content: SYSTEM_PROMPT },\n        { role: 'user', content: chatInput },\n      ],\n      stream: false,\n      think: false,\n      format: {\n        type: 'object',\n        properties: {\n          intencao: { type: 'string', enum: ['saudacao', 'ajuda', 'busca'] },\n          termo: { type: 'string' },\n        },\n        required: ['intencao', 'termo'],\n        additionalProperties: false,\n      },\n      options: { temperature: 0, num_ctx: 4096 },\n      keep_alive: '30m',\n    },\n  },\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        464,
+        -192
+      ],
+      "id": "a1f2e3d4-0007-4a07-9f07-000000000007",
+      "name": "Build Chat Request"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://ollama:11434/api/chat",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify($json.request_body) }}",
+        "options": {
+          "timeout": 180000
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        720,
+        -192
+      ],
+      "id": "a1f2e3d4-0008-4a08-9f08-000000000008",
+      "name": "Extract Termo (LLM)",
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Turn the extraction reply into an intenção and a single termo. Anything the\n// model does not route as greeting/help is a search, and a malformed or missing\n// reply falls back to the raw message, so the workflow still answers.\nconst userText = String($('Build Chat Request').first().json.chat_input ?? '').trim();\nconst content = $json?.message?.content ?? $json?.output ?? '';\nconst raw = typeof content === 'string' ? content : JSON.stringify(content ?? '');\n\nlet parsed = null;\nconst first = raw.indexOf('{');\nconst last = raw.lastIndexOf('}');\nif (first !== -1 && last > first) {\n  try {\n    parsed = JSON.parse(raw.slice(first, last + 1));\n  } catch (error) {\n    // fall through to the plain-text branch\n  }\n}\n\nlet term = parsed ? String(parsed?.termo ?? '') : '';\nif (!parsed) {\n  term = raw.split(/\\r?\\n/).map((line) => line.trim()).filter(Boolean)[0] || '';\n}\nterm = term.replace(/^termo\\s*[:=]\\s*/i, '');\nterm = term.replace(/^[\"'`\\u201c\\u201d]+|[\"'`\\u201c\\u201d]+$/g, '');\n// Accents stay: the floor in 3.4 was measured on accented query text.\nterm = term.replace(/\\s+/g, ' ').trim().toLowerCase();\nif (!term) {\n  term = userText;\n}\n\nconst normalized = String(parsed?.intencao ?? '')\n  .normalize('NFD').replace(/[\\u0300-\\u036f]/g, '').toLowerCase().trim();\nconst intencao = normalized === 'saudacao' || normalized === 'ajuda' ? normalized : 'busca';\nconst isGreeting = intencao !== 'busca';\n\nreturn [{\n  json: {\n    intencao,\n    is_greeting: isGreeting,\n    termo: isGreeting ? '' : term,\n    chat_input: userText,\n  },\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        976,
+        -192
+      ],
+      "id": "a1f2e3d4-0009-4a09-9f09-000000000009",
+      "name": "Parse Termo"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "a1f2e3d4-0010-4a10-9f10-000000000010",
+              "leftValue": "={{ $json.is_greeting }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        1232,
+        -192
+      ],
+      "id": "a1f2e3d4-0010-4a10-9f10-000000000010",
+      "name": "Is Greeting or Help?"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Greeting and help both get the fixed text: the live prompt repeats its\n// opening question for a dúvida and never calls a tool for one.\nconst ORIENTATION = 'Qual a Subfunção? Digite o código, nome ou palavra-chave para localizar:\\nExemplos: 061, 121, Administração Geral, Policiamento...\\nAparecerão todas as subfunções que contenham o termo buscado.';\n\nreturn [{ json: { output: ORIENTATION, text: ORIENTATION } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1488,
+        -384
+      ],
+      "id": "a1f2e3d4-0011-4a11-9f11-000000000011",
+      "name": "Format Orientation"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Join the extracted term with the tunable search configuration. The term is\n// the only value the lexical SQL needs for scoring and for the reply.\nconst config = $('Search Config (floor, max_rows)').first().json;\nconst termo = String($('Parse Termo').first().json?.termo ?? '').trim();\n\nconst floor = Number(config.similarity_floor);\nconst maxRows = Number(config.max_rows);\nif (!Number.isFinite(floor) || !Number.isInteger(maxRows) || maxRows < 1) {\n  throw new Error('Search configuration is invalid: similarity_floor must be a number and max_rows a positive integer.');\n}\n\nreturn [{ json: { termo, similarity_floor: floor, max_rows: maxRows } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1744,
+        -192
+      ],
+      "id": "a1f2e3d4-0013-4a13-9f13-000000000013",
+      "name": "Build Termo Query"
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "WITH hits AS (\n  SELECT\n    s.idsubfuncao,\n    s.codigosubfuncao,\n    s.descricaosubfuncao,\n    f.codigofuncao,\n    f.descricaofuncao,\n    GREATEST(\n      CASE WHEN strpos(unaccent(lower(s.descricaosubfuncao)), unaccent(lower($1))) > 0 THEN 1.0 ELSE 0 END,\n      CASE WHEN strpos(unaccent(lower(f.descricaofuncao)), unaccent(lower($1))) > 0 THEN 1.0 ELSE 0 END,\n      similarity(unaccent(lower(s.descricaosubfuncao)), unaccent(lower($1))),\n      similarity(unaccent(lower(f.descricaofuncao)), unaccent(lower($1)))\n    ) AS score\n  FROM subfuncao s\n  JOIN funcao f ON f.idfuncao = s.funcao_idfuncao\n  WHERE nullif(unaccent(lower($1)), '') IS NOT NULL\n    AND GREATEST(\n      CASE WHEN strpos(unaccent(lower(s.descricaosubfuncao)), unaccent(lower($1))) > 0 THEN 1.0 ELSE 0 END,\n      CASE WHEN strpos(unaccent(lower(f.descricaofuncao)), unaccent(lower($1))) > 0 THEN 1.0 ELSE 0 END,\n      similarity(unaccent(lower(s.descricaosubfuncao)), unaccent(lower($1))),\n      similarity(unaccent(lower(f.descricaofuncao)), unaccent(lower($1)))\n    ) >= $2\n)\nSELECT\n  h.codigosubfuncao,\n  h.descricaosubfuncao,\n  h.codigofuncao,\n  h.descricaofuncao,\n  h.score,\n  count(h.idsubfuncao) OVER () AS total,\n  $1::text AS termo\nFROM (SELECT 1) AS one\nLEFT JOIN hits h ON true\nORDER BY h.score DESC NULLS LAST, h.codigosubfuncao, h.descricaosubfuncao\nLIMIT $3",
+        "options": {
+          "queryReplacement": "={{ [$json.termo, $json.similarity_floor, $json.max_rows] }}"
+        }
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.7,
+      "position": [
+        2000,
+        -192
+      ],
+      "id": "a1f2e3d4-0014-4a14-9f14-000000000014",
+      "name": "Search by Termo (SQL)",
+      "credentials": {
+        "postgres": {
+          "id": "pgvectorFuncao1",
+          "name": "pgvector função (mock)"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Render the reply deterministically: result rows never reach a model.\nconst HEADER = '| Cód. Subfunção | Descrição Subfunção | Cód. Função | Descrição Função |';\nconst DIVIDER = '|---|---|---|---|';\nconst CLOSING = 'Deseja pesquisar outra Subfunção?';\n\nconst items = $input.all().map((item) => item.json ?? {});\n// A search that matches nothing still returns one sentinel row, so the term and\n// the untruncated total always travel with the rows.\nconst rows = items.filter((row) => String(row?.codigosubfuncao ?? '').trim() !== '');\nconst first = items[0] ?? {};\n\nconst termo = String(first.termo ?? '').trim();\nconst reported = Number(first.total);\nconst total = Number.isFinite(reported) ? reported : rows.length;\n\nconst cell = (value) => String(value ?? '')\n  .replace(/[\\r\\n]+/g, ' ')\n  .replace(/\\s+/g, ' ')\n  .trim()\n  .replace(/\\|/g, '\\\\|');\n\nif (rows.length === 0) {\n  const reply = `Não encontrei nenhuma Subfunção para *${termo}*. Tente outro termo.\\n\\n${CLOSING}`;\n  return [{ json: { output: reply, text: reply } }];\n}\n\nconst notice = rows.length < total ? `Mostrando ${rows.length} de ${total} resultados.` : '';\nconst table = [\n  HEADER,\n  DIVIDER,\n  ...rows.map((row) => `| ${cell(row.codigosubfuncao)} | ${cell(row.descricaosubfuncao)} | ${cell(row.codigofuncao)} | ${cell(row.descricaofuncao)} |`),\n].join('\\n');\n\nconst reply = [\n  `Encontrei as seguintes Subfunções para *${termo}*:`,\n  notice,\n  table,\n  CLOSING,\n].filter(Boolean).join('\\n\\n');\n\nreturn [{ json: { output: reply, text: reply } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2256,
+        0
+      ],
+      "id": "a1f2e3d4-0015-4a15-9f15-000000000015",
+      "name": "Format Results"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "Detect Code Input",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Detect Code Input": {
+      "main": [
+        [
+          {
+            "node": "Search Config (floor, max_rows)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Search Config (floor, max_rows)": {
+      "main": [
+        [
+          {
+            "node": "Is Code Input?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Is Code Input?": {
+      "main": [
+        [
+          {
+            "node": "Build Code Query",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Build Chat Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build Code Query": {
+      "main": [
+        [
+          {
+            "node": "Search by Code (SQL)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Search by Code (SQL)": {
+      "main": [
+        [
+          {
+            "node": "Format Results",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build Chat Request": {
+      "main": [
+        [
+          {
+            "node": "Extract Termo (LLM)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract Termo (LLM)": {
+      "main": [
+        [
+          {
+            "node": "Parse Termo",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse Termo": {
+      "main": [
+        [
+          {
+            "node": "Is Greeting or Help?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Is Greeting or Help?": {
+      "main": [
+        [
+          {
+            "node": "Format Orientation",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Build Termo Query",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build Termo Query": {
+      "main": [
+        [
+          {
+            "node": "Search by Termo (SQL)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Search by Termo (SQL)": {
+      "main": [
+        [
+          {
+            "node": "Format Results",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "meta": {},
+  "tags": [],
+  "id": "funcaoSearchLexical01"
+}

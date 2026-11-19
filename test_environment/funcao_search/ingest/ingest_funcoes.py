@@ -204,6 +204,10 @@ def create_schema_sql(dim: int = DEFAULT_EMBED_DIM) -> str:
 
     return f"""
 CREATE EXTENSION IF NOT EXISTS vector;
+-- The lexical twin (funcao_search_lexical.json) ranks with unaccent() and
+-- similarity(); a store built here must answer it without a manual psql step.
+CREATE EXTENSION IF NOT EXISTS pg_trgm;
+CREATE EXTENSION IF NOT EXISTS unaccent;
 
 DROP TABLE IF EXISTS {SUBFUNCAO_TABLE};
 DROP TABLE IF EXISTS {FUNCAO_TABLE};

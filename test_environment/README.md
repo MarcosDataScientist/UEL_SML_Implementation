@@ -87,7 +87,8 @@ test_environment/
 │   └── ingest/                     # Containerized 1,560-row index builder
 ├── funcao_search/
 │   ├── README.md                   # Chat Função/Subfunção workflow and operations
-│   ├── funcao_search.json          # n8n workflow export
+│   ├── funcao_search.json          # semantic arm, n8n workflow export
+│   ├── funcao_search_lexical.json  # lexical arm, n8n workflow export
 │   ├── credentials/pgvector-funcao.json # Fixed-id Função credential
 │   └── ingest/                     # Containerized 29/83-row index builder
 └── README.md                       # This documentation
@@ -174,19 +175,24 @@ models, in its own `funcao_vectors` database:
 make funcao-setup
 ```
 
-This imports the `Chat Função e Subfunção` workflow, builds the 29-row função
+This imports both `Chat Função e Subfunção` workflows, builds the 29-row função
 and 83-row subfunção store from `sql/data/funcoes.csv` and
-`sql/data/subfuncoes.csv`, and runs a smoke query. It skips the model pull when
-both models are already present.
+`sql/data/subfuncoes.csv`, and runs one smoke query per arm. It skips the model
+pull when both models are already present.
 
 ```bash
 make funcao-status
-make funcao-smoke
+make funcao-smoke          # semantic arm
+make funcao-lexical-smoke  # lexical arm
 ```
 
-The chat webhook is `http://localhost:5678/webhook/funcaosearchflow01/chat`.
-See [`funcao_search/README.md`](funcao_search/README.md) for the workflow
-behavior, ports, and troubleshooting.
+The semantic arm answers on
+`http://localhost:5678/webhook/funcaosearchflow01/chat`; the lexical arm on
+`http://localhost:5678/webhook/funcaosearchlexical01/chat`. The semantic arm is
+the default. The lexical workflow can be re-imported on its own with
+`make funcao-lexical-import`. See
+[`funcao_search/README.md`](funcao_search/README.md) for the measured difference
+between the arms, ports, and troubleshooting.
 
 ---
 
@@ -226,9 +232,11 @@ Reports are documented in:
 | `make semantic-ingest` | Rebuilds the 1,560-row semantic index |
 | `make semantic-import` | Re-imports and publishes the semantic workflow and credential |
 | `make semantic-smoke` | Tests the semantic chat webhook |
-| `make funcao-setup` | Imports the Função/Subfunção workflow, builds the 29/83-row index, and smoke-tests it |
-| `make funcao-status` | Checks the Função/Subfunção containers, models, index, and workflow state |
+| `make funcao-setup` | Imports both Função/Subfunção workflows, builds the 29/83-row index, and smoke-tests both |
+| `make funcao-status` | Checks the Função/Subfunção containers, models, extensions, index, and both workflows |
 | `make funcao-models` | Pulls `qwen3:4b` and `qwen3-embedding:0.6b` |
+| `make funcao-import` | Re-imports and publishes both Função/Subfunção workflows and the credential |
+| `make funcao-lexical-import` | Re-imports and publishes only the lexical Função/Subfunção workflow |
 | `make funcao-ingest` | Rebuilds the 29/83-row Função/Subfunção index |
-| `make funcao-import` | Re-imports and publishes the Função/Subfunção workflow and credential |
-| `make funcao-smoke` | Tests the Função/Subfunção chat webhook |
+| `make funcao-smoke` | Tests the semantic Função/Subfunção chat webhook |
+| `make funcao-lexical-smoke` | Tests the lexical Função/Subfunção chat webhook |

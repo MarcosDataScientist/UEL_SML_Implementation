@@ -44,7 +44,7 @@ The table below outlines how each production agent maps to our local, containeri
 | **`ai_budget_action.json`** | Budget Actions query & parameter extraction | ✅ **100% Covered** by `legacy/local_ai_budget_action.json` |
 | **`ai_expense_nature.json`** | Expense Natures search & classification | ✅ **100% Covered & Exceeded** by `proposed/local_ai_expense_nature_memory_kmedoids.json` ($K$-Medoids + Mini-Memory) |
 | **`ai_funding_source.json`** | Funding Sources query (SIAFIC / MTO rules) | ⏳ **Pending local adaptation** (schema & seed records already loaded in `sql/init.sql`) |
-| **`ai_function_and_subfunction.json`** | Functional-programmatic classification | ✅ **100% Covered** by `funcao_search/funcao_search.json` (lexical code lookup + pgvector embedding search) |
+| **`ai_function_and_subfunction.json`** | Functional-programmatic classification | ✅ **100% Covered** by `funcao_search/funcao_search.json` and `funcao_search/funcao_search_lexical.json` (lexical code lookup plus two text arms: pgvector embedding and lexical trigram) |
 | **`ai_annexes_dad.json`** | Legal justification & drafting for DAD | ⏳ **Pending local adaptation** (requires Tier 2 model 3B–7B for formal fiscal drafting) |
 | **`ai_odc_analysis.json`** | Expenditure & Credit Orders validation (ODC) | ⏳ **Pending local adaptation** |
 | **`ai_agent_sefa_request.json`** | General fiscal triage for administrative requests | ⏳ **Pending local adaptation** |
