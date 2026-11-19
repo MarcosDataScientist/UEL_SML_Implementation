@@ -1,4 +1,4 @@
-.PHONY: help setup-network up down restart status logs logs-ollama logs-n8n register-finetuned pull-models test-dry-run test-direct test-n8n test-memory test-memory-live psql db-seed semantic-setup semantic-status semantic-models semantic-ingest semantic-import semantic-smoke
+.PHONY: help setup-network up down restart status logs logs-ollama logs-n8n register-finetuned pull-models test-dry-run test-direct test-n8n test-memory test-memory-live psql db-seed semantic-setup semantic-status semantic-models semantic-ingest semantic-import semantic-smoke funcao-setup funcao-status funcao-models funcao-ingest funcao-import funcao-smoke
 
 MODEL ?= qwen2.5-budget:1.5b
 MODELS ?= qwen2.5-budget:1.5b,qwen2.5:1.5b,llama3.2:1b
@@ -33,6 +33,12 @@ help:
 	@echo "make semantic-ingest - Rebuilds the 1,560-row semantic pgvector index"
 	@echo "make semantic-import - Re-imports the semantic workflow and credential"
 	@echo "make semantic-smoke  - Tests the semantic chat webhook"
+	@echo "make funcao-setup   - Imports the Função workflow, pulls models, builds the index, smoke-tests"
+	@echo "make funcao-status  - Função/Subfunção health, models, index, and workflow state"
+	@echo "make funcao-models  - Pulls qwen3:4b and qwen3-embedding:0.6b"
+	@echo "make funcao-ingest  - Rebuilds the 29/83-row Função/Subfunção pgvector store"
+	@echo "make funcao-import  - Re-imports the Função workflow and credential"
+	@echo "make funcao-smoke   - Tests the Função chat webhook"
 	@echo "======================================================================"
 
 setup-network:
@@ -52,6 +58,7 @@ up: setup-network
 	@echo ""
 	@echo "💡 Next step: run 'make pull-models' to download candidate SLMs."
 	@echo "   For the semantic search workflow: make semantic-setup"
+	@echo "   For the Função/Subfunção workflow: make funcao-setup"
 
 down:
 	docker compose down
@@ -128,3 +135,26 @@ semantic-import:
 
 semantic-smoke:
 	./scripts/semantic_search.sh smoke
+
+# Função/Subfunção search (pgvector) --------------------------------------------
+# Shares the pgvector sidecar with the semantic index and lives in its own
+# database, so either index can be rebuilt without touching the other.
+# `make funcao-setup` is idempotent; run it after `make up` on a fresh clone.
+
+funcao-setup:
+	./scripts/funcao_search.sh setup
+
+funcao-status:
+	./scripts/funcao_search.sh status
+
+funcao-models:
+	./scripts/funcao_search.sh models
+
+funcao-ingest:
+	./scripts/funcao_search.sh ingest
+
+funcao-import:
+	./scripts/funcao_search.sh import
+
+funcao-smoke:
+	./scripts/funcao_search.sh smoke

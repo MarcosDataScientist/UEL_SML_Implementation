@@ -1,0 +1,6 @@
+# The ingestion image only needs its own three files.
+*
+!ingest/
+!ingest/requirements.txt
+!ingest/ingest_funcoes.py
+!ingest/vector_store.py

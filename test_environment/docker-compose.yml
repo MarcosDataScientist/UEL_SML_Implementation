@@ -114,6 +114,8 @@ services:
       - ./n8n_workflows:/workflows:ro
       # Read-only source for the semantic-search workflow and its credential.
       - ./semantic_search:/semantic_search:ro
+      # Read-only source for the Função/Subfunção workflow and its credential.
+      - ./funcao_search:/funcao_search:ro
     depends_on:
       ollama:
         condition: service_healthy
@@ -154,6 +156,39 @@ services:
       - EMBED_BATCH_SIZE=${EMBED_BATCH_SIZE:-32}
     volumes:
       # The repository already carries the same 1,560-row reference CSV.
+      - ./sql/data:/app/data:ro
+    networks:
+      - lab-network
+
+  # One-shot rebuild of the Função/Subfunção store. It shares the pgvector
+  # sidecar with the Natureza index but writes to its own database, so either
+  # index can be rebuilt without touching the other.
+  funcao-ingest:
+    profiles: ["setup"]
+    restart: "no"
+    build:
+      context: ./funcao_search
+      dockerfile: ingest/Dockerfile
+    depends_on:
+      pgvector:
+        condition: service_healthy
+      ollama:
+        condition: service_healthy
+    environment:
+      - PGVECTOR_HOST=pgvector
+      - PGVECTOR_PORT=5432
+      # The ingest always targets FUNCAO_PGVECTOR_DB; PGVECTOR_DB carries the
+      # same value for the shared connection defaults.
+      - PGVECTOR_DB=${FUNCAO_PGVECTOR_DB:-funcao_vectors}
+      - FUNCAO_PGVECTOR_DB=${FUNCAO_PGVECTOR_DB:-funcao_vectors}
+      - PGVECTOR_USER=${PGVECTOR_USER:-natureza}
+      - PGVECTOR_PASSWORD=${PGVECTOR_PASSWORD:-natureza}
+      - OLLAMA_BASE_URL=http://ollama:11434
+      - EMBED_MODEL=${EMBED_MODEL:-qwen3-embedding:0.6b}
+      - EMBED_DIM=${EMBED_DIM:-1024}
+      - EMBED_BATCH_SIZE=${EMBED_BATCH_SIZE:-32}
+    volumes:
+      # Both reference CSVs already live beside naturezadespesa.csv.
       - ./sql/data:/app/data:ro
     networks:
       - lab-network
